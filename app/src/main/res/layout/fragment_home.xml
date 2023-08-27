@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/btnMain"-->
+<!--        android:layout_width="72dp"-->
+<!--        android:layout_height="87dp"-->
+<!--        android:src="@drawable/baseline_camera_alt_24"-->
+<!--        android:layout_marginStart="40dp"-->
+<!--        android:layout_margin="50dp"/>-->
+
+
+
+</FrameLayout>
