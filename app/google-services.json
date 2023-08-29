@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "465683678317",
+    "project_id": "fasal-doctor-ef038",
+    "storage_bucket": "fasal-doctor-ef038.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465683678317:android:2079c98e66ba866ac5eb64",
+        "android_client_info": {
+          "package_name": "com.manila.fasaldoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465683678317-602jrgn0silnv6jpdnro7qvsciqc1v8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBOYowP_8VkEo2GHE77fGR8SjIgTQ3CF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465683678317-602jrgn0silnv6jpdnro7qvsciqc1v8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

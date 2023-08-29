@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RegisterActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_name"
+        android:layout_marginTop="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="0dp"
+        app:placeholderText="Enter Your UserName"
+        android:hint="UserName"
+        app:hintEnabled="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:startIconDrawable="@drawable/vector_person">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUserName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_below="@+id/user_name"
+        android:id="@+id/TextTextEmailAddress2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="0dp"
+        app:placeholderText="Enter Your Email"
+        android:hint="Email"
+        app:hintEnabled="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:startIconDrawable="@drawable/vector_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextEmailAddress2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextTextPassword2"
+        android:layout_below="@+id/TextTextEmailAddress2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="0dp"
+        app:placeholderText="Enter Your Password"
+        android:hint="Password"
+        app:hintEnabled="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:startIconDrawable="@drawable/vector_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextTextConfirmPassword2"
+        android:layout_below="@+id/TextTextPassword2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="0dp"
+        app:placeholderText="Repeat Your Password"
+        android:hint="Confirm Password"
+        app:hintEnabled="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:startIconDrawable="@drawable/vector_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextConfirmPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/rolechoosetext"
+        android:layout_below="@+id/TextTextConfirmPassword2"
+        android:layout_marginTop="15dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Are you a : "
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="18sp"
+        />
+
+    <CheckBox
+        android:id="@+id/farmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextTextConfirmPassword2"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="7dp"
+        android:text="Farmer"
+        android:textSize="17sp" />
+    <CheckBox
+        android:id="@+id/expert"
+        android:layout_below="@+id/farmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expert"
+        android:textSize="17sp"
+        android:layout_marginStart="120dp" />
+
+    <Button
+        android:layout_below="@+id/expert"
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Register"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Already Registerd. - Login"
+        android:layout_marginBottom="100dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textStyle="italic"/>
+
+
+
+
+</RelativeLayout>
