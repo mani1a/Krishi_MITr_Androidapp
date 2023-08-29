@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="app_bg">#F0FFF0</color>
+    <color name="bottom_nav_bg">#C5F5B4</color>
 </resources>

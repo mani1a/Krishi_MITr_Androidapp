@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.FasalDoctor" parent="Base.Theme.FasalDoctor" />
+    
+    <style name="SlideActivityAnimation" parent="android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/bottomnav_animation_slidein</item>
+        <item name="android:activityOpenExitAnimation">@anim/bottomnav_animation_slideout</item>
+        
+    </style>
 </resources>

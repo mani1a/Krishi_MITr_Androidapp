@@ -2,17 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:checkableBehavior="single">
+        android:checkableBehavior="none">
 
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/vector_home"/>
 
     <item
         android:id="@+id/feed"
         android:title="Feed"
-        android:icon="@drawable/baseline_camera_alt_24"/>
+        android:icon="@drawable/vector_camera"/>
     <item
         android:id="@+id/profile"
         android:title="Profile"
-        android:icon="@drawable/baseline_person_24"/>
+        android:icon="@drawable/vector_person"/>
 
     </group>
 
