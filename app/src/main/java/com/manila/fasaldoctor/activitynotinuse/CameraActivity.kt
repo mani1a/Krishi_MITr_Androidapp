@@ -1,4 +1,4 @@
-package com.manila.fasaldoctor.activity
+package com.manila.fasaldoctor.activitynotinuse
 
 import android.annotation.SuppressLint
 import android.content.Context

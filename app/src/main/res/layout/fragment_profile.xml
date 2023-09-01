@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitynotinuse.ProfileActivity"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ProfileFragment">
 
 
-
-
-
-
-    <!--this activity is not in use -->
-    <!--codes are changed -->
-    <!--don't do changes here-->
-
-
-
-
-
-
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -78,24 +65,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"/>
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="90dp"
-        android:text="Logout"
-        android:textSize="18sp"/>
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="90dp"
+            android:text="Logout"
+            android:textSize="18sp"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_nav_items"
-        app:labelVisibilityMode="selected"
-        android:background="@color/bottom_nav_bg"
-        />
-
-</RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

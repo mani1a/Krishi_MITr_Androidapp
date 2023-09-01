@@ -21,6 +21,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationBarView
@@ -31,6 +32,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityHomeBinding
+import com.manila.fasaldoctor.fragments.HomeFragment
+import com.manila.fasaldoctor.fragments.ProfileFragment
 import java.text.SimpleDateFormat
 import java.util.BitSet
 import java.util.Date
@@ -55,6 +58,8 @@ import java.util.Locale
      lateinit var openGallery: Button
      lateinit var imageUri: Uri
      val REQUEST_CAMERA_CODE = 100
+     lateinit var userName : String
+     lateinit var role : String
 
 
 
@@ -64,39 +69,74 @@ import java.util.Locale
          super.onCreate(savedInstanceState)
          binding = ActivityHomeBinding.inflate(layoutInflater)
          setContentView(binding.root)
+         replaceFragments(HomeFragment())
+
+         val profileFragment = ProfileFragment()
+         val bundle = Bundle()
 
 
-         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
-         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
-         firebaseStorageRefrence = FirebaseStorage.getInstance()
+         userName = intent.getStringExtra("userName").toString()
+         role = intent.getStringExtra("role").toString()
+//         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
+         binding.txtView.text = userName
 
-         frameLayout = findViewById(R.id.frameLayout)
-         openCamera = findViewById(R.id.open_camera)
-//         openGallery = findViewById(R.id.open_gallery)
-         imgView = findViewById(R.id.captured_image)
+         bundle.putString("userName",userName)
+         bundle.putString("role",role)
+         profileFragment.arguments = bundle
+
+
+         binding.btnChat.setOnClickListener {
+             startActivity(Intent(this,ChatMainActivity::class.java))
+         }
+
+
+
+//         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
+//         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
+//         if(isLoggedIn){
+//             startActivity(Intent(this,LoginActivity::class.java))
+//         }else{
+//
+//         }
+//
+//
+//         sharedPreferences = getSharedPreferences(getString(R.string.user_name),Context.MODE_PRIVATE)
+//         var sharedUserName = sharedPreferences.getString("userName", null).toString()
+//         Toast.makeText(this,sharedUserName,Toast.LENGTH_LONG).show()
+//
+//         sharedPreferences =getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
+//         var role = sharedPreferences.getString("checkedRole", null).toString()
+//
+//         firebaseStorageRefrence = FirebaseStorage.getInstance()
+//
+//         frameLayout = findViewById(R.id.frameLayout)
+////         openCamera = findViewById(R.id.open_camera)
+////         openGallery = findViewById(R.id.open_gallery)
+//         imgView = findViewById(R.id.captured_image)
 
 //         val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
 //             imgView.setImageURI(it)
 //         }
 
-         val cloudContract = registerForActivityResult(ActivityResultContracts.GetContent()){
-             imgView.setImageURI(it)
-             if (it != null) {
-                 imageUri = it
-             }
-         }
+//         val cloudContract = registerForActivityResult(ActivityResultContracts.GetContent()){
+//             imgView.setImageURI(it)
+//             if (it != null) {
+//                 imageUri = it
+//             }
+//         }
 
-         binding.selectImage.setOnClickListener {
-             cloudContract.launch("image/*")
-             cloudContract.apply {
-                 showCustomDialogBox()
-             }
-         }
-
-         binding.btnFirebase.setOnClickListener {
-             uploadImage()
-         }
+//         binding.selectImage.setOnClickListener {
+//             cloudContract.launch("image/*")
+//             cloudContract.apply {
+//                 showCustomDialogBox()
+//             }
+//         }
+//
+//         binding.btnFirebase.setOnClickListener {
+//             uploadImage()
+//         }
 
 
          //donot move it from here
@@ -121,46 +161,50 @@ import java.util.Locale
 //             startActivity(intent)
 //         }
 
-         openCamera.setOnClickListener {
-             val takePicintent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-             try {
-                 startActivityForResult(takePicintent,REQUEST_CAMERA_CODE)
-             }catch (e : ActivityNotFoundException){
-                 Toast.makeText(this,"Error"+e.localizedMessage,Toast.LENGTH_LONG).show()
-             }
-
-         }
+//         openCamera.setOnClickListener {
+//             val takePicintent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//
+//             try {
+//                 startActivityForResult(takePicintent,REQUEST_CAMERA_CODE)
+//             }catch (e : ActivityNotFoundException){
+//                 Toast.makeText(this,"Error"+e.localizedMessage,Toast.LENGTH_LONG).show()
+//             }
+//
+//         }
 
          val bottomNavigationView:NavigationBarView  = binding.bottomNavigationView
          bottomNavigationView.isItemActiveIndicatorEnabled
          bottomNavigationView.setOnItemSelectedListener{
 
              when (it.itemId) {
-                 R.id.home -> true
+                 R.id.home -> replaceFragments(HomeFragment())
 
                  R.id.feed -> Toast.makeText(this, "e wala thora mushkil chhe", Toast.LENGTH_SHORT).show()
 
                  R.id.profile -> {
-                     startActivity(Intent(this, ProfileActivity::class.java))
-                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
-                         R.anim.bottomnav_animation_slideout)
-                     finish()
+                     replaceFragments(ProfileFragment())
+//                     startActivity(Intent(this, ProfileActivity::class.java))
+//                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
+//                         R.anim.bottomnav_animation_slideout)
+//                     finish()
                  }
              }
 
              true
          }
 
-         binding.btnChat.setOnClickListener {
-             Toast.makeText(this,"kaam chaalu hai .. sabar karo hahhahhahha",Toast.LENGTH_SHORT).show()
-         }
-
-//         openGallery.setOnClickListener {
-//             contract.launch("image/*")
+//         binding.btnChat.setOnClickListener {
+//             startActivity(Intent(this,ChatMainActivity::class.java))
+////             Toast.makeText(this,"kaam chaalu hai .. sabar karo hahhahhahha",Toast.LENGTH_SHORT).show()
 //         }
+//
+////         openGallery.setOnClickListener {
+////             contract.launch("image/*")
+////         }
 
-         sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
+//         sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
+
+//         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
 
      }
 
@@ -285,6 +329,12 @@ import java.util.Locale
 
      private fun uploadprofImg() {
          TODO("Not yet implemented")
+     }
+     private fun replaceFragments(fragment: Fragment){
+         val fragmentManager = supportFragmentManager
+         val fragmentTransaction = fragmentManager.beginTransaction()
+         fragmentTransaction.replace(R.id.frameLayout,fragment)
+         fragmentTransaction.commit()
      }
 
 

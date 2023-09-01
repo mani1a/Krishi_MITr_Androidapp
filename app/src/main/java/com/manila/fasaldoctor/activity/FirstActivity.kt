@@ -28,21 +28,12 @@ class FirstActivity : AppCompatActivity() {
         grantPermission()
         setContentView(binding.root)
 
-//        binding.login.setOnClickListener {
-//            startActivity(Intent(this,LoginActivity::class.java))
-//            finish()
-//        }
-//
-//        binding.register.setOnClickListener {
-//            startActivity(Intent(this, RegisterActivity::class.java))
-//            finish()
-//
-//        }
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Are intezar karo thora load ho raha h -- Nhi ho raha to ek baar click kr lo")
-        progressDialog.show()
+
 
         binding.btnGetStarted.setOnClickListener {
+            progressDialog.show()
             startActivity(Intent(this,LoginActivity::class.java))
             if (progressDialog.isShowing)progressDialog.dismiss()
             finish()
@@ -50,17 +41,25 @@ class FirstActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
-
+//
         if (isLoggedIn){
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this,LoginActivity::class.java))
         }
-        else{
-//            Toast.makeText(this,"Something Error Occurred",Toast.LENGTH_SHORT).show()
+//        else{
+////            Toast.makeText(this,"Something Error Occurred",Toast.LENGTH_SHORT).show()
+//
+//        }
+
+
+//        val user = firebaseAuth.currentUser
+//
+//        if ( user!= null ){
+//            startActivity(Intent(this,HomeActivity::class.java))
+//        }
 
         }
 
 
-    }
 
         // PERMISSION MANAGER/HANDLER
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)

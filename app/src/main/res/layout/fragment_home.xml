@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/cameraActivity_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp">
+
+        <ImageView
+            android:id="@+id/captured_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/image_border"
+            android:contentDescription="VIEW IMAGE"
+            android:src="@drawable/vector_addphotos"
+            android:padding="10dp"
+            android:layout_centerHorizontal="true"
+            />
+        <Button
+            android:id="@+id/open_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="TAKE PICTURE"
+            android:drawableStart="@drawable/vector_camera"
+            android:text="Take Pictures"
+            android:layout_below="@+id/captured_image"
+            android:layout_marginStart="50dp"
+            />
+        <Button
+            android:id="@+id/select_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/captured_image"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:drawableStart="@drawable/vector_photolibrary"
+            android:text="Select Images"
+            />
+
+    </RelativeLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_firebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cameraActivity_layout"
+        android:layout_centerHorizontal="true"
+        android:drawableStart="@drawable/vector_photolibrary"
+        android:text="Upload Image To FIREBASE "
+        android:layout_marginTop="5dp"
+
+
+        />
+
+    </RelativeLayout>
+
+</FrameLayout>

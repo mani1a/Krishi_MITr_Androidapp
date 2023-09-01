@@ -115,7 +115,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Farmer"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            />
         <RadioButton
             android:id="@+id/expert"
             android:layout_width="wrap_content"

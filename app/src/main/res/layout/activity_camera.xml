@@ -5,7 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CameraActivity">
+    tools:context=".activitynotinuse.CameraActivity">
+
+
+
+
+
+    <!--this activity is not in use -->
+    <!--codes are changed -->
+    <!--don't do changes here-->
+
+
+
+
+
+
+
 
 
     <TextureView

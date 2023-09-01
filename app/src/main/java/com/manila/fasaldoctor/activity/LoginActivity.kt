@@ -1,5 +1,7 @@
 package com.manila.fasaldoctor.activity
 
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,23 +17,19 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var sharedPreferences: SharedPreferences
 
+    lateinit var progressDialog: ProgressDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        if (progressDialog.isShowing)progressDialog.dismiss()
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
-
-        if (isLoggedIn){
-//            val intent = Intent(this,HomeActivity::class.java)
-//            startActivity(intent)
-//            finish()
-        }else{
-
-        }
 
         binding.buttonRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
@@ -61,8 +59,18 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-//        sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
+
+        sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
+
+
+        val user = firebaseAuth.currentUser
+        if (user != null ){
+            startActivity(Intent(this,HomeActivity::class.java))
+        }
     }
+
+
+
 
 
 

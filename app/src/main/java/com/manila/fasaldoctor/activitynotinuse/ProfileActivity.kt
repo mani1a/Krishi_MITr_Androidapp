@@ -1,4 +1,6 @@
-package com.manila.fasaldoctor.activity
+// Not in use
+
+package com.manila.fasaldoctor.activitynotinuse
 
 import android.app.Dialog
 import android.app.ProgressDialog
@@ -15,17 +17,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.navigation.NavigationBarView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
+import com.manila.fasaldoctor.activity.HomeActivity
+import com.manila.fasaldoctor.activity.LoginActivity
 import com.manila.fasaldoctor.databinding.ActivityProfileBinding
-import com.manila.fasaldoctor.usersdata.Usersfarmer
-import kotlin.contracts.contract
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -165,7 +163,7 @@ class ProfileActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.home ->{
                     startActivity(Intent(this,
-                        com.manila.fasaldoctor.activity.HomeActivity::class.java))
+                        HomeActivity::class.java))
                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
                         R.anim.bottomnav_animation_slideout)
                     finish()
@@ -183,7 +181,7 @@ class ProfileActivity : AppCompatActivity() {
         binding.btnLogout.setOnClickListener {
             firebaseAuth.signOut()
             Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
             sharedPreferences.edit().putBoolean("isLoggedIn",false).apply()
         }
