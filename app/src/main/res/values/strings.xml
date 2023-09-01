@@ -15,4 +15,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="prefrences_file_name">Login</string>
     <string name="bottom_nav_bar">Bottom Navigation Bar</string>
+    <string name="user_name">username</string>
 </resources>

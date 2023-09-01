@@ -63,7 +63,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTextPassword2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,7 +84,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTextConfirmPassword2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,26 +102,35 @@
         android:textSize="18sp"
         />
 
-    <CheckBox
-        android:id="@+id/farmer"
+    <RadioGroup
+        android:id="@+id/radio_role_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/rolechoosetext"
         android:layout_below="@+id/TextTextConfirmPassword2"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="7dp"
-        android:text="Farmer"
-        android:textSize="17sp" />
-    <CheckBox
-        android:id="@+id/expert"
-        android:layout_below="@+id/farmer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Expert"
-        android:textSize="17sp"
-        android:layout_marginStart="120dp" />
+        android:layout_marginTop="5dp"
+        >
+        <RadioButton
+            android:id="@+id/farmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Farmer"
+            android:textSize="17sp" />
+        <RadioButton
+            android:id="@+id/expert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expert"
+            android:textSize="17sp"
+             />
+
+
+    </RadioGroup>
+
+
 
     <Button
-        android:layout_below="@+id/expert"
+        android:layout_below="@+id/radio_role_group"
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

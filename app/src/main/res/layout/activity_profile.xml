@@ -10,34 +10,56 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_img"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:civ_border_color="@color/black"
         app:civ_border_width="2dp"
-        android:src="@drawable/devphoto"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
+        android:src="@drawable/vector_profile_avatar"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
         />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/uploadprofileimg"
+        android:layout_below="@+id/profile_img"
+        android:layout_marginStart="20dp"
+        android:text="Upload Image"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/app_bg"/>
 
     <TextView
         android:id="@+id/profile_name"
         android:layout_below="@+id/profile_img"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:textSize="18sp"
         android:text="Welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/profile_email"
-        android:layout_below="@+id/profile_name"
+        android:id="@+id/profile_user_name"
+        android:layout_toRightOf="@+id/profile_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:text="UserName"
+        android:textSize="20sp"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/profile_email"
+        android:layout_toRightOf="@+id/profile_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:textSize="20sp"
         android:text="Email"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"/>
 
     <Button
         android:id="@+id/btn_logout"
@@ -52,7 +74,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_items"
         app:labelVisibilityMode="selected"

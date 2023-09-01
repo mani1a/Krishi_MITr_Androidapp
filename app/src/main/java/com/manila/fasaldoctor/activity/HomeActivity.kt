@@ -1,13 +1,20 @@
  package com.manila.fasaldoctor.activity
 
+import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.view.Window
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -25,6 +32,7 @@ import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import java.text.SimpleDateFormat
+import java.util.BitSet
 import java.util.Date
 import java.util.Locale
 
@@ -46,6 +54,7 @@ import java.util.Locale
      lateinit var imgView: ImageView
      lateinit var openGallery: Button
      lateinit var imageUri: Uri
+     val REQUEST_CAMERA_CODE = 100
 
 
 
@@ -56,11 +65,20 @@ import java.util.Locale
          binding = ActivityHomeBinding.inflate(layoutInflater)
          setContentView(binding.root)
 
+
+         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
+         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
          firebaseStorageRefrence = FirebaseStorage.getInstance()
 
-         val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
-             imgView.setImageURI(it)
-         }
+         frameLayout = findViewById(R.id.frameLayout)
+         openCamera = findViewById(R.id.open_camera)
+//         openGallery = findViewById(R.id.open_gallery)
+         imgView = findViewById(R.id.captured_image)
+
+//         val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+//             imgView.setImageURI(it)
+//         }
 
          val cloudContract = registerForActivityResult(ActivityResultContracts.GetContent()){
              imgView.setImageURI(it)
@@ -69,20 +87,19 @@ import java.util.Locale
              }
          }
 
-         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
-         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
-
          binding.selectImage.setOnClickListener {
              cloudContract.launch("image/*")
+             cloudContract.apply {
+                 showCustomDialogBox()
+             }
          }
 
          binding.btnFirebase.setOnClickListener {
              uploadImage()
          }
 
+
          //donot move it from here
-
-
 
 //        grantPermission()
 //        replaceFragments(HomeFragment())
@@ -98,17 +115,21 @@ import java.util.Locale
 //                 Toast.makeText(this, "LoggedIn", Toast.LENGTH_SHORT).show()
 //             }
 //         }
-
-         frameLayout = findViewById(R.id.frameLayout)
-         openCamera = findViewById(R.id.open_camera)
-         openGallery = findViewById(R.id.open_gallery)
-         imgView = findViewById(R.id.captured_image)
-
+//         openCamera.setOnClickListener {
+//             Toast.makeText(this, "open camera", Toast.LENGTH_SHORT).show()
+//             val intent = Intent(this, CameraActivity::class.java)
+//             startActivity(intent)
+//         }
 
          openCamera.setOnClickListener {
-             Toast.makeText(this, "open camera", Toast.LENGTH_SHORT).show()
-             val intent = Intent(this, CameraActivity::class.java)
-             startActivity(intent)
+             val takePicintent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+             try {
+                 startActivityForResult(takePicintent,REQUEST_CAMERA_CODE)
+             }catch (e : ActivityNotFoundException){
+                 Toast.makeText(this,"Error"+e.localizedMessage,Toast.LENGTH_LONG).show()
+             }
+
          }
 
          val bottomNavigationView:NavigationBarView  = binding.bottomNavigationView
@@ -118,7 +139,7 @@ import java.util.Locale
              when (it.itemId) {
                  R.id.home -> true
 
-                 R.id.feed -> Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT).show()
+                 R.id.feed -> Toast.makeText(this, "e wala thora mushkil chhe", Toast.LENGTH_SHORT).show()
 
                  R.id.profile -> {
                      startActivity(Intent(this, ProfileActivity::class.java))
@@ -132,12 +153,12 @@ import java.util.Locale
          }
 
          binding.btnChat.setOnClickListener {
-             Toast.makeText(this,"Under Development",Toast.LENGTH_SHORT).show()
+             Toast.makeText(this,"kaam chaalu hai .. sabar karo hahhahhahha",Toast.LENGTH_SHORT).show()
          }
 
-         openGallery.setOnClickListener {
-             contract.launch("image/*")
-         }
+//         openGallery.setOnClickListener {
+//             contract.launch("image/*")
+//         }
 
          sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
 
@@ -171,18 +192,23 @@ import java.util.Locale
          firebaseStorageRefrence.getReference("Images").child(System.currentTimeMillis().toString())
              .putFile(imageUri).addOnSuccessListener{ task ->
                  task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
-                     var userId = FirebaseAuth.getInstance().currentUser?.uid
-
+                     if (true){
+                     val userId = FirebaseAuth.getInstance().currentUser?.uid
                      val mapImage = mapOf("url" to it.toString())
 
-                     val dataBaseRef =  FirebaseDatabase.getInstance().getReference("user Images")
-                         .child(userId!!).setValue(mapImage).addOnSuccessListener {
-                             Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
-                         }.addOnFailureListener{error ->
-                             Toast.makeText(this,"Failed to upload",Toast.LENGTH_SHORT).show()
-                         }
+                         val dataBaseRef =  FirebaseDatabase.getInstance().getReference("Images Upload By User")
+                             .child(userId!!).setValue(mapImage).addOnSuccessListener {
+                                 Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
+                             }.addOnFailureListener{ _ ->
+                                 Toast.makeText(this,"Failed to upload",Toast.LENGTH_SHORT).show()
+                             }
 
-                     if (progressDialog.isShowing)progressDialog.dismiss()
+                         if (progressDialog.isShowing)progressDialog.dismiss()
+
+                     }
+                     else Toast.makeText(this,"Select Image First",Toast.LENGTH_SHORT).show()
+
+
 
                  }?.addOnFailureListener{
                      Toast.makeText(this,"Failed to upload",Toast.LENGTH_SHORT).show()
@@ -191,6 +217,20 @@ import java.util.Locale
 
                  }
              }
+
+     }
+
+
+     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+         if (requestCode == REQUEST_CAMERA_CODE && resultCode == RESULT_OK){
+             val imagemap = data?.extras?.get("data") as Bitmap
+             imgView.setImageBitmap(imagemap)
+
+         }
+         else{
+             super.onActivityResult(requestCode, resultCode, data)
+
+         }
 
      }
 
@@ -222,6 +262,30 @@ import java.util.Locale
 //         super.onStop()
 //         finish()
 //     }
+
+     fun showCustomDialogBox(){
+         val dialog = Dialog(this)
+         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+         dialog.setCancelable(false)
+         dialog.setContentView(R.layout.layout_upload_cardview)
+         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+         val image : ImageView = dialog.findViewById(R.id.showSelectedImg)
+         val uploadbtn : Button = dialog.findViewById(R.id.btn_upload)
+         val cancelbtn: Button = dialog.findViewById(R.id.btn_cancel)
+//        image.setImageURI(photo)
+         uploadbtn.setOnClickListener {
+             uploadprofImg()
+         }
+         cancelbtn.setOnClickListener {
+             dialog.dismiss()
+         }
+         dialog.show()
+
+     }
+
+     private fun uploadprofImg() {
+         TODO("Not yet implemented")
+     }
 
 
  }

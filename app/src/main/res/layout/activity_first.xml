@@ -18,26 +18,29 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
-
-
-    <Button
-        android:id="@+id/login"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="232dp"
-        android:layout_marginBottom="105dp"
-        android:text="Login"/>
+        android:text="Get Started"
+        android:fontFamily="@font/appname_font"
+        android:layout_above="@+id/btn_getStarted"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp"/>
 
-    <Button
-        android:id="@+id/register"
+
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:id="@+id/btn_getStarted"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="105dp"
-        android:text="Register"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="120dp"
+        android:src="@drawable/vector_getstart"
+        app:fabSize="auto"/>
+
 
 </RelativeLayout>

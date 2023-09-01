@@ -1,5 +1,6 @@
 package com.manila.fasaldoctor.activity
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -18,6 +19,7 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFirstBinding
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var firebaseAuth: FirebaseAuth
+    lateinit var progressDialog: ProgressDialog
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,17 +28,24 @@ class FirstActivity : AppCompatActivity() {
         grantPermission()
         setContentView(binding.root)
 
+//        binding.login.setOnClickListener {
+//            startActivity(Intent(this,LoginActivity::class.java))
+//            finish()
+//        }
+//
+//        binding.register.setOnClickListener {
+//            startActivity(Intent(this, RegisterActivity::class.java))
+//            finish()
+//
+//        }
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Are intezar karo thora load ho raha h -- Nhi ho raha to ek baar click kr lo")
+        progressDialog.show()
 
-
-        binding.login.setOnClickListener {
+        binding.btnGetStarted.setOnClickListener {
             startActivity(Intent(this,LoginActivity::class.java))
+            if (progressDialog.isShowing)progressDialog.dismiss()
             finish()
-        }
-
-        binding.register.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
-
         }
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
