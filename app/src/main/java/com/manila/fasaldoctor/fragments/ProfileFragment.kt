@@ -1,6 +1,5 @@
 package com.manila.fasaldoctor.fragments
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,12 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.activity.LoginActivity
 import com.manila.fasaldoctor.databinding.FragmentProfileBinding
 
@@ -34,25 +33,29 @@ class ProfileFragment : Fragment() {
 
     private var _binding : FragmentProfileBinding?= null
     private val binding get() = _binding
-    lateinit var sharedName : String
-    lateinit var role :String
+//    lateinit var sharedName : String
+//    lateinit var role :String
+
 
     lateinit var sharedPreferences: SharedPreferences
+    lateinit var firebaseDatabase: FirebaseDatabase
+//    lateinit var userName: String
+//    lateinit var role:String
+//    lateinit var email : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
 //        binding = FragmentProfileBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         arguments?.let {
-            sharedName = it.getString("userName").toString()
-            role = it.getString("role").toString()
+//            sharedName = it.getString("userName").toString()
+//            role = it.getString("role").toString()
 //            val sharedName = arguments?.getString("userName")
 //            val role = arguments?.getString("checkedRole")
         }
-
-
-
-
+//        var userName = arguments?.getString("userName").toString()
+//        var role = arguments?.getString("role").toString()
+//        var email = arguments?.getString("email").toString()
 
     }
 
@@ -63,18 +66,47 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater,container,false)
         val firebaseAuth = FirebaseAuth.getInstance()
-        val firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseDatabase = FirebaseDatabase.getInstance()
         val firebaseStorage = FirebaseStorage.getInstance()
 
+        val userId = firebaseAuth.currentUser?.uid
+
+//        val userName = arguments?.getString("userName").toString()
+//        val role = arguments?.getString("role").toString()
+//        val email = arguments?.getString("email").toString()
+
+//        var usersexpert : ArrayList<Usersexpert> = ArrayList()
+
+//        firebaseDatabase.getReference("Users").child(role).child(sharedName).get()
+//            .addOnSuccessListener {
+//                val name = it.child("name")
+//                val email = it.child("email")
+//                binding?.profileUserName?.text = name.toString()
+//                binding?.profileEmail?.text = email.toString()
+//            }
 
 
-        firebaseDatabase.getReference("Users").child(role).child(sharedName).get()
-            .addOnSuccessListener {
+        if (userId != null) {
+            firebaseDatabase.getReference("Users").child(userId).get().addOnSuccessListener {
+                if (it.exists()){
+
                 val name = it.child("name")
                 val email = it.child("email")
-                binding?.profileUserName?.text = name.toString()
-                binding?.profileEmail?.text = email.toString()
+                binding!!.profileUserName.text = name.toString()
+                binding!!.profileEmail.text = email.toString()
+                }
+
+                else Toast.makeText(context,"data retrieve failed",Toast.LENGTH_SHORT).show()
+
+
             }
+            //            .addOnFailureListener {
+//                Toast.makeText(context,"data retreive failed",Toast.LENGTH_SHORT).show()
+//            }
+        }
+
+
+
 
 
 

@@ -42,27 +42,19 @@ import java.util.Locale
 
  class HomeActivity : AppCompatActivity() {
 
-
      private lateinit var binding: ActivityHomeBinding
-
      private lateinit var sharedPreferences: SharedPreferences
-
      private lateinit var firebaseStorageRefrence : FirebaseStorage
-
-//     lateinit var imageNameFormatter : SimpleDateFormat
-
      lateinit var progressDialog: ProgressDialog
-     lateinit var openCamera: Button
-     lateinit var frameLayout: FrameLayout
+//     lateinit var openCamera: Button
+//     lateinit var frameLayout: FrameLayout
      lateinit var imgView: ImageView
-     lateinit var openGallery: Button
+//     lateinit var openGallery: Button
      lateinit var imageUri: Uri
      val REQUEST_CAMERA_CODE = 100
      lateinit var userName : String
      lateinit var role : String
-
-
-
+     lateinit var email: String
 
      @RequiresApi(Build.VERSION_CODES.TIRAMISU)
      override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,26 +63,31 @@ import java.util.Locale
          setContentView(binding.root)
          replaceFragments(HomeFragment())
 
+         sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
+         role = sharedPreferences.getString("checkedRole",null).toString()
+
+         sharedPreferences= getSharedPreferences("userName",Context.MODE_PRIVATE)
+         userName = sharedPreferences.getString("userName",null).toString()
+
+         sharedPreferences = getSharedPreferences("email",Context.MODE_PRIVATE)
+         email = sharedPreferences.getString("email",null).toString()
+
+//         userName = intent.getStringExtra("userName").toString()
+//         role = intent.getStringExtra("role").toString()
+//         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
+         binding.txtView.text = email
+
          val profileFragment = ProfileFragment()
          val bundle = Bundle()
-
-
-
-         userName = intent.getStringExtra("userName").toString()
-         role = intent.getStringExtra("role").toString()
-//         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
-         binding.txtView.text = userName
-
          bundle.putString("userName",userName)
          bundle.putString("role",role)
+         bundle.putString("email",email)
          profileFragment.arguments = bundle
 
 
          binding.btnChat.setOnClickListener {
              startActivity(Intent(this,ChatMainActivity::class.java))
          }
-
-
 
 //         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
 //         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
@@ -208,11 +205,11 @@ import java.util.Locale
 
      }
 
-     private fun uploadImage() {
-
-         progressDialog = ProgressDialog(this)
-         progressDialog.setTitle("Uploading ...")
-         progressDialog.show()
+//     private fun uploadImage() {
+//
+//         progressDialog = ProgressDialog(this)
+//         progressDialog.setTitle("Uploading ...")
+//         progressDialog.show()
 
 //         imageNameFormatter = SimpleDateFormat("FD_yyyy_MM_dd_HH_mm_ss", Locale.US)
 //         val dateNow = Date()
@@ -233,50 +230,50 @@ import java.util.Locale
 //
 //         })
 
-         firebaseStorageRefrence.getReference("Images").child(System.currentTimeMillis().toString())
-             .putFile(imageUri).addOnSuccessListener{ task ->
-                 task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
-                     if (true){
-                     val userId = FirebaseAuth.getInstance().currentUser?.uid
-                     val mapImage = mapOf("url" to it.toString())
-
-                         val dataBaseRef =  FirebaseDatabase.getInstance().getReference("Images Upload By User")
-                             .child(userId!!).setValue(mapImage).addOnSuccessListener {
-                                 Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
-                             }.addOnFailureListener{ _ ->
-                                 Toast.makeText(this,"Failed to upload",Toast.LENGTH_SHORT).show()
-                             }
-
-                         if (progressDialog.isShowing)progressDialog.dismiss()
-
-                     }
-                     else Toast.makeText(this,"Select Image First",Toast.LENGTH_SHORT).show()
-
-
-
-                 }?.addOnFailureListener{
-                     Toast.makeText(this,"Failed to upload",Toast.LENGTH_SHORT).show()
-                     if (progressDialog.isShowing)progressDialog.dismiss()
-
-
-                 }
-             }
-
-     }
-
-
-     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-         if (requestCode == REQUEST_CAMERA_CODE && resultCode == RESULT_OK){
-             val imagemap = data?.extras?.get("data") as Bitmap
-             imgView.setImageBitmap(imagemap)
-
-         }
-         else{
-             super.onActivityResult(requestCode, resultCode, data)
-
-         }
-
-     }
+//         firebaseStorageRefrence.getReference("Images").child(System.currentTimeMillis().toString())
+//             .putFile(imageUri).addOnSuccessListener{ task ->
+//                 task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+//                     if (true){
+//                     val userId = FirebaseAuth.getInstance().currentUser?.uid
+//                     val mapImage = mapOf("url" to it.toString())
+//
+//                         val dataBaseRef =  FirebaseDatabase.getInstance().getReference("Images Upload By User")
+//                             .child(userId!!).setValue(mapImage).addOnSuccessListener {
+//                                 Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
+//                             }.addOnFailureListener{ _ ->
+//                                 Toast.makeText(this,"Failed to upload",Toast.LENGTH_SHORT).show()
+//                             }
+//
+//                         if (progressDialog.isShowing)progressDialog.dismiss()
+//
+//                     }
+//                     else Toast.makeText(this,"Select Image First",Toast.LENGTH_SHORT).show()
+//
+//
+//
+//                 }?.addOnFailureListener{
+//                     Toast.makeText(this,"Failed to upload",Toast.LENGTH_SHORT).show()
+//                     if (progressDialog.isShowing)progressDialog.dismiss()
+//
+//
+//                 }
+//             }
+//
+//     }
+//
+//
+//     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//         if (requestCode == REQUEST_CAMERA_CODE && resultCode == RESULT_OK){
+//             val imagemap = data?.extras?.get("data") as Bitmap
+//             imgView.setImageBitmap(imagemap)
+//
+//         }
+//         else{
+//             super.onActivityResult(requestCode, resultCode, data)
+//
+//         }
+//
+//     }
 
 //     private fun selectImage() {
 //         val intent = Intent()
@@ -307,33 +304,34 @@ import java.util.Locale
 //         finish()
 //     }
 
-     fun showCustomDialogBox(){
-         val dialog = Dialog(this)
-         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-         dialog.setCancelable(false)
-         dialog.setContentView(R.layout.layout_upload_cardview)
-         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-         val image : ImageView = dialog.findViewById(R.id.showSelectedImg)
-         val uploadbtn : Button = dialog.findViewById(R.id.btn_upload)
-         val cancelbtn: Button = dialog.findViewById(R.id.btn_cancel)
-//        image.setImageURI(photo)
-         uploadbtn.setOnClickListener {
-             uploadprofImg()
-         }
-         cancelbtn.setOnClickListener {
-             dialog.dismiss()
-         }
-         dialog.show()
+//     fun showCustomDialogBox(){
+//         val dialog = Dialog(this)
+//         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//         dialog.setCancelable(false)
+//         dialog.setContentView(R.layout.layout_upload_cardview)
+//         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//         val image : ImageView = dialog.findViewById(R.id.showSelectedImg)
+//         val uploadbtn : Button = dialog.findViewById(R.id.btn_upload)
+//         val cancelbtn: Button = dialog.findViewById(R.id.btn_cancel)
+////        image.setImageURI(photo)
+//         uploadbtn.setOnClickListener {
+//             uploadprofImg()
+//         }
+//         cancelbtn.setOnClickListener {
+//             dialog.dismiss()
+//         }
+//         dialog.show()
+//
+//     }
 
-     }
-
-     private fun uploadprofImg() {
-         TODO("Not yet implemented")
-     }
+//     private fun uploadprofImg() {
+//         
+//     }
      private fun replaceFragments(fragment: Fragment){
          val fragmentManager = supportFragmentManager
          val fragmentTransaction = fragmentManager.beginTransaction()
          fragmentTransaction.replace(R.id.frameLayout,fragment)
+         fragmentTransaction.addToBackStack("back")
          fragmentTransaction.commit()
      }
 
