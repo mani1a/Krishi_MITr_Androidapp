@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ChatOpenActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/inbox_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/app_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        <ImageButton
+            android:id="@+id/inbox_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/vector_back"
+             />
+
+            <TextView
+                android:id="@+id/inbox_txt_name"
+                android:layout_marginTop="4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/inbox_txt_uid"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/inbox_txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="uid"
+                android:textSize="14sp"/>
+
+
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_inbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linear_layout"
+        android:layout_below="@+id/inbox_bar"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:id="@+id/linear_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/msg_box"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="90"
+            android:hint="Type Your Messege"/>
+
+        <ImageButton
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vector_send"
+            android:layout_weight="10"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
