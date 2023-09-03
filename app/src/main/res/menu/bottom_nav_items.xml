@@ -7,16 +7,16 @@
         <item
             android:id="@+id/home"
             android:title="Home"
-            android:icon="@drawable/vector_home"/>
+            android:icon="@drawable/vector_ek1"/>
 
     <item
         android:id="@+id/feed"
         android:title="Feed"
-        android:icon="@drawable/vector_camera"/>
+        android:icon="@drawable/vector_ek7"/>
     <item
         android:id="@+id/profile"
         android:title="Profile"
-        android:icon="@drawable/vector_person"/>
+        android:icon="@drawable/vector"/>
 
     </group>
 

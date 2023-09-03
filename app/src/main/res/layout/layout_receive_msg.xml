@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:background="@drawable/background_receive_msg"
+        android:layout_alignParentRight="false">
+
+        <TextView
+            android:id="@+id/txtreceivemsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Receive Message"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

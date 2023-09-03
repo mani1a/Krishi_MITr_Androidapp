@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
 
         val contract = registerForActivityResult(ActivityResultContracts
             .GetContent()){
-            binding?.capturedImage?.setImageURI(it)
+            binding?.capturedImage3?.setImageURI(it)
         }
 
         binding?.selectImage?.setOnClickListener {
@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 100 && resultCode == AppCompatActivity.RESULT_OK){
             val imagemap = data?.extras?.get("data") as Bitmap
-            binding?.capturedImage?.setImageBitmap(imagemap)
+            binding?.capturedImage3?.setImageBitmap(imagemap)
 
         }
         else{

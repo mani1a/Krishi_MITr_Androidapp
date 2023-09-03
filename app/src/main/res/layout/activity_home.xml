@@ -8,27 +8,24 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomeActivity">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:backgroundTint="@color/app_bg"/>-->
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:backgroundTint="@color/app_bg"/>-->
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigationView">
-
-    </FrameLayout>
+        android:layout_above="@id/bottomNavigationView"
+        android:layout_marginBottom="1dp"
+        android:background="@color/app_bg" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtView"
         android:text="@string/app_name"/>
-
-
-
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,6 +46,7 @@
         android:layout_marginBottom="90dp"
         android:layout_marginEnd="20dp"
         app:fabSize="auto"
-        android:src="@drawable/vector_chat" />
+        android:src="@drawable/chat" />
 
 </RelativeLayout>
+

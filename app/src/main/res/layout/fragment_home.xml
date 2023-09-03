@@ -1,68 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-    <RelativeLayout
-        android:id="@+id/cameraActivity_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp">
-
-        <ImageView
-            android:id="@+id/captured_image"
+        <RelativeLayout
+            android:id="@+id/cameraActivity_layout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/image_border"
-            android:contentDescription="VIEW IMAGE"
-            android:src="@drawable/vector_addphotos"
-            android:padding="10dp"
-            android:layout_centerHorizontal="true"
-            />
-        <Button
-            android:id="@+id/open_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="TAKE PICTURE"
-            android:drawableStart="@drawable/vector_camera"
-            android:text="Take Pictures"
-            android:layout_below="@+id/captured_image"
-            android:layout_marginStart="50dp"
-            />
-        <Button
-            android:id="@+id/select_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/captured_image"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="50dp"
-            android:drawableStart="@drawable/vector_photolibrary"
-            android:text="Select Images"
-            />
+            android:layout_height="360dp"
+            android:layout_marginTop="10dp">
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/captured_image3"
+                android:layout_width="380dp"
+                android:layout_height="164dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="128dp"
+                android:layout_marginEnd="14dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/rectangle_2_ek1"
+                android:contentDescription="VIEW IMAGE"
+                android:foregroundGravity="center"
+                android:padding="30dp"
+                android:src="@drawable/rectangle_2_ek1" />
 
 
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="73dp"
+                android:layout_marginEnd="19dp"
+                android:backgroundTint="#009688"
+                android:ems="10"
+                android:fontFamily="sans-serif-black"
+                android:inputType="text"
+                android:text="Heal your crop"
+                android:textColor="#149E1A"
+                android:textColorHighlight="#8BC34A"
+                android:textColorHint="#4CAF50"
 
-    <Button
-        android:id="@+id/btn_firebase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cameraActivity_layout"
-        android:layout_centerHorizontal="true"
-        android:drawableStart="@drawable/vector_photolibrary"
-        android:text="Upload Image To FIREBASE "
-        android:layout_marginTop="5dp"
+                android:textColorLink="#4CAF50" />
+
+            <Button
+                android:id="@+id/open_camera"
+                android:layout_width="230dp"
+                android:layout_height="36dp"
+                android:layout_below="@+id/editTextText"
+                android:layout_alignStart="@+id/captured_image3"
+                android:layout_alignEnd="@+id/captured_image3"
+                android:layout_marginStart="67dp"
+                android:layout_marginTop="161dp"
+                android:layout_marginEnd="70dp"
+                android:contentDescription="TAKE PICTURE"
+                android:drawableStart="@drawable/vector_camera"
+                android:gravity="center"
+                android:text="Take Pictures"
+                app:strokeColor="#009688" />
+
+            <ImageView
+                android:id="@+id/camera_ek3"
+                android:layout_width="339dp"
+                android:layout_height="85dp"
+                android:layout_above="@+id/open_camera"
+                android:layout_alignTop="@+id/captured_image3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="42dp"
+                android:layout_marginBottom="95dp"
+                android:contentDescription="camera_ek2"
+                android:src="@drawable/output_uploadfiles" />
+
+            <ImageView
+                android:id="@+id/camera_ek2"
+                android:gravity="center_vertical"
+                android:layout_width="333dp"
+                android:layout_height="80dp"
+                android:layout_alignTop="@+id/captured_image3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="34dp"
+                android:foregroundGravity="center"
+                android:contentDescription="camera_ek2"
+                android:src="@drawable/output_uploadfiles" />
+
+            <Button
+                android:id="@+id/select_image"
+                android:layout_width="230dp"
+                android:layout_height="36dp"
+                android:layout_alignStart="@+id/captured_image3"
+                android:layout_alignTop="@+id/camera_ek2"
+                android:layout_alignEnd="@+id/captured_image3"
+                android:layout_marginStart="66dp"
+                android:layout_marginTop="93dp"
+                android:layout_marginEnd="69dp"
+                android:drawableStart="@drawable/vector_photolibrary"
+                android:gravity="center"
+                android:text="Select Images" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="355dp"
+            android:layout_below="@+id/cameraActivity_layout"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/captured_image2"
+                android:layout_width="wrap_content"
+                android:layout_height="182dp"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="46dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/rectangle_2_ek1"
+                android:contentDescription="VIEW IMAGE"
+                android:padding="30dp" />
+
+            <ImageView
+                android:id="@+id/camera_ek"
+                android:layout_width="326dp"
+                android:layout_height="102dp"
+                
+                android:layout_alignStart="@+id/captured_image2"
+                android:layout_alignEnd="@+id/captured_image2"
+                android:layout_alignBottom="@+id/captured_image2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="260dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="67dp"
+                android:contentDescription="camera_ek2"
+                android:src="@drawable/outputexpert" />
+
+            <Button
+                android:id="@+id/btn_firebase"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/captured_image2"
+                android:layout_alignEnd="@+id/captured_image2"
+                android:layout_alignBottom="@+id/captured_image2"
 
 
-        />
+                android:layout_marginStart="43dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="16dp"
+                android:drawableStart="@drawable/vector_photolibrary"
+                android:text="Chat with expert" />
+
+            <EditText
+                android:id="@+id/editTextText4"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_above="@+id/captured_image2"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="19dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#009688"
+                android:ems="10"
+                android:fontFamily="sans-serif-black"
+                android:inputType="text"
+                android:text="Chat with expert"
+                android:textColor="#149E1A"
+                android:textColorHighlight="#8BC34A"
+                android:textColorHint="#4CAF50"
+                android:textColorLink="#4CAF50" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
