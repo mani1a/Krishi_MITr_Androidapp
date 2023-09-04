@@ -144,7 +144,7 @@
                 android:id="@+id/camera_ek"
                 android:layout_width="326dp"
                 android:layout_height="102dp"
-                
+
                 android:layout_alignStart="@+id/captured_image2"
                 android:layout_alignEnd="@+id/captured_image2"
                 android:layout_alignBottom="@+id/captured_image2"
