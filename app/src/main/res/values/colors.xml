@@ -5,4 +5,5 @@
     <color name="app_bg">#F0FFF0</color>
     <color name="bottom_nav_bg">#9DE683</color>
     <color name="green">#FF9DE683</color>
+    <color name="actioncolor">#1B681E</color>
 </resources>

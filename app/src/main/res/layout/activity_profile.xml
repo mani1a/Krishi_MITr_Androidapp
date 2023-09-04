@@ -18,23 +18,16 @@
     <!--don't do changes here-->
 
 
-
-
-
-
-
-
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:civ_border_color="@color/black"
-        app:civ_border_width="2dp"
-        android:src="@drawable/vector_profile_avatar"
-        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        />
+        android:layout_marginTop="85dp"
+        android:src="@drawable/vector_profile_avatar"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="2dp" />
 
     <Button
         android:layout_width="100dp"
@@ -48,35 +41,36 @@
 
     <TextView
         android:id="@+id/profile_name"
-        android:layout_below="@+id/profile_img"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textSize="18sp"
-        android:text="Welcome"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="320dp"
+        android:text="Welcome"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/profile_user_name"
-        android:layout_toRightOf="@+id/profile_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="UserName"
-        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="43dp"
         android:layout_marginTop="70dp"
-        android:layout_marginStart="20dp"/>
+        android:layout_toRightOf="@+id/profile_img"
+        android:text="UserName"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/profile_email"
-        android:layout_toRightOf="@+id/profile_img"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textSize="20sp"
-        android:text="Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="102dp"
+        android:layout_marginTop="100dp"
+        android:layout_toRightOf="@+id/profile_img"
+        android:text="Email"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btn_logout"

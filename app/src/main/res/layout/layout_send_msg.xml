@@ -7,17 +7,21 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/backgroung_send_msg"
-        android:layout_alignParentRight="true">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/txtsendmsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="send Message"
-            android:textSize="18sp"/>
+            android:textColor="#006504"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 

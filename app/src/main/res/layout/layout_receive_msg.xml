@@ -7,17 +7,18 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="false"
         android:layout_margin="10dp"
-        android:padding="5dp"
         android:background="@drawable/background_receive_msg"
-        android:layout_alignParentRight="false">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/txtreceivemsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Receive Message"
-            android:textSize="18sp"/>
+            android:textColor="#0A680E"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 

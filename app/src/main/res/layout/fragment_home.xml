@@ -68,6 +68,7 @@
                 android:layout_marginEnd="70dp"
                 android:contentDescription="TAKE PICTURE"
                 android:drawableStart="@drawable/vector_camera"
+                android:drawableTint="#F3D0D0"
                 android:gravity="center"
                 android:text="Take Pictures"
                 app:strokeColor="#009688" />
@@ -112,6 +113,7 @@
                 android:layout_marginStart="66dp"
                 android:layout_marginTop="93dp"
                 android:layout_marginEnd="69dp"
+                android:backgroundTint="#4CAF50"
                 android:drawableStart="@drawable/vector_photolibrary"
                 android:gravity="center"
                 android:text="Select Images" />

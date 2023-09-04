@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FasalDoctor" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.FasalDoctor" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="titleTextColor">@color/actioncolor</item>
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
@@ -10,6 +11,7 @@
     <style name="SlideActivityAnimation" parent="android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/bottomnav_animation_slidein</item>
         <item name="android:activityOpenExitAnimation">@anim/bottomnav_animation_slideout</item>
+
         
     </style>
 </resources>

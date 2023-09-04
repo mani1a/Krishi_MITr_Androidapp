@@ -5,27 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ChatOpenActivity">
+    tools:context=".activity.ChatOpenActivity"
+    android:background="@color/app_bg">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/inbox_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/app_bg">
+        android:background="@color/green">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            >
 
 
+            <ImageButton
+                android:id="@+id/inbox_btn_back"
+                android:layout_width="40dp"
+                android:layout_height="37dp"
+                android:layout_centerVertical="true"
+                android:background="#4CAF50"
 
-        <ImageButton
-            android:id="@+id/inbox_btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/vector_back"
-             />
+                android:backgroundTint="#4CAF50"
+                android:src="@drawable/vector_back"
+                app:tint="#000C01" />
 
             <TextView
                 android:id="@+id/inbox_txt_name"
@@ -83,8 +88,9 @@
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/vector_send"
             android:layout_weight="10"
+            android:backgroundTint="#4CAF50"
+            android:src="@drawable/vector_send"
             />
 
 

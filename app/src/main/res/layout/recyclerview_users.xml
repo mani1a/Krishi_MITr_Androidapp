@@ -9,56 +9,60 @@
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/app_bg"
-        app:cardCornerRadius="10dp"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:id="@+id/btn_open_chat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            >
+            android:layout_margin="20dp">
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/id_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:civ_border_color="@color/black"
-            app:civ_border_width="2dp"
-            android:src="@drawable/vector_home"
-            android:layout_centerHorizontal="true"/>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/id_txt_name"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UserNmae"
-            android:layout_below="@+id/id_img"
-            android:layout_centerHorizontal="true"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/id_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/vector_person"
+                app:civ_border_color="@color/actioncolor"
+                app:civ_border_width="2dp" />
 
-        <TextView
-            android:layout_marginTop="5dp"
-            android:id="@+id/id_txt_email"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:layout_below="@+id/id_txt_name"
-            android:layout_centerHorizontal="true"/>
-        <TextView
-            android:id="@+id/id_txt_role"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Role"
-            android:layout_below="@+id/id_txt_email"
-            android:layout_centerHorizontal="true"
+            <TextView
+                android:id="@+id/id_txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
 
-            />
+
+                android:text="UserNmae"
+
+                android:textColor="@color/actioncolor" />
+
+            <TextView
+                android:id="@+id/id_txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_txt_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Email"
+                android:textColor="@color/actioncolor" />
+
+            <TextView
+                android:id="@+id/id_txt_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_txt_email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Role"
+                android:textColor="@color/actioncolor"
+
+                />
 
         </RelativeLayout>
 
