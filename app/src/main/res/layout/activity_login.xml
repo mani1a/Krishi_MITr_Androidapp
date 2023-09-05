@@ -6,9 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="30dp"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="250dp"
         android:id="@+id/TextTextEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -18,13 +27,15 @@
         app:hintEnabled="true"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+
         app:startIconDrawable="@drawable/vector_email"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:paddingHorizontal="100dp"/>
 
     <Button
         android:layout_below="@+id/buttonLogin"
@@ -66,6 +78,7 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="90dp"/>
 
 </RelativeLayout>
