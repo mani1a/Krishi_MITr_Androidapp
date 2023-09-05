@@ -15,6 +15,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
 import com.manila.fasaldoctor.R
+import com.manila.fasaldoctor.activity.ChatMainActivity
+import com.manila.fasaldoctor.activity.MLActivity
 import com.manila.fasaldoctor.databinding.FragmentHomeBinding
 
 
@@ -28,6 +30,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+
 class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -52,26 +56,35 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
 
-        firebaseStorageRefrence = FirebaseStorage.getInstance()
+//        firebaseStorageRefrence = FirebaseStorage.getInstance()
 
-        binding?.openCamera?.setOnClickListener {
-            val takePicintent =Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        binding?.openCamera?.setOnClickListener {
+//            val takePicintent =Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//
+//            try {
+//                startActivityForResult(takePicintent, 100)
+//            } catch (e: ActivityNotFoundException) {
+//                Toast.makeText(context, "Error" + e.localizedMessage, Toast.LENGTH_LONG).show()
+//            }
+//        }
+//
+//        val contract = registerForActivityResult(ActivityResultContracts
+//            .GetContent()){
+//            binding?.capturedImage3?.setImageURI(it)
+//        }
+//
+//        binding?.selectImage?.setOnClickListener {
+//            contract.launch("image/*")
+//
+//        }
 
-            try {
-                startActivityForResult(takePicintent, 100)
-            } catch (e: ActivityNotFoundException) {
-                Toast.makeText(context, "Error" + e.localizedMessage, Toast.LENGTH_LONG).show()
-            }
+        binding?.btnhealcrop?.setOnClickListener {
+            startActivity(Intent(context,MLActivity::class.java))
+
         }
 
-        val contract = registerForActivityResult(ActivityResultContracts
-            .GetContent()){
-            binding?.capturedImage3?.setImageURI(it)
-        }
-
-        binding?.selectImage?.setOnClickListener {
-            contract.launch("image/*")
-
+        binding?.btnChatwithExpert?.setOnClickListener {
+            startActivity(Intent(context,ChatMainActivity::class.java))
         }
 
 
@@ -86,18 +99,18 @@ class HomeFragment : Fragment() {
 //        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 100 && resultCode == AppCompatActivity.RESULT_OK){
-            val imagemap = data?.extras?.get("data") as Bitmap
-            binding?.capturedImage3?.setImageBitmap(imagemap)
-
-        }
-        else{
-            super.onActivityResult(requestCode, resultCode, data)
-
-        }
-    }
+//    @Deprecated("Deprecated in Java")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        if (requestCode == 100 && resultCode == AppCompatActivity.RESULT_OK){
+//            val imagemap = data?.extras?.get("data") as Bitmap
+//            binding?.capturedImage3?.setImageBitmap(imagemap)
+//
+//        }
+//        else{
+//            super.onActivityResult(requestCode, resultCode, data)
+//
+//        }
+//    }
 
     companion object {
         /**

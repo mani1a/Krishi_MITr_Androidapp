@@ -36,9 +36,6 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
             return SentMsgViewholder(view)
 
 
-
-
-
         }
 
 

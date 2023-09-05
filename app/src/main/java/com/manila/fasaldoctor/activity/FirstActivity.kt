@@ -28,6 +28,8 @@ class FirstActivity : AppCompatActivity() {
         grantPermission()
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Are intezar karo thora load ho raha h -- Nhi ho raha to ek baar click kr lo")
 
@@ -74,6 +76,10 @@ class FirstActivity : AppCompatActivity() {
             }
             if (checkSelfPermission(android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
                 permissionList.add(android.Manifest.permission.READ_MEDIA_IMAGES)
+            }
+
+            if (checkSelfPermission(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY)
             }
 
             if (permissionList.size > 0){

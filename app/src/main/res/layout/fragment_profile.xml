@@ -11,18 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_img"
-            android:layout_width="185dp"
-            android:layout_height="190dp"
+            android:layout_width="96dp"
+            android:layout_height="100dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="49dp"
             android:layout_marginTop="105dp"
             android:src="@drawable/vector_person"
             app:civ_border_color="@color/actioncolor"
-            app:civ_border_width="5dp" />
+            app:civ_border_width="5dp"/>
+
+
+<!--        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:id="@+id/profile_img"-->
+<!--            android:layout_width="96dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginStart="49dp"-->
+<!--            android:layout_marginTop="105dp"-->
+<!--            android:src="@drawable/vector_person"-->
+<!--            app:civ_border_color="@color/actioncolor"-->
+<!--            app:civ_border_width="5dp" />-->
 
         <Button
             android:id="@+id/uploadprofileimg"
@@ -30,28 +42,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_img"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="39dp"
-            android:layout_marginTop="19dp"
-            android:backgroundTint="@color/app_bg"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/fabActionButton"
             android:text="Upload Image"
-            android:textColor="@color/black" />
+            android:textColor="@color/app_bg" />
 
-        <TextView
-            android:id="@+id/profile_name"
-            android:layout_width="82dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_img"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="49dp"
-            android:layout_marginTop="-224dp"
-            android:layout_marginEnd="251dp"
-            android:accessibilityLiveRegion="none"
-            android:backgroundTint="#43A047"
-            android:foregroundTint="#43A047"
-            android:text="Welcome"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="18sp" />
+
 
         <TextView
             android:id="@+id/profile_user_name"
@@ -61,7 +58,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="23dp"
-            android:layout_marginTop="125dp"
+            android:layout_marginTop="110dp"
             android:layout_toRightOf="@+id/profile_img"
             android:text="UserName"
             android:textAlignment="textEnd"
@@ -76,9 +73,23 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/profile_img"
             android:text="Email"
+            android:textColor="@color/actioncolor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/profile_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/profile_img"
+            android:text="Role"
             android:textColor="@color/actioncolor"
             android:textSize="20sp" />
 
@@ -96,4 +107,23 @@
             />
 
     </RelativeLayout>
+
+
 </FrameLayout>
+
+<!--<TextView-->
+<!--android:id="@+id/profile_name"-->
+<!--android:layout_width="82dp"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@+id/profile_img"-->
+<!--android:layout_alignParentStart="true"-->
+<!--android:layout_alignParentEnd="true"-->
+<!--android:layout_marginStart="49dp"-->
+<!--android:layout_marginTop="-224dp"-->
+<!--android:layout_marginEnd="251dp"-->
+<!--android:accessibilityLiveRegion="none"-->
+<!--android:backgroundTint="#43A047"-->
+<!--android:foregroundTint="#43A047"-->
+<!--android:text="Welcome"-->
+<!--android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+<!--android:textSize="18sp" />-->

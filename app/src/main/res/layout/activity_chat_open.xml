@@ -17,8 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/green"
-            >
+            android:background="@color/green">
 
 
             <ImageButton
@@ -26,9 +25,7 @@
                 android:layout_width="40dp"
                 android:layout_height="37dp"
                 android:layout_centerVertical="true"
-                android:background="#4CAF50"
-
-                android:backgroundTint="#4CAF50"
+                android:background="@color/green"
                 android:src="@drawable/vector_back"
                 app:tint="#000C01" />
 
@@ -39,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
-                android:textSize="18sp"/>
+                android:textSize="20sp"/>
             <TextView
                 android:id="@+id/inbox_txt_uid"
                 android:layout_centerInParent="true"
@@ -62,11 +59,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linear_layout"
         android:layout_below="@+id/inbox_bar"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="0dp"
+        android:padding="5dp" />
 
     <LinearLayout
         android:layout_margin="10dp"
@@ -81,9 +78,17 @@
             android:id="@+id/msg_box"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_weight="90"
+            android:layout_weight="80"
             android:hint="Type Your Messege"/>
 
+        <ImageButton
+            android:id="@+id/btn_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:backgroundTint="#4CAF50"
+            android:src="@drawable/ic_gallery"
+            />
         <ImageButton
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
@@ -95,7 +100,19 @@
 
 
 
+
+
+
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/vector_voice"/>
 
 
 

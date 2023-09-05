@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MLActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imgselectview"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:cardBackgroundColor="@color/app_bg"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_below="@+id/imgView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/select_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="Select Images"
+
+                android:backgroundTint="@color/actioncolor"
+                />
+
+            <Button
+                android:id="@+id/open_camera"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="30dp"
+                android:text="Take Pictures"
+
+
+                android:backgroundTint="@color/actioncolor"
+                />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_seeresult"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="30dp"
+                android:text="See Results"
+                android:backgroundTint="@color/actioncolor"
+                android:layout_centerHorizontal="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imgprocessView"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/imgselectview"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:cardBackgroundColor="@color/app_bg"
+            app:cardCornerRadius="20dp">
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
