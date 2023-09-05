@@ -50,6 +50,11 @@
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@+id/btn_cancel"
                 android:text="Upload" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_prediction"
+                android:layout_below="@+id/btn_upload"/>
 
 
         </RelativeLayout>
