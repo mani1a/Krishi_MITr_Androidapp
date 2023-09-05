@@ -61,6 +61,8 @@ import java.util.Locale
          super.onCreate(savedInstanceState)
          binding = ActivityHomeBinding.inflate(layoutInflater)
          setContentView(binding.root)
+
+         supportActionBar?.hide()
          replaceFragments(HomeFragment())
 
          sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
@@ -75,7 +77,7 @@ import java.util.Locale
 //         userName = intent.getStringExtra("userName").toString()
 //         role = intent.getStringExtra("role").toString()
 //         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
-         binding.txtView.text = email
+//         binding.txtView.text = email
 
          val profileFragment = ProfileFragment()
          val bundle = Bundle()
@@ -86,7 +88,8 @@ import java.util.Locale
 
 
          binding.btnChat.setOnClickListener {
-             startActivity(Intent(this,ChatMainActivity::class.java))
+//             startActivity(Intent(this,ChatMainActivity::class.java))
+             Toast.makeText(this,"Chat with AI is under Development",Toast.LENGTH_SHORT).show()
          }
 
 //         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
@@ -331,7 +334,7 @@ import java.util.Locale
          val fragmentManager = supportFragmentManager
          val fragmentTransaction = fragmentManager.beginTransaction()
          fragmentTransaction.replace(R.id.frameLayout,fragment)
-         fragmentTransaction.addToBackStack("back")
+//         fragmentTransaction.addToBackStack("back")
          fragmentTransaction.commit()
      }
 

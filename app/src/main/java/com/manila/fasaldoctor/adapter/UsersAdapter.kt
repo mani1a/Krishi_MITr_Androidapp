@@ -2,6 +2,7 @@ package com.manila.fasaldoctor.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +10,21 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.activity.ChatOpenActivity
 import com.manila.fasaldoctor.model.User
 import de.hdodenhof.circleimageview.CircleImageView
+import java.io.File
 
 class UsersAdapter(private val context: Context, private val userList: ArrayList<User>):
     RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
+
+    lateinit var firebaseAuth : FirebaseAuth
+    lateinit var firebaseStorage: FirebaseStorage
 
 
 
@@ -40,8 +48,10 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
         holder.email.text = user.email
         holder.role.text = user.role
 
+//        Glide.with(context).load(user.imageUrl).into(holder.pic)
+
         holder.openChat.setOnClickListener {
-            Toast.makeText(context,"Hmmmmmm",Toast.LENGTH_SHORT).show()
+
 
             val intent = Intent(context,ChatOpenActivity::class.java)
 
@@ -53,6 +63,26 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
 
 //            val fragmentManager =
         }
+//        holder.pic.setImageBitmap(user.imageUrl)
+
+
+
+        //Code to show Profile Images
+//
+//        val userId = firebaseAuth.currentUser?.uid
+//        val storageReference : StorageReference = firebaseStorage.reference
+//        val imageRef = storageReference.child("Users_Profile_Images/$userId")
+//        val localFile = File.createTempFile("ProfileImg","jpeg")
+//        imageRef.getFile(localFile).addOnSuccessListener {
+//            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+////            binding?.profileImg?.setImageBitmap(bitmap)
+//
+//            holder.pic.setImageBitmap(bitmap)
+//        }.addOnFailureListener {
+//            Toast.makeText(context,"Some Error Occureed",Toast.LENGTH_SHORT).show()
+//        }
+
+
 
     }
 

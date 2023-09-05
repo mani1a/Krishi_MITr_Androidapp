@@ -21,11 +21,12 @@
         android:layout_marginBottom="1dp"
         android:background="@color/app_bg" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtView"
-        android:text="@string/app_name"/>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/txtView"-->
+<!--        android:text="@string/app_name"/>-->
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,7 +36,8 @@
         app:menu="@menu/bottom_nav_items"
         android:layout_alignParentBottom="true"
         app:labelVisibilityMode="selected"
-        android:background="@color/bottom_nav_bg"/>
+        android:background="@color/bottom_nav_bg"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -45,6 +47,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="90dp"
         android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/fabActionButton"
         app:fabSize="auto"
         android:src="@drawable/chat" />
 

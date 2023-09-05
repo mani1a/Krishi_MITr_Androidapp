@@ -1,9 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FasalDoctor" parent="Theme.AppCompat.Light.NoActionBar">
+<!--    <style name="Base.Theme.FasalDoctor" parent="Theme.Material3.DayNight.NoActionBar">-->
+    <style name="Base.Theme.FasalDoctor" parent="Theme.Material3.Light">
         <item name="titleTextColor">@color/actioncolor</item>
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/actioncolor</item>
+        <item name="colorPrimaryInverse">@color/actioncolor</item>
+        <item name="android:textColorHighlightInverse">@color/actioncolor</item>
+
+        <item name="android:textColorHighlight">@color/actioncolor</item>
     </style>
 
     <style name="Theme.FasalDoctor" parent="Base.Theme.FasalDoctor" />
@@ -15,3 +20,5 @@
         
     </style>
 </resources>
+
+<!--<style name="Base.Theme.FasalDoctor" parent="Theme.AppCompat.Light.NoActionBar">-->

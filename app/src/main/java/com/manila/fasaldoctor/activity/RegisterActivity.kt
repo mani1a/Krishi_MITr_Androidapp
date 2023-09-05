@@ -6,13 +6,14 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityRegisterBinding
-import com.manila.fasaldoctor.fragments.ProfileFragment
 import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.model.Usersexpert
 import com.manila.fasaldoctor.model.Usersfarmer
@@ -34,6 +35,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.hide()
 
         val radioRoleGroup = binding.radioRoleGroup
 //        val fragment = ProfileFragment()
@@ -164,15 +167,16 @@ class RegisterActivity : AppCompatActivity() {
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { it ->
                         if (it.isSuccessful) {
+                            storeData()
 
-                            val user : FirebaseUser? = firebaseAuth.currentUser
-                            val userId = user!!.uid
-                            val users = User(userName,email,role,userId)
-                            
-                            firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
-                                if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
-                                else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
-                            }
+//                            val user : FirebaseUser? = firebaseAuth.currentUser
+//                            val userId = user!!.uid
+//                            val users = User(userName,email,role,userId,"","")
+//
+//                            firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
+//                                if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
+//                                else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
+//                            }
 //                            val intentToLogin = Intent(this, HomeActivity::class.java)
                             startActivity(intentTohome)
                         } else {
@@ -185,5 +189,39 @@ class RegisterActivity : AppCompatActivity() {
         }
         else {Toast.makeText(this, "Email and Password should not be blank", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun storeData(){
+        var fcmToken :String?= null
+        val user : FirebaseUser? = firebaseAuth.currentUser
+        val userId = user!!.uid
+//        val users = User(userName,email,role,userId,fcmToken,"","")
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            fcmToken = task.result
+            val users = User(userName,email,role,userId,fcmToken,"")
+
+            firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
+                if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
+                else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
+            }
+
+
+
+        })
+
+//        firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
+//            if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
+//            else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
+//        }
+
+
+
     }
 }

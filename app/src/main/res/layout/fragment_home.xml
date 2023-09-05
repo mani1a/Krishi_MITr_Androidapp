@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,8 +19,10 @@
         <RelativeLayout
             android:id="@+id/cameraActivity_layout"
             android:layout_width="match_parent"
-            android:layout_height="360dp"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp">
+
+
 
             <ImageView
                 android:id="@+id/captured_image3"
@@ -35,7 +42,7 @@
                 android:src="@drawable/rectangle_2_ek1" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/editTextText"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
@@ -53,40 +60,11 @@
                 android:textColor="#149E1A"
                 android:textColorHighlight="#8BC34A"
                 android:textColorHint="#4CAF50"
+                android:clickable="false"
+                android:editable="false"
+                android:textSize="24sp"
 
                 android:textColorLink="#4CAF50" />
-
-            <Button
-                android:id="@+id/open_camera"
-                android:layout_width="230dp"
-                android:layout_height="36dp"
-                android:layout_below="@+id/editTextText"
-                android:layout_alignStart="@+id/captured_image3"
-                android:layout_alignEnd="@+id/captured_image3"
-                android:layout_marginStart="67dp"
-                android:layout_marginTop="161dp"
-                android:layout_marginEnd="70dp"
-                android:contentDescription="TAKE PICTURE"
-                android:drawableStart="@drawable/vector_camera"
-                android:drawableTint="#F3D0D0"
-                android:gravity="center"
-                android:text="Take Pictures"
-                app:strokeColor="#009688" />
-
-            <ImageView
-                android:id="@+id/camera_ek3"
-                android:layout_width="339dp"
-                android:layout_height="85dp"
-                android:layout_above="@+id/open_camera"
-                android:layout_alignTop="@+id/captured_image3"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="42dp"
-                android:layout_marginBottom="95dp"
-                android:contentDescription="camera_ek2"
-                android:src="@drawable/output_uploadfiles" />
 
             <ImageView
                 android:id="@+id/camera_ek2"
@@ -104,19 +82,27 @@
                 android:src="@drawable/output_uploadfiles" />
 
             <Button
-                android:id="@+id/select_image"
-                android:layout_width="230dp"
-                android:layout_height="36dp"
+                android:id="@+id/btnhealcrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/camera_ek2"
                 android:layout_alignStart="@+id/captured_image3"
-                android:layout_alignTop="@+id/camera_ek2"
                 android:layout_alignEnd="@+id/captured_image3"
-                android:layout_marginStart="66dp"
-                android:layout_marginTop="93dp"
-                android:layout_marginEnd="69dp"
-                android:backgroundTint="#4CAF50"
-                android:drawableStart="@drawable/vector_photolibrary"
+                android:layout_marginStart="67dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="70dp"
+                android:contentDescription="Heal Your Crops"
+                android:drawableStart="@drawable/vector_camera"
+                android:drawableTint="#F3D0D0"
                 android:gravity="center"
-                android:text="Select Images" />
+                android:text="Heal Your Crops"
+                app:strokeColor="#009688" />
+
+
+
+
+
 
         </RelativeLayout>
 
@@ -157,26 +143,29 @@
                 android:contentDescription="camera_ek2"
                 android:src="@drawable/outputexpert" />
 
+
             <Button
-                android:id="@+id/btn_firebase"
+                android:id="@+id/btn_chatwithExpert"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/captured_image2"
                 android:layout_alignEnd="@+id/captured_image2"
                 android:layout_alignBottom="@+id/captured_image2"
-
-
                 android:layout_marginStart="43dp"
                 android:layout_marginEnd="48dp"
                 android:layout_marginBottom="16dp"
                 android:drawableStart="@drawable/vector_photolibrary"
-                android:text="Chat with expert" />
+                android:text="Chat with expert"
+                android:backgroundTint="@color/fabActionButton"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/editTextText4"
                 android:layout_width="wrap_content"
                 android:layout_height="46dp"
                 android:layout_above="@+id/captured_image2"
+                android:clickable="false"
+                android:editable="false"
+                android:textSize="24sp"
 
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
@@ -185,6 +174,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#009688"
                 android:ems="10"
+
                 android:fontFamily="sans-serif-black"
                 android:inputType="text"
                 android:text="Chat with expert"
@@ -198,4 +188,37 @@
 
     </RelativeLayout>
 
+    </ScrollView>
 </FrameLayout>
+
+<!--<ImageView-->
+<!--android:id="@+id/camera_ek3"-->
+<!--android:layout_width="339dp"-->
+<!--android:layout_height="85dp"-->
+<!--android:layout_above="@+id/open_camera"-->
+<!--android:layout_alignTop="@+id/captured_image3"-->
+<!--android:layout_alignParentStart="true"-->
+<!--android:layout_alignParentEnd="true"-->
+<!--android:layout_marginStart="30dp"-->
+<!--android:layout_marginTop="4dp"-->
+<!--android:layout_marginEnd="42dp"-->
+<!--android:layout_marginBottom="95dp"-->
+<!--android:contentDescription="camera_ek2"-->
+<!--android:src="@drawable/output_uploadfiles" />-->
+
+<!--<Button-->
+<!--android:id="@+id/select_image"-->
+<!--android:layout_width="230dp"-->
+<!--android:layout_height="36dp"-->
+
+<!--android:layout_alignStart="@+id/captured_image3"-->
+<!--android:layout_alignTop="@+id/camera_ek2"-->
+<!--android:layout_alignEnd="@+id/captured_image3"-->
+<!--android:layout_marginStart="66dp"-->
+<!--android:layout_marginTop="93dp"-->
+<!--android:layout_marginEnd="69dp"-->
+
+<!--android:backgroundTint="#4CAF50"-->
+<!--android:drawableStart="@drawable/vector_photolibrary"-->
+<!--android:gravity="center"-->
+<!--android:text="Select Images" />-->

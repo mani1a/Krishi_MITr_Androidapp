@@ -6,7 +6,15 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+
 
     <application
         android:allowBackup="true"
@@ -18,6 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.MLActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.ChatOpenActivity"
             android:exported="false" />
@@ -48,6 +59,16 @@
         <activity
             android:name=".activity.HomeActivity"
             android:exported="false" />
+
+        <service
+            android:name=".utils.MyfbmessagingService"
+            android:exported="false"
+            android:permission="com.google.android.c2dm.permission.Send">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.Receiver" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
