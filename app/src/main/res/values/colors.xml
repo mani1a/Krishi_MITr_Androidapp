@@ -8,5 +8,6 @@
     <color name="green">#FF9DE683</color>
     <color name="actioncolor">#1B681E</color>
     <color name="fabActionButton">#4CAF50</color>
+    <color name="blue">#0000FF</color>
 
 </resources>

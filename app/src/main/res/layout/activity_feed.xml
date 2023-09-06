@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+  <EditText
+      android:id="@+id/editTextQuestion"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Write your question here..."
+      android:layout_alignParentTop="true"
+      android:layout_marginTop="16dp"
+      android:inputType="textMultiLine" />
+
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      android:layout_marginTop="16dp"
+      android:layout_below="@+id/editTextQuestion" />
+
+  <Button
+      android:id="@+id/buttonLoadPicture"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/imageView"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="16dp"
+      android:text="Load Picture" />
+
+  <Button
+      android:id="@+id/buttonPost"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Post"
+      android:layout_below="@+id/buttonLoadPicture"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="16dp"
+      android:layout_marginBottom="16dp" />
+
+  <!-- RecyclerView -->
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/buttonPost"
+      android:layout_marginTop="16dp"
+      android:background="@color/blue"/>
+
+</RelativeLayout>
