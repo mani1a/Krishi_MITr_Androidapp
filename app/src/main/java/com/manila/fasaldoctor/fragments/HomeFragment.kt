@@ -57,7 +57,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
 
 //        firebaseStorageRefrence = FirebaseStorage.getInstance()
-
 //        binding?.openCamera?.setOnClickListener {
 //            val takePicintent =Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //
@@ -80,7 +79,6 @@ class HomeFragment : Fragment() {
 
         binding?.btnhealcrop?.setOnClickListener {
             startActivity(Intent(context,MLActivity::class.java))
-
         }
 
         binding?.btnChatwithExpert?.setOnClickListener {
@@ -131,4 +129,6 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
+
 }
