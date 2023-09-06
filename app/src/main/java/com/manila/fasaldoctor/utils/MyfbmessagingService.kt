@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.manila.fasaldoctor.R
+import com.manila.fasaldoctor.activity.ChatOpenActivity
 import com.manila.fasaldoctor.activity.HomeActivity
 import java.util.Random
 
@@ -25,7 +26,9 @@ class MyfbmessagingService : FirebaseMessagingService() {
 
         super.onMessageReceived(message)
 
-        val intent  = Intent(this,HomeActivity::class.java)
+        // if not works change to home
+
+        val intent  = Intent(this,ChatOpenActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val manager = getSystemService(Context.NOTIFICATION_SERVICE)
 

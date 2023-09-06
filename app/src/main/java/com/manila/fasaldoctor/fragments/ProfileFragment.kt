@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -61,7 +63,13 @@ class ProfileFragment : Fragment() {
     lateinit var imageUri : Uri
 //    lateinit var uploadImg : User
     lateinit var firebaseAuth: FirebaseAuth
-    lateinit var userId:String
+
+    lateinit var userName:String
+    lateinit var email:String
+    lateinit var role:String
+    lateinit var userId2 :String
+    lateinit var fcmToken:String
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +82,7 @@ class ProfileFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -100,11 +109,6 @@ class ProfileFragment : Fragment() {
             Toast.makeText(context,"Some Error Occureed",Toast.LENGTH_SHORT).show()
         }
 
-
-
-
-
-
         if (userId != null) {
 
             progressBar = ProgressDialog(context)
@@ -113,13 +117,14 @@ class ProfileFragment : Fragment() {
 
             firebaseDatabase.child("Users").child(userId).get().addOnSuccessListener {
 
-                val name = it.child("name")
-                val email = it.child("email")
-                val role = it.child("role")
+                userName = it.child("name").value.toString()
+                email = it.child("email").value.toString()
+                role = it.child("role").value.toString()
+                fcmToken = it.child("fcmtoken").value.toString()
 
-                _binding?.profileUserName?.text = name.value.toString()
-                _binding?.profileEmail?.text =  email.value.toString()
-                _binding?.profileRole?.text = role.value.toString()
+                _binding?.profileUserName?.text = userName
+                _binding?.profileEmail?.text =  email
+                _binding?.profileRole?.text = role
 
                 if (progressBar.isShowing)progressBar.dismiss()
 
@@ -161,6 +166,22 @@ class ProfileFragment : Fragment() {
 //            sharedPreferences.edit().putBoolean("isLoggedIn",false).apply()
         }
 
+//        userName = arguments?.getString("userName").toString()
+//        email = arguments?.getString("email").toString()
+//        role = arguments?.getString("role").toString()
+//        userId2 = arguments?.getString("userId").toString()
+//        fcmToken = arguments?.getString("fcmToken").toString()
+
+//        bundle.putString("userName",userName)
+//        bundle.putString("email",email)
+//        bundle.putString("role",role)
+//        bundle.putString("userId",userId)
+//        bundle.putString("fcmToken",fcmToken)
+
+
+
+
+
 
 
 
@@ -188,8 +209,13 @@ class ProfileFragment : Fragment() {
                 task ->
                 task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
 //                    var uploadImg : User
-                    val uploadPic =  mapOf("Img-url" to it.toString())
+//                    val uploadPic =  mapOf("imageUrl" to it.toString())
+                    val uploadPic =  it.toString()
 
+                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",uploadPic)
+                    
+                    
+                    // if doesnot work change its value to save picture format
 
 //                    uploadImg = User()
 //                    User().imageUrl = uploadPic
@@ -197,7 +223,7 @@ class ProfileFragment : Fragment() {
 //                    uploadImg.imageUrl = uploadPic
 
 
-                    firebaseDatabase.child("Users").child(userId).child("profile_img").setValue(uploadPic)
+                    firebaseDatabase.child("Users").child(userId).setValue(updateuserdata)
                         .addOnSuccessListener {
                             Layers.hideProgressBar()
                         Toast.makeText(context,"Profile Image Updated",Toast.LENGTH_SHORT).show()

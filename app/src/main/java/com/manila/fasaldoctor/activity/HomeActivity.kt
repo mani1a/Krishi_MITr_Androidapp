@@ -65,26 +65,48 @@ import java.util.Locale
          supportActionBar?.hide()
          replaceFragments(HomeFragment())
 
-         sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
-         role = sharedPreferences.getString("checkedRole",null).toString()
-
-         sharedPreferences= getSharedPreferences("userName",Context.MODE_PRIVATE)
-         userName = sharedPreferences.getString("userName",null).toString()
-
-         sharedPreferences = getSharedPreferences("email",Context.MODE_PRIVATE)
-         email = sharedPreferences.getString("email",null).toString()
+//         sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
+//         role = sharedPreferences.getString("checkedRole",null).toString()
+//
+//         sharedPreferences= getSharedPreferences("userName",Context.MODE_PRIVATE)
+//         userName = sharedPreferences.getString("userName",null).toString()
+//
+//         sharedPreferences = getSharedPreferences("email",Context.MODE_PRIVATE)
+//         email = sharedPreferences.getString("email",null).toString()
 
 //         userName = intent.getStringExtra("userName").toString()
 //         role = intent.getStringExtra("role").toString()
 //         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
 //         binding.txtView.text = email
 
+
+
+         val userName = intent.getStringExtra("userName")
+         val email = intent.getStringExtra("email")
+         val role = intent.getStringExtra("role")
+         val userId = intent.getStringExtra("userId")
+         val fcmToken = intent.getStringExtra("fcmToken")
+
+         binding.txtView1.text = userName
+         binding.txtView2.text = email
+         binding.txtView3.text = role
+         binding.txtView4.text = userId
+         binding.txtView5.text = fcmToken
+
          val profileFragment = ProfileFragment()
          val bundle = Bundle()
          bundle.putString("userName",userName)
          bundle.putString("role",role)
          bundle.putString("email",email)
+         bundle.putString("userId",userId)
+         bundle.putString("fcmToken",fcmToken)
          profileFragment.arguments = bundle
+
+
+//         intentTohome.putExtra("",email)
+//         intentTohome.putExtra("",role)
+//         intentTohome.putExtra("",userId)
+//         intentTohome.putExtra("",fcmToken)
 
 
          binding.btnChat.setOnClickListener {

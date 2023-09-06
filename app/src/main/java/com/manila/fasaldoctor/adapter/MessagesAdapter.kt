@@ -48,6 +48,7 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
             val currentMsg = messagesList[position]
+
         if(holder.javaClass == SentMsgViewholder::class.java){
             //for sending msgs
 
