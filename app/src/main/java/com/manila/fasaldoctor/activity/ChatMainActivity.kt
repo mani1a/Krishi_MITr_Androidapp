@@ -77,6 +77,7 @@ class ChatMainActivity : AppCompatActivity() {
                 for (postSnapshot in snapshot.children){
 
                     val currentUser = postSnapshot.getValue(User::class.java)
+                    val farmer = "farmer";
 
                     if (firebaseAuth.currentUser?.uid != currentUser?.uid){
 

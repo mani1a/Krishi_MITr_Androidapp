@@ -47,8 +47,9 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
         holder.userName.text = user.name
         holder.email.text = user.email
         holder.role.text = user.role
+        Glide.with(context).load(user.imageUrl).into(holder.pic)
 
-//        Glide.with(context).load(user.imageUrl).into(holder.pic)
+
 
         holder.openChat.setOnClickListener {
 

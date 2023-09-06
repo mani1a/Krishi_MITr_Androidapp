@@ -30,6 +30,8 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var intentTohome :Intent
     lateinit var users : User
     lateinit var role:String
+    lateinit var userId : String
+    lateinit var fcmToken : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,6 +144,9 @@ class RegisterActivity : AppCompatActivity() {
 //            bundle.putString("userName",userName)
                 createUsers()
 //                role = rola
+//                intentTohome.("usersdata", users)
+
+
 
 
             }
@@ -153,6 +158,8 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
+
 
     }
 
@@ -168,6 +175,8 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener { it ->
                         if (it.isSuccessful) {
                             storeData()
+
+
 
 //                            val user : FirebaseUser? = firebaseAuth.currentUser
 //                            val userId = user!!.uid
@@ -192,21 +201,17 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun storeData(){
-        var fcmToken :String?= null
+//        fcmToken :String?= null
         val user : FirebaseUser? = firebaseAuth.currentUser
-        val userId = user!!.uid
+        userId = user!!.uid
 //        val users = User(userName,email,role,userId,fcmToken,"","")
-
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
-
                 return@OnCompleteListener
             }
-
             // Get new FCM registration token
             fcmToken = task.result
-            val users = User(userName,email,role,userId,fcmToken,"")
-
+            users = User(userName,email,role,userId,fcmToken,"",)
             firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
                 if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
                 else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
@@ -214,7 +219,34 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
+            // pass register data to profile fragment check krke dekhte hai
+            intentTohome.putExtra("userName",userName)
+            intentTohome.putExtra("email",email)
+            intentTohome.putExtra("role",role)
+            intentTohome.putExtra("userId",userId)
+            intentTohome.putExtra("fcmToken",fcmToken)
+
+
+
+
         })
+
+//        val profileFragment = ProfileFragment()
+//        val bundle = Bundle()
+////        bundle.putParcelable("userdata",users)
+//        bundle.putString("userName",userName)
+//        bundle.putString("email",email)
+//        bundle.putString("role",role)
+//        bundle.putString("userId",userId)
+//        bundle.putString("fcmToken",fcmToken)
+//        profileFragment.arguments = bundle
+
+//        intentTohome.putExtra("usersdata", users as Serializable)
+//
+//        val profileFrag = ProfileFragment()
+//        val bundleData = Bundle()
+//        bundleData.putSerializable("userdata",users)
+//        profileFrag.arguments = bundleData
 
 //        firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
 //            if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
@@ -224,4 +256,13 @@ class RegisterActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onStop() {
+        finish()
+        super.onStop()
+    }
 }
+
+
+
+

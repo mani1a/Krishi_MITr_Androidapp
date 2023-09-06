@@ -95,9 +95,6 @@ class ChatOpenActivity : AppCompatActivity() {
                         .setValue(messageObject).addOnCompleteListener {
                             if (it.isSuccessful){
 
-
-
-
                                 sendNotification(message)
 
                             }
