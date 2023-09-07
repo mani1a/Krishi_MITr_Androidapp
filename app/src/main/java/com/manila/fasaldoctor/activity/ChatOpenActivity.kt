@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
@@ -55,6 +56,7 @@ class ChatOpenActivity : AppCompatActivity() {
     var receiveruid : String? = null
     var senderuid : String? = null
     var imageUri: Uri? = null
+    var time : Long? =null
 
 
 
@@ -62,16 +64,21 @@ class ChatOpenActivity : AppCompatActivity() {
         binding = ActivityChatOpenBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        supportActionBar?.hide()
 
-        binding.inboxBtnBack.setOnClickListener {
-            startActivity(Intent(this,ChatMainActivity::class.java))
-        }
+
+
+//        binding.inboxBtnBack.setOnClickListener {
+//            startActivity(Intent(this,ChatMainActivity::class.java))
+//        }
 
 //        val intent = Intent()
         name = intent.getStringExtra("name")
         receiveruid = intent.getStringExtra("uid")
         senderuid = FirebaseAuth.getInstance().currentUser?.uid
+
+        supportActionBar?.title = name
+        val back = supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference()
         storageReference = FirebaseStorage.getInstance().reference
@@ -79,8 +86,8 @@ class ChatOpenActivity : AppCompatActivity() {
         senderRoom = receiveruid + senderuid
         receiverRoom = senderuid + receiveruid
 
-        binding.inboxTxtName.text = name
-        binding.inboxTxtUid.text = receiveruid
+//        binding.inboxTxtName.text = name
+//        binding.inboxTxtUid.text = receiveruid
 
         msgRecyclerView = findViewById(R.id.recyclerView_inbox)
         sendButton = findViewById(R.id.btn_send)
@@ -90,6 +97,7 @@ class ChatOpenActivity : AppCompatActivity() {
         msgRecyclerAdapter = MessagesAdapter(this,messagesList)
 
         msgRecyclerView.layoutManager = LinearLayoutManager(this)
+
         msgRecyclerView.adapter = msgRecyclerAdapter
 
 
@@ -156,7 +164,8 @@ class ChatOpenActivity : AppCompatActivity() {
     private fun sendmsg(){
 
         message = messageBox.text.toString()
-        val messageObject = Messages(message,senderuid)
+        time = System.currentTimeMillis()
+        val messageObject = Messages(time!!,message,senderuid)
 
             databaseReference.child("chats").child(senderRoom!!).child("messages").push()
                 .setValue(messageObject).addOnSuccessListener {
@@ -169,7 +178,11 @@ class ChatOpenActivity : AppCompatActivity() {
                             }
                         }
                 }
+//        msgRecyclerView.setScrollingTouchSlop(1)
             messageBox.setText("")
+
+//        MessagesAdapter.SentMsgViewholder().imgsend
+
 
 
 
@@ -187,7 +200,7 @@ class ChatOpenActivity : AppCompatActivity() {
 
                 val img = it.toString()
 
-                val messageObject = Messages("",senderuid,img)
+                val messageObject = Messages(time!!,"",senderuid,img)
 
                 databaseReference.child("chats").child(senderRoom!!).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
@@ -258,6 +271,11 @@ class ChatOpenActivity : AppCompatActivity() {
 
             })
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        startActivity(Intent(this,ChatMainActivity::class.java))
+        return super.onOptionsItemSelected(item)
     }
 
 

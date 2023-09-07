@@ -10,8 +10,6 @@ android {
 
     defaultConfig {
 
-
-
         applicationId "com.manila.fasaldoctor"
         minSdk 25
         targetSdk 33
@@ -64,11 +62,9 @@ dependencies {
     //circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-
     //glide library
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
-
 
     //Picasso Library
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -79,7 +75,7 @@ dependencies {
 
 
 
-    // cameraX
+    // cameraXLibrary Not in use [Changed]
 
 //    implementation "andriodx.camera:camera-camera2:1.1.0-alpha03"
 //    implementation "andriodx.camera:camera-lifecycle:1.1.0-alpha03"

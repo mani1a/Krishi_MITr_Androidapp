@@ -5,7 +5,16 @@
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true">
 
+    <TextView
+        android:id="@+id/setTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_name"/>
+
+
     <RelativeLayout
+        android:id="@+id/txtLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
@@ -23,6 +32,22 @@
             android:textSize="18sp" />
 
 
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/imgLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLayout"
+        android:layout_alignParentEnd="false"
+        android:layout_margin="6dp"
+        android:background="@drawable/background_receive_msg"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/imgreceivemsg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
 
     </RelativeLayout>
 

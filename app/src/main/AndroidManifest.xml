@@ -26,6 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
+
+
         <activity
             android:name=".activity.MLActivity"
             android:exported="false" />
@@ -38,6 +40,8 @@
         <activity
             android:name=".activitynotinuse.ProfileActivity"
             android:exported="false" />
+
+
         <activity
             android:name=".activity.FirstActivity"
             android:exported="true">
@@ -47,6 +51,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="false" />

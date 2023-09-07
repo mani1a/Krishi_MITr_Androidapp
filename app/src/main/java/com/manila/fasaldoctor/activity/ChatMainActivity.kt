@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
@@ -50,7 +51,8 @@ class ChatMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide()
+        supportActionBar?.title = "CHAT"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         firebaseAuth = FirebaseAuth.getInstance()
         fbDatabase = FirebaseDatabase.getInstance().getReference()
@@ -137,10 +139,10 @@ class ChatMainActivity : AppCompatActivity() {
 
 
 
-
-        binding.btnidback.setOnClickListener {
-            startActivity(Intent(this,HomeActivity::class.java))
-        }
+//
+//        binding.btnidback.setOnClickListener {
+//            startActivity(Intent(this,HomeActivity::class.java))
+//        }
 
 
 
@@ -232,6 +234,11 @@ class ChatMainActivity : AppCompatActivity() {
 //
 //
 //    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        startActivity(Intent(this,HomeActivity::class.java))
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onStop() {
         finish()

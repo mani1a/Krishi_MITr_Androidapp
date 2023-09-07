@@ -4,8 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true">
+    <TextView
+        android:id="@+id/setTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_name"/>
 
     <RelativeLayout
+        android:layout_below="@+id/setTime"
+        android:id="@+id/txtLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -17,8 +25,11 @@
         android:padding="10dp"
         android:gravity="start">
 
+
+
         <TextView
             android:id="@+id/txtsendmsg"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="send Message"
@@ -29,7 +40,24 @@
 
     </RelativeLayout>
 
-<!--    <ImageView-->
+    <RelativeLayout
+        android:id="@+id/imgLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="6dp"
+        android:background="@drawable/backgroung_send_msg"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/imgsendmsg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+    </RelativeLayout>
+
+
+    <!--    <ImageView-->
 <!--        android:id="@+id/imgsendmsg"-->
 <!--        android:layout_width="150dp"-->
 <!--        android:layout_height="150dp"-->

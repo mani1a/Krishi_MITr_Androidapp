@@ -209,6 +209,15 @@ import com.manila.fasaldoctor.fragments.FeedFragment
 
      }
 
+     private fun replaceFragments(fragment: Fragment){
+         val fragmentManager = supportFragmentManager
+         val fragmentTransaction = fragmentManager.beginTransaction()
+         fragmentTransaction.replace(R.id.frameLayout,fragment)
+//         fragmentTransaction.addToBackStack("back")
+         fragmentTransaction.commit()
+     }
+
+
 //     private fun uploadImage() {
 //
 //         progressDialog = ProgressDialog(this)
@@ -331,13 +340,6 @@ import com.manila.fasaldoctor.fragments.FeedFragment
 //     private fun uploadprofImg() {
 //         
 //     }
-     private fun replaceFragments(fragment: Fragment){
-         val fragmentManager = supportFragmentManager
-         val fragmentTransaction = fragmentManager.beginTransaction()
-         fragmentTransaction.replace(R.id.frameLayout,fragment)
-//         fragmentTransaction.addToBackStack("back")
-         fragmentTransaction.commit()
-     }
 
 
  }

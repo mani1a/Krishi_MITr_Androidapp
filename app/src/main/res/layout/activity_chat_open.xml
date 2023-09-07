@@ -8,48 +8,48 @@
     tools:context=".activity.ChatOpenActivity"
     android:background="@color/app_bg">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/inbox_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/green">
+<!--    <com.google.android.material.appbar.MaterialToolbar-->
+<!--        android:id="@+id/inbox_bar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@color/green">-->
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/green">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/green">-->
 
-            <ImageButton
-                android:id="@+id/inbox_btn_back"
-                android:layout_width="40dp"
-                android:layout_height="37dp"
-                android:layout_centerVertical="true"
-                android:background="@color/green"
-                android:src="@drawable/vector_back"
-                app:tint="#000C01" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/inbox_btn_back"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="37dp"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:background="@color/green"-->
+<!--                android:src="@drawable/vector_back"-->
+<!--                app:tint="#000C01" />-->
 
-            <TextView
-                android:id="@+id/inbox_txt_name"
-                android:layout_marginTop="4dp"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="20sp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/inbox_txt_name"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/app_name"-->
+<!--                android:textSize="20sp"/>-->
 
-            <TextView
-                android:id="@+id/inbox_txt_uid"
-                android:layout_centerInParent="true"
-                android:layout_below="@+id/inbox_txt_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="uid"
-                android:textSize="14sp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/inbox_txt_uid"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:layout_below="@+id/inbox_txt_name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="uid"-->
+<!--                android:textSize="14sp"/>-->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
-    </com.google.android.material.appbar.MaterialToolbar>
+<!--    </com.google.android.material.appbar.MaterialToolbar>-->
 
 
 

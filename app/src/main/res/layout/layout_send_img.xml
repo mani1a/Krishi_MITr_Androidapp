@@ -18,10 +18,9 @@
         android:gravity="start">
 
         <ImageView
-            android:id="@+id/imgsendmsg"
+            android:id="@+id/imgsendmsg2"
             android:layout_width="250dp"
             android:layout_height="200dp"
-            android:text="send Message"
             android:textColor="#006504"
             android:textSize="18sp" />
 
