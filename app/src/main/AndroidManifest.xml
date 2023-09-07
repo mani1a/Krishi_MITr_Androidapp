@@ -4,13 +4,17 @@
 
     <uses-feature android:name="android.hardware.camera.any" />
 
+    <uses-feature android:name="android.hardware.microphone"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
@@ -26,6 +30,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
+
+        <activity
+            android:name=".activity.FirstActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".activity.MLActivity"
             android:exported="false" />
@@ -38,15 +53,7 @@
         <activity
             android:name=".activitynotinuse.ProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.FirstActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="false" />
@@ -60,15 +67,22 @@
             android:name=".activity.HomeActivity"
             android:exported="false" />
 
+
+
         <service
             android:name=".utils.MyfbmessagingService"
-            android:exported="false"
+            android:exported="true"
             android:permission="com.google.android.c2dm.permission.Send">
+
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 <action android:name="com.google.android.c2dm.intent.Receiver" />
             </intent-filter>
+
         </service>
+
+
+
     </application>
 
 </manifest>

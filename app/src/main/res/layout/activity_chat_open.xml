@@ -14,11 +14,11 @@
         android:layout_height="50dp"
         android:background="@color/green">
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/green">
-
 
             <ImageButton
                 android:id="@+id/inbox_btn_back"
@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
                 android:textSize="20sp"/>
+
             <TextView
                 android:id="@+id/inbox_txt_uid"
                 android:layout_centerInParent="true"
@@ -46,25 +47,37 @@
                 android:text="uid"
                 android:textSize="14sp"/>
 
-
         </RelativeLayout>
-
-
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_inbox"
+
+
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linear_layout"
-        android:layout_below="@+id/inbox_bar"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="0dp"
-        android:padding="5dp"
-        android:overScrollMode="always"/>
+        android:layout_height="match_parent">
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_inbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="66dp"
+            android:overScrollMode="always"
+            android:padding="5dp" />
+
+
+
+    </RelativeLayout>
+
+
 
     <LinearLayout
         android:layout_margin="10dp"
@@ -91,40 +104,32 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <ImageButton
             android:id="@+id/btn_gallery"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="10"
             android:backgroundTint="#4CAF50"
-            android:src="@drawable/ic_gallery"
-            />
+            android:src="@drawable/ic_gallery" />
+
         <ImageButton
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="10"
             android:backgroundTint="#4CAF50"
-            android:src="@drawable/vector_send"
-            />
-
-
-
-
-
+            android:src="@drawable/vector_send" />
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="80dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/vector_voice"/>
-
-
-
 </RelativeLayout>
+
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginBottom="80dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:src="@drawable/vector_voice"/>-->

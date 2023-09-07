@@ -23,18 +23,16 @@ class MyfbmessagingService : FirebaseMessagingService() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onMessageReceived(message: RemoteMessage) {
 
-
-        super.onMessageReceived(message)
-
         // if not works change to home
 
-        val intent  = Intent(this,ChatOpenActivity::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val intent  = Intent(this,HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         val manager = getSystemService(Context.NOTIFICATION_SERVICE)
 
         createNotificationChannel(manager as NotificationManager)
 
-        val intento = PendingIntent.getActivities(this,0, arrayOf(intent),PendingIntent.FLAG_IMMUTABLE)
+        val intento = PendingIntent.getActivities(this,0,
+            arrayOf(intent),PendingIntent.FLAG_IMMUTABLE)
 
         val notification = NotificationCompat.Builder(this,channelID)
             .setContentTitle(message.data["title"])
@@ -44,12 +42,15 @@ class MyfbmessagingService : FirebaseMessagingService() {
 
         manager.notify(kotlin.random.Random.nextInt(),notification)
 
+
+        super.onMessageReceived(message)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel(manager: NotificationManager){
 
-        val channel = NotificationChannel(channelID,"KrishiMITrChat",
+        val channel = NotificationChannel(channelID,"KrishiMITr",
             NotificationManager.IMPORTANCE_HIGH)
         channel.description = "New Chat"
         channel.enableLights(true)

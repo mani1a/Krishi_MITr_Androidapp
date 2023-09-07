@@ -1,4 +1,4 @@
-package com.manila.fasaldoctor
+package com.manila.fasaldoctor.utils
 
 object Constants {
     const val TAG = "cameraX"

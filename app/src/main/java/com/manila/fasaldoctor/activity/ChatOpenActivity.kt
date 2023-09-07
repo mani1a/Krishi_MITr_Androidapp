@@ -1,13 +1,15 @@
 package com.manila.fasaldoctor.activity
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.provider.MediaStore
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +18,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.adapter.MessagesAdapter
 import com.manila.fasaldoctor.databinding.ActivityChatOpenBinding
@@ -24,6 +28,7 @@ import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.notification.NotificationData
 import com.manila.fasaldoctor.notification.PushNotification
 import com.manila.fasaldoctor.notification.api.ApiUtilis
+import com.manila.fasaldoctor.utils.Layers
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,10 +47,15 @@ class ChatOpenActivity : AppCompatActivity() {
     lateinit var message : String
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var storageReference: StorageReference
 
+    var name : String? = null
     var receiverRoom : String? = null
     var senderRoom : String? = null
     var receiveruid : String? = null
+    var senderuid : String? = null
+    var imageUri: Uri? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,21 +68,19 @@ class ChatOpenActivity : AppCompatActivity() {
             startActivity(Intent(this,ChatMainActivity::class.java))
         }
 
-
-
 //        val intent = Intent()
-        val name = intent.getStringExtra("name")
+        name = intent.getStringExtra("name")
         receiveruid = intent.getStringExtra("uid")
-        val senderuid = FirebaseAuth.getInstance().currentUser?.uid
+        senderuid = FirebaseAuth.getInstance().currentUser?.uid
+
         databaseReference = FirebaseDatabase.getInstance().getReference()
+        storageReference = FirebaseStorage.getInstance().reference
 
         senderRoom = receiveruid + senderuid
         receiverRoom = senderuid + receiveruid
 
-
         binding.inboxTxtName.text = name
         binding.inboxTxtUid.text = receiveruid
-
 
         msgRecyclerView = findViewById(R.id.recyclerView_inbox)
         sendButton = findViewById(R.id.btn_send)
@@ -84,32 +92,39 @@ class ChatOpenActivity : AppCompatActivity() {
         msgRecyclerView.layoutManager = LinearLayoutManager(this)
         msgRecyclerView.adapter = msgRecyclerAdapter
 
-        sendButton.setOnClickListener {
 
-            message = messageBox.text.toString()
-            val messageObject = Messages(message,senderuid)
 
-            databaseReference.child("chats").child(senderRoom!!).child("messages").push()
-                .setValue(messageObject).addOnSuccessListener {
-                    databaseReference.child("chats").child(receiverRoom!!).child("messages").push()
-                        .setValue(messageObject).addOnCompleteListener {
-                            if (it.isSuccessful){
+        var data : Intent?= null
+        val imagelaunchContract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result ->
 
-                                sendNotification(message)
+            if (result.resultCode == RESULT_OK && result.data != null){
+                data = result.data!!
+                imageUri = data!!.data
 
-                            }
-                        }
+                if (imageUri != null){
+
+                sendImg()
+
                 }
 
-            messageBox.setText("")
-
-
-
+            }
 
         }
 
-        // code for showing chats
+        binding.btnGallery.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            imagelaunchContract.launch(intent)
+        }
 
+
+
+
+        sendButton.setOnClickListener {
+            sendmsg()
+        }
+
+        // code for showing chats
         databaseReference.child("chats").child(senderRoom!!).child("messages")
             .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -135,6 +150,63 @@ class ChatOpenActivity : AppCompatActivity() {
 
             })
 
+    }
+
+    @SuppressLint("SuspiciousIndentation")
+    private fun sendmsg(){
+
+        message = messageBox.text.toString()
+        val messageObject = Messages(message,senderuid)
+
+            databaseReference.child("chats").child(senderRoom!!).child("messages").push()
+                .setValue(messageObject).addOnSuccessListener {
+                    databaseReference.child("chats").child(receiverRoom!!).child("messages").push()
+                        .setValue(messageObject).addOnCompleteListener {
+                            if (it.isSuccessful) {
+
+                                sendNotification(message)
+
+                            }
+                        }
+                }
+            messageBox.setText("")
+
+
+
+
+
+    }
+
+    private fun sendImg() {
+
+        Layers.showProgressBar(this)
+
+        storageReference.child("Users_chat_Img").child(senderRoom!!).putFile(imageUri!!).addOnSuccessListener {
+            task ->
+            task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+
+                val img = it.toString()
+
+                val messageObject = Messages("",senderuid,img)
+
+                databaseReference.child("chats").child(senderRoom!!).child("messages").push()
+                    .setValue(messageObject).addOnSuccessListener {
+                        databaseReference.child("chats").child(receiverRoom!!).child("messages").push()
+                            .setValue(messageObject).addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    Layers.hideProgressBar()
+
+//                                    sendNotification(message)
+
+                                }
+                            }
+                    }
+
+
+
+
+            }
+        }
 
 
 
@@ -151,7 +223,7 @@ class ChatOpenActivity : AppCompatActivity() {
                     if (snapshot.exists()){
                         val data = snapshot.getValue(User::class.java)
 
-                        val notificationData = PushNotification(NotificationData("New Message",message)
+                        val notificationData = PushNotification(NotificationData(name,"MESSAGES YOU")
                         ,data!!.fcmtoken
                             )
 
@@ -187,4 +259,7 @@ class ChatOpenActivity : AppCompatActivity() {
             })
 
     }
+
+
+
 }

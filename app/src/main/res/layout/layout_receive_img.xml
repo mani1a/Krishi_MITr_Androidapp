@@ -14,33 +14,33 @@
         android:padding="10dp"
         android:gravity="start">
 
-        <TextView
-            android:id="@+id/txtreceivemsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Receive Message"
-            android:textColor="#0A680E"
+        <ImageView
+            android:id="@+id/imgreceivemsg"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:text="send Message"
+            android:textColor="#006504"
             android:textSize="18sp" />
 
 
 
     </RelativeLayout>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imgreceivemsg"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="150dp"-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imgreceivemsg"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="150dp"-->
 
-<!--        />-->
+    <!--        />-->
 
 
 
     <!--    <RelativeLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        -->
-<!--               -->
-<!--        -->
-<!--    </RelativeLayout>-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        -->
+    <!--               -->
+    <!--        -->
+    <!--    </RelativeLayout>-->
 
 </RelativeLayout>

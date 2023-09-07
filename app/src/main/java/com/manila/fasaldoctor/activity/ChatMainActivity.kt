@@ -78,10 +78,20 @@ class ChatMainActivity : AppCompatActivity() {
 
                     val currentUser = postSnapshot.getValue(User::class.java)
                     val farmer = "farmer";
+                    val expert = "expert";
+                    var currentRole : String? = null
+
+//                    fbDatabase.child("Users").child(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {
+//                        currentRole = it.child("role").toString()
+//                    }
 
                     if (firebaseAuth.currentUser?.uid != currentUser?.uid){
 
+//                        if (currentUser?.role != currentRole){
                         userList.add(currentUser!!)
+
+//                        }
+
                     }
 
                     Layers.hideProgressBar()

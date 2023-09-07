@@ -60,7 +60,7 @@
         app:menu="@menu/bottom_nav_items"
         android:layout_alignParentBottom="true"
         app:labelVisibilityMode="selected"
-        android:background="@color/bottom_nav_bg"
+        android:background="@drawable/bg_bottom_nav"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
