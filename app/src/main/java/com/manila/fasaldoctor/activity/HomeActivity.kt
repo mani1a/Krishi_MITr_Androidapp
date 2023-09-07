@@ -17,6 +17,8 @@ import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import com.manila.fasaldoctor.fragments.HomeFragment
 import com.manila.fasaldoctor.fragments.ProfileFragment
 import com.manila.fasaldoctor.fragments.FeedFragment
+import com.manila.fasaldoctor.activity.FeedActivity
+import android.content.Intent
 
 
  class HomeActivity : AppCompatActivity() {
@@ -180,7 +182,12 @@ import com.manila.fasaldoctor.fragments.FeedFragment
              when (it.itemId) {
                  R.id.home -> replaceFragments(HomeFragment())
 
-                 R.id.feed -> replaceFragments(FeedFragment())
+                 R.id.feed -> {
+                     val intent = Intent(this, FeedActivity::class.java)
+                     startActivity(intent)
+                     true // Return true to indicate that the item click is handled
+                 }
+                 // Handle other menu items if needed
 
                  R.id.profile -> {
                      replaceFragments(ProfileFragment())

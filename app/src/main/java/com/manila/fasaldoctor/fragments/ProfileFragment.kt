@@ -106,7 +106,8 @@ class ProfileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             binding?.profileImg?.setImageBitmap(bitmap)
         }.addOnFailureListener {
-            Toast.makeText(context,"Some Error Occureed",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context,"Some Error Occureed",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Profile picture missing",Toast.LENGTH_SHORT).show()
         }
 
         if (userId != null) {
