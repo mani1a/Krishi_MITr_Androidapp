@@ -1,43 +1,22 @@
  package com.manila.fasaldoctor.activity
 
-import android.app.Dialog
 import android.app.ProgressDialog
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.view.Window
-import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationBarView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import com.manila.fasaldoctor.fragments.HomeFragment
 import com.manila.fasaldoctor.fragments.ProfileFragment
-import java.text.SimpleDateFormat
-import java.util.BitSet
-import java.util.Date
-import java.util.Locale
+import com.manila.fasaldoctor.fragments.FeedFragment
 
 
  class HomeActivity : AppCompatActivity() {
@@ -201,7 +180,7 @@ import java.util.Locale
              when (it.itemId) {
                  R.id.home -> replaceFragments(HomeFragment())
 
-                 R.id.feed -> Toast.makeText(this, "e wala thora mushkil chhe", Toast.LENGTH_SHORT).show()
+                 R.id.feed -> replaceFragments(FeedFragment())
 
                  R.id.profile -> {
                      replaceFragments(ProfileFragment())

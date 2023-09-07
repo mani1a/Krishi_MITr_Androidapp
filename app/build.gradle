@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.2.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 //    implementation 'com.google.android.ads:mediation-test-suite:3.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
