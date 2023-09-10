@@ -24,6 +24,12 @@
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
         <activity
+            android:name=".activity.CommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Comments"
+            android:exported="false" />
+        <activity
             android:name=".activity.FeedActivity"
             android:exported="false" />
         <activity

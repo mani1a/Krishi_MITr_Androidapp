@@ -1,12 +1,29 @@
 package com.manila.fasaldoctor.model
 
+data class Comment(
+    var email: String = "",
+    var commentText: String = ""
+)
+
+
 data class UserPost(
-    // Identifier for the user who created the post
-    val text: String,   // The text content of the post
-    val imageUrl: String? = null, // URL to an image attached to the post (nullable)
-    val timestamp: Long
-)// Timestamp indicating when the post was created
-{
-    // No-argument constructor
-    constructor() : this("", "",  0)
+    val email: String = "",
+    val role: String = "",
+    val uid: String? = null,
+    val text: String = "",
+    val imageUrl: String? = null,
+    val timestamp: Long = 0,
+    var comments: List<Comment> = emptyList(),
+    var postId: String? = null// List of comments
+) {
+    // Secondary constructor with named parameters
+    constructor() : this(
+        email = "",
+        role = "",
+        uid = null,
+        text = "",
+        imageUrl = null,
+        timestamp = 0,
+        comments = emptyList()
+    )
 }
