@@ -4,10 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,14 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.adapter.PostAdapter
 import com.manila.fasaldoctor.model.UserPost
-import com.manila.fasaldoctor.R.layout.activity_feed
 
 class FeedActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
@@ -31,7 +25,8 @@ class FeedActivity : AppCompatActivity() {
     private var imageUri: Uri? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var usersArrayList: ArrayList<UserPost>
-    private lateinit var postAdapter: PostAdapter // Assuming you have a PostAdapter class
+    private lateinit var postAdapter: PostAdapter
+    private lateinit var uid: String // Declare uid at the top
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,41 +39,43 @@ class FeedActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         usersArrayList = arrayListOf()
-        postAdapter = PostAdapter(usersArrayList) // Initialize your adapter
+        postAdapter = PostAdapter(usersArrayList)
 
-        recyclerView.adapter = postAdapter // Set the adapter to the RecyclerView
+        recyclerView.adapter = postAdapter
 
-        button.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, pickImage)
-        }
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
 
-        // Add click listener for the "Post" button
-        val postButton = findViewById<Button>(R.id.buttonPost)
-        postButton.setOnClickListener {
-            // Call the function to upload the data to Firebase
-            storeData(imageUri)
-        }
+        if (user != null) {
+            uid = user.uid // Assign the UID here
 
-        val database = FirebaseDatabase.getInstance().getReference("posts")
-//         var tag = "YourActivityName"
-//
-//        Log.d(tag, "Database reference: $database")
+            button.setOnClickListener {
+                val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+                startActivityForResult(gallery, pickImage)
+            }
 
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                usersArrayList.clear()
-                for (dataSnapshot in snapshot.children) {
-                    val post = dataSnapshot.getValue(UserPost::class.java)
-                    post?.let { usersArrayList.add(it) }
+            val postButton = findViewById<Button>(R.id.buttonPost)
+            postButton.setOnClickListener {
+                storeData(imageUri)
+            }
+
+            val database = FirebaseDatabase.getInstance().getReference("posts")
+
+            database.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    usersArrayList.clear()
+                    for (dataSnapshot in snapshot.children) {
+                        val post = dataSnapshot.getValue(UserPost::class.java)
+                        post?.let { usersArrayList.add(it) }
+                    }
+                    postAdapter.notifyDataSetChanged()
                 }
-                postAdapter.notifyDataSetChanged() // Notify adapter when data changes
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@FeedActivity, error.toString(), Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@FeedActivity, error.toString(), Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -90,22 +87,51 @@ class FeedActivity : AppCompatActivity() {
     }
 
     private fun storeData(imageUri: Uri?) {
-        val data = UserPost(
-            text = findViewById<EditText>(R.id.editTextQuestion).text.toString(),
-            imageUrl = imageUri.toString(),
-            timestamp = System.currentTimeMillis()
-        )
+        // Fetch user data from the Realtime Database
+        val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
-        val databaseReference = FirebaseDatabase.getInstance().getReference("posts")
-        val postReference = databaseReference.push()
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val role = dataSnapshot.child("role").value.toString()
+                    val email = dataSnapshot.child("email").value.toString()
 
-        postReference.setValue(data).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                showToast("Post successfully uploaded!")
-            } else {
-                showToast("Failed to upload post. Please try again.")
+                    val data = UserPost(
+                        email = email,
+                        role = role,
+                        uid = uid,
+                        text = findViewById<EditText>(R.id.editTextQuestion).text.toString(),
+                        imageUrl = imageUri.toString(),
+                        timestamp = System.currentTimeMillis(),
+                        comments = listOf(),
+                        postId = ""
+                    )
+
+                    val databaseReference = FirebaseDatabase.getInstance().getReference("posts")
+
+                    // Automatically generate a unique key for each post
+                    val postReference = databaseReference.push()
+                    var postId = postReference.key // Get the generated key
+                    data.postId = postId // Assign it as a child in the post data
+
+                    // Update the post data with the postId as a child
+                    postReference.setValue(data).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            showToast("Post successfully uploaded!")
+                        } else {
+                            showToast("Failed to upload post. Please try again.")
+                        }
+                    }
+
+                } else {
+                    println("User data does not exist in the database")
+                }
             }
-        }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("Error: ${databaseError.message}")
+            }
+        })
     }
 
     private fun showToast(message: String) {

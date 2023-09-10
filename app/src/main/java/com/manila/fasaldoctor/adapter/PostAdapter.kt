@@ -15,6 +15,8 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.model.UserPost
 import com.manila.fasaldoctor.R.layout.post_item
 import com.manila.fasaldoctor.R.layout.activity_feed
+import android.content.Intent
+import com.manila.fasaldoctor.activity.CommentActivity
 
 class PostAdapter(private val userList: ArrayList<UserPost>) :
     RecyclerView.Adapter<PostAdapter.MyViewHolder>() {
@@ -24,28 +26,7 @@ class PostAdapter(private val userList: ArrayList<UserPost>) :
         val textView: TextView = itemView.findViewById(R.id.textViewPostText)
         val commentButton: Button = itemView.findViewById(R.id.buttonComment)
     }
-//    private val posts: MutableList<UserPost> = mutableListOf()
 
-    // Function to fetch data from Firebase
-//    fun fetchData() {
-//        val databaseReference = FirebaseDatabase.getInstance().getReference("posts")
-//        databaseReference.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                posts.clear()
-//                for (postSnapshot in dataSnapshot.children) {
-//                    val post = postSnapshot.getValue(UserPost::class.java)
-//                    post?.let { posts.add(it) }
-//                }
-//                Log.d(TAG, "Data retrieved successfully from Firebase")
-//                notifyDataSetChanged()
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Handle the error
-//                Log.e(TAG, "Error fetching data from Firebase: ${databaseError.message}")
-//            }
-//        })
-//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.post_item, parent, false)
@@ -54,15 +35,24 @@ class PostAdapter(private val userList: ArrayList<UserPost>) :
 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        val post = posts[position]
 
-        // Bind the data to the views
+
+        //
         Glide.with(holder.itemView.context).load(userList[position].imageUrl).into(holder.imageView)
         holder.textView.text = userList[position].text
 
-        // Add a click listener to the comment button
+        //
         holder.commentButton.setOnClickListener {
+            // Create an Intent to start the CommentActivity
+            val context = holder.itemView.context
+            val intent = Intent(context, CommentActivity::class.java)
 
+            // You may want to pass some data to the CommentActivity here
+            // For example, you can pass the user's ID or any other relevant information
+            intent.putExtra("postId", userList[position].postId)
+
+            // Start the CommentActivity
+            context.startActivity(intent)
         }
     }
 
