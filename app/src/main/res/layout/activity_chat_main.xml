@@ -47,7 +47,6 @@
         android:id="@+id/layout_frame_chatSec"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appBar"
         android:background="@color/green"
         >
 

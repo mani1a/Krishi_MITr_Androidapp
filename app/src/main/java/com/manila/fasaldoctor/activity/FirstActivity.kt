@@ -8,6 +8,8 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
@@ -25,20 +27,30 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
-        grantPermission()
         setContentView(binding.root)
+
+        grantPermission()
 
         supportActionBar?.hide()
 
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Are intezar karo thora load ho raha h -- Nhi ho raha to ek baar click kr lo")
+        binding.btnGetStarted.visibility = View.GONE
 
+        var delay : Long = 2000
+
+        Handler().postDelayed({
+            binding.btnGetStarted.visibility = View.VISIBLE
+            binding.progressbar.visibility = View.GONE
+        },delay
+        )
 
         binding.btnGetStarted.setOnClickListener {
-            progressDialog.show()
+
+            Toast.makeText(this,"Get Started",Toast.LENGTH_SHORT).show()
+
             startActivity(Intent(this,LoginActivity::class.java))
-            if (progressDialog.isShowing)progressDialog.dismiss()
-            finish()
+
+//            finish()
+
         }
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
@@ -68,18 +80,26 @@ class FirstActivity : AppCompatActivity() {
         fun grantPermission(){
             val permissionList = mutableListOf<String>()
 
+            if (checkSelfPermission(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY)
+            }
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
             if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
                 permissionList.add(android.Manifest.permission.CAMERA)
             }
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            if (checkSelfPermission(android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(android.Manifest.permission.RECORD_AUDIO)
             }
             if (checkSelfPermission(android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
                 permissionList.add(android.Manifest.permission.READ_MEDIA_IMAGES)
             }
-
-            if (checkSelfPermission(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY)
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+            if (checkSelfPermission(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE)
             }
 
             if (permissionList.size > 0){

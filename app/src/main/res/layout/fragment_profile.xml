@@ -15,11 +15,12 @@
             android:id="@+id/profile_img"
             android:layout_width="96dp"
             android:layout_height="100dp"
+            android:scaleType="centerCrop"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="49dp"
             android:layout_marginTop="105dp"
-            android:src="@drawable/vector_person"
+            android:src="@drawable/vector_profile_avatar"
             app:civ_border_color="@color/actioncolor"
             app:civ_border_width="2dp"/>
 

@@ -107,6 +107,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/chatLayout"
             android:layout_width="match_parent"
             android:layout_height="355dp"
             android:layout_below="@+id/cameraActivity_layout"

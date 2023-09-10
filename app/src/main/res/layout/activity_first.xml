@@ -8,6 +8,7 @@
     tools:context=".activity.FirstActivity">
 
     <TextView
+        android:id="@+id/appName"
         style="@style/Widget.AppCompat.TextView.SpinnerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,28 +20,52 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/txt1"
+        android:layout_below="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get Started"
         android:fontFamily="@font/appname_font"
-        android:layout_above="@+id/btn_getStarted"
+        android:layout_marginTop="90dp"
         android:layout_centerHorizontal="true"
         android:textSize="24sp"
-        android:layout_marginBottom="10dp"/>
+        />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/txt1"
+        android:layout_centerHorizontal="true"/>
 
 
-
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_getStarted"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/txt1"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="120dp"
         android:src="@drawable/vector_getstart"
-        app:fabSize="auto"/>
+        android:backgroundTint="@color/actioncolor"
+        android:visibility="gone"
+        />
+
+
+
+
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/btn_getStarted"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginBottom="120dp"-->
+<!--        android:src="@drawable/vector_getstart"-->
+<!--        app:fabSize="auto"/>-->
 
 
 </RelativeLayout>

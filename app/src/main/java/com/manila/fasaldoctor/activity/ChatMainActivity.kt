@@ -39,12 +39,10 @@ class ChatMainActivity : AppCompatActivity() {
     lateinit var fbDatabase : DatabaseReference
     lateinit var firebaseAuth: FirebaseAuth
     lateinit var firebaseStorage: FirebaseStorage
+    lateinit var currentRole : String
+    lateinit var role : String
 
 
-//    companion object{
-//        lateinit var userList : ArrayList<User>
-//
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -56,8 +54,6 @@ class ChatMainActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         fbDatabase = FirebaseDatabase.getInstance().getReference()
-//        fbStorage = FirebaseStorage.getInstance()
-
 
         //recycler view codes
 
@@ -68,6 +64,7 @@ class ChatMainActivity : AppCompatActivity() {
         userrecyclerView.layoutManager = LinearLayoutManager(this)
         userrecyclerView.adapter = userrecyclerAdapter
 
+
         // users list codes
 
         Layers.showProgressBar(this)
@@ -76,38 +73,36 @@ class ChatMainActivity : AppCompatActivity() {
 
                 userList.clear()
 
+                val role = snapshot.child(firebaseAuth.currentUser!!.uid).child("role").value.toString()
+
+                if (role == "farmer") supportActionBar?.title = "Chat With Experts"
+                else supportActionBar?.title = "Chat with Farmers"
+
+
+//                Toast.makeText(applicationContext,role,Toast.LENGTH_SHORT).show()
+
+
                 for (postSnapshot in snapshot.children){
 
                     val currentUser = postSnapshot.getValue(User::class.java)
                     val farmer = "farmer";
                     val expert = "expert";
-                    var currentRole : String? = null
 
-//                    fbDatabase.child("Users").child(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {
-//                        currentRole = it.child("role").toString()
-//                    }
+                    if ((firebaseAuth.currentUser?.uid != currentUser?.uid) && (currentUser?.role != role)){
 
-                    if (firebaseAuth.currentUser?.uid != currentUser?.uid){
-
-//                        if (currentUser?.role != currentRole){
                         userList.add(currentUser!!)
-
-//                        }
 
                     }
 
                     Layers.hideProgressBar()
 
-
-
                 }
                 userrecyclerAdapter.notifyDataSetChanged()
-
-
 
             }
 
             override fun onCancelled(error: DatabaseError) {
+
                 Toast.makeText(applicationContext,"Some error Occurred , Please Restrat",Toast.LENGTH_LONG).show()
 
             }
@@ -127,26 +122,10 @@ class ChatMainActivity : AppCompatActivity() {
 //        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 //
 //        binding.btnidback.setOnClickListener {
 //            startActivity(Intent(this,HomeActivity::class.java))
 //        }
-
-
-
-
 
 
     }

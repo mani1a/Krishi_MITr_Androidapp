@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentBottom="true">
 
     <TextView
@@ -35,21 +35,91 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/imgLayout"
+    <ImageView
+        android:layout_below="@+id/txtLayout"
+        android:id="@+id/imgreceivemsg"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/background_receive_msg"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/receiveaudiolayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtLayout"
-        android:layout_alignParentEnd="false"
-        android:layout_margin="6dp"
-        android:background="@drawable/background_receive_msg"
-        android:padding="10dp">
-        <ImageView
-            android:id="@+id/imgreceivemsg"
-            android:layout_width="150dp"
-            android:layout_height="150dp"/>
+        android:layout_below="@+id/imgreceivemsg"
+        android:visibility="gone">
 
-    </RelativeLayout>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+
+        android:background="@drawable/background_receive_msg"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/play"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/vector_play"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                />
+
+
+            <ImageButton
+                android:id="@+id/pause"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/vector_pause"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/audiomsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AUDIO MESSAGE"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="60dp"
+                android:textSize="16sp"/>
+
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+
+    <!--    <RelativeLayout-->
+<!--        android:id="@+id/imgLayout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/txtLayout"-->
+<!--        android:layout_alignParentEnd="false"-->
+<!--        android:layout_margin="6dp"-->
+<!--        android:background="@drawable/background_receive_msg"-->
+<!--        android:padding="10dp">-->
+<!--       -->
+
+<!--    </RelativeLayout>-->
 
 <!--    <ImageView-->
 <!--        android:id="@+id/imgreceivemsg"-->

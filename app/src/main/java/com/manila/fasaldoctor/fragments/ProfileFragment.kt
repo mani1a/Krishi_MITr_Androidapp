@@ -150,10 +150,9 @@ class ProfileFragment : Fragment() {
 
         binding?.uploadprofileimg?.setOnClickListener {
 //            imageContract.launch("image/*")
+
             val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             imagePicker.launch(intent)
-
-
 
         }
 
@@ -161,9 +160,9 @@ class ProfileFragment : Fragment() {
             firebaseAuth.signOut()
             Toast.makeText(context,"Logged Out", Toast.LENGTH_SHORT).show()
             startActivity(Intent(context, LoginActivity::class.java))
+
 //            finish()
 //            var sharedPreferences: SharedPreferences? = null
-
 //            sharedPreferences.edit().putBoolean("isLoggedIn",false).apply()
         }
 
