@@ -17,6 +17,7 @@ import com.manila.fasaldoctor.databinding.ActivityRegisterBinding
 import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.model.Usersexpert
 import com.manila.fasaldoctor.model.Usersfarmer
+import com.manila.fasaldoctor.utils.Layers
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -32,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var role:String
     lateinit var userId : String
     lateinit var fcmToken : String
+    lateinit var mobile : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +62,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.btnRegister.setOnClickListener {
                 userName = binding.etUserName.text.toString()
                 email = binding.editTextTextEmailAddress2.text.toString()
+                mobile = binding.editTextMobile.text.toString()
                 val userFarmer = Usersfarmer(userName, email, farmer)
                 val userExpert = Usersexpert(userName, email, expert)
 //                val users = User(userName,email)
@@ -146,9 +149,6 @@ class RegisterActivity : AppCompatActivity() {
 //                role = rola
 //                intentTohome.("usersdata", users)
 
-
-
-
             }
 //            intentTohome.putExtra("userName",userName)
         }
@@ -158,8 +158,6 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
-
 
     }
 
@@ -175,8 +173,6 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener { it ->
                         if (it.isSuccessful) {
                             storeData()
-
-
 
 //                            val user : FirebaseUser? = firebaseAuth.currentUser
 //                            val userId = user!!.uid
@@ -201,7 +197,11 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun storeData(){
-//        fcmToken :String?= null
+
+        //for storing data --- also store in profile fragment aLSO
+
+        Layers.showProgressBar(this)
+
         val user : FirebaseUser? = firebaseAuth.currentUser
         userId = user!!.uid
 //        val users = User(userName,email,role,userId,fcmToken,"","")
@@ -211,9 +211,11 @@ class RegisterActivity : AppCompatActivity() {
             }
             // Get new FCM registration token
             fcmToken = task.result
-            users = User(userName,email,role,userId,fcmToken,"",)
-            firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
-                if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
+            users = User(userName,email,role,userId,fcmToken,"",mobile)
+            firebaseDatabaseReference.child(userId).setValue(users).addOnSuccessListener {
+                Layers.hideProgressBar()
+            }.addOnCompleteListener {
+                if (it.isSuccessful) Toast.makeText(this,"Registered as $role",Toast.LENGTH_SHORT).show()
                 else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
             }
 

@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
 
 
         <RelativeLayout
             android:id="@+id/cameraActivity_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp">
+            android:layout_marginTop="0dp"
+            android:visibility="gone">
 
 
 
@@ -99,11 +104,6 @@
                 android:text="Heal Your Crops"
                 app:strokeColor="#009688" />
 
-
-
-
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -111,7 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="355dp"
             android:layout_below="@+id/cameraActivity_layout"
-            android:layout_marginTop="6dp">
+            android:layout_marginTop="6dp"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/captured_image2"
@@ -160,7 +161,7 @@
                 android:backgroundTint="@color/fabActionButton"/>
 
             <TextView
-                android:id="@+id/editTextText4"
+                android:id="@+id/txtChat"
                 android:layout_width="wrap_content"
                 android:layout_height="46dp"
                 android:layout_above="@+id/captured_image2"
@@ -187,10 +188,8 @@
         </RelativeLayout>
 
 
-    </RelativeLayout>
 
-    </ScrollView>
-</FrameLayout>
+</RelativeLayout>
 
 <!--<ImageView-->
 <!--android:id="@+id/camera_ek3"-->

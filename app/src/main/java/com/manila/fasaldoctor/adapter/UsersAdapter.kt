@@ -26,13 +26,9 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
     lateinit var firebaseAuth : FirebaseAuth
     lateinit var firebaseStorage: FirebaseStorage
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_users,parent,false)
-
-
 
         return ViewHolder(view)
 
@@ -47,7 +43,7 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
         holder.userName.text = user.name
         holder.email.text = user.email
         holder.role.text = user.role
-        Glide.with(context).load(user.imageUrl).into(holder.pic)
+        Glide.with(context).load(user.imageUrl).placeholder(R.drawable.vector_person).into(holder.pic)
 
 
 
@@ -62,7 +58,6 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
             context.startActivity(intent)
 
 
-//            val fragmentManager =
         }
 //        holder.pic.setImageBitmap(user.imageUrl)
 

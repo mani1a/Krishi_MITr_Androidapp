@@ -8,58 +8,17 @@
     tools:context=".activity.ChatOpenActivity"
     android:background="@color/app_bg">
 
-<!--    <com.google.android.material.appbar.MaterialToolbar-->
-<!--        android:id="@+id/inbox_bar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="@color/green">-->
-
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@color/green">-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/inbox_btn_back"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="37dp"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:background="@color/green"-->
-<!--                android:src="@drawable/vector_back"-->
-<!--                app:tint="#000C01" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/inbox_txt_name"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/app_name"-->
-<!--                android:textSize="20sp"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/inbox_txt_uid"-->
-<!--                android:layout_centerInParent="true"-->
-<!--                android:layout_below="@+id/inbox_txt_name"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="uid"-->
-<!--                android:textSize="14sp"/>-->
-
-<!--        </RelativeLayout>-->
-
-<!--    </com.google.android.material.appbar.MaterialToolbar>-->
-
-
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <ProgressBar
+            android:id="@+id/progsbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_inbox"
@@ -84,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="15dp"
         app:cardBackgroundColor="@color/bottom_nav_bg">
 
     <LinearLayout
@@ -96,20 +55,16 @@
         android:orientation="horizontal">
 
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/msg_box"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="85"
-            android:padding="0dp"
-            app:placeholderText="Type Your Message">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/msg_box"
-                android:background="#E4E1E1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:background="@drawable/bg_reg_layout"
+            android:layout_gravity="center"
+            android:backgroundTint="#F4F4F4"
+            android:hint="Type your Message"
+            android:padding="12dp"/>
 
 
         <ImageButton
@@ -126,7 +81,7 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:backgroundTint="#4CAF50"
-            android:src="@drawable/ic_gallery" />
+            android:src="@drawable/vector_photolibrary" />
 
         <ImageButton
             android:id="@+id/btn_send"
@@ -146,7 +101,7 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="15dp"
         app:cardBackgroundColor="@color/bottom_nav_bg"
         android:visibility="gone">
 
@@ -207,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/vector_play"
                     android:layout_toLeftOf="@+id/btn_send_audio"
+                    android:layout_centerVertical="true"
                     android:visibility="gone"/>
 
 
@@ -216,6 +172,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/vector_pause"
                     android:visibility="gone"
+                    android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/btn_send_audio"/>
 
 
@@ -224,17 +181,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:backgroundTint="#4CAF50"
+                    android:backgroundTint="#9CE582"
                     android:src="@drawable/vector_send"
                     android:visibility="gone"
+                    android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/btn_cancel"/>
 
                 <ImageButton
                     android:id="@+id/btn_cancel"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:src="@drawable/vector_cancel"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="#FF9CE582"/>
 
 
             </RelativeLayout>
@@ -252,3 +211,19 @@
 <!--        android:layout_marginBottom="80dp"-->
 <!--        android:layout_marginEnd="20dp"-->
 <!--        android:src="@drawable/vector_voice"/>-->
+
+    <!--        <com.google.android.material.textfield.TextInputLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_weight="85"-->
+    <!--            android:padding="0dp"-->
+    <!--            app:placeholderText="Type Your Message">-->
+
+    <!--            <com.google.android.material.textfield.TextInputEditText-->
+    <!--                android:id="@+id/msg_box"-->
+    <!--                android:background="#E4E1E1"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                />-->
+    <!--        </com.google.android.material.textfield.TextInputLayout>-->
+

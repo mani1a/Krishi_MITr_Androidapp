@@ -100,7 +100,6 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
 
                 holder.btnPlay.setOnClickListener {
 
-
                     mediaPlayer = MediaPlayer()
                     mediaPlayer?.setDataSource(audioPath)
                     mediaPlayer?.prepare()
@@ -110,14 +109,14 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
                         holder.btnPause.visibility = View.GONE
                     }
 
-                    Toast.makeText(context,"play",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context,"play",Toast.LENGTH_SHORT).show()
 
                     holder.btnPause.visibility = View.VISIBLE
 
                 }
 
                 holder.btnPause.setOnClickListener {
-                    Toast.makeText(context,"pause",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context,"pause",Toast.LENGTH_SHORT).show()
                     holder.btnPlay.visibility = View.VISIBLE
                     holder.btnPause.visibility = View.GONE
                     mediaPlayer?.stop()
@@ -159,20 +158,22 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
                 holder.btnPlay.setOnClickListener {
 
 
-
-
                     mediaPlayer = MediaPlayer()
                     mediaPlayer?.setDataSource(audioPath)
                     mediaPlayer?.prepare()
                     mediaPlayer?.start()
+                    mediaPlayer?.setOnCompletionListener {
+                        holder.btnPlay.visibility = View.VISIBLE
+                        holder.btnPause.visibility = View.GONE
+                    }
 
-                    Toast.makeText(context,"play",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context,"play",Toast.LENGTH_SHORT).show()
                     holder.btnPause.visibility = View.VISIBLE
 
                 }
 
                 holder.btnPause.setOnClickListener {
-                    Toast.makeText(context,"pause",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context,"pause",Toast.LENGTH_SHORT).show()
 
                     holder.btnPlay.visibility = View.VISIBLE
                     holder.btnPause.visibility = View.GONE

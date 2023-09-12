@@ -57,17 +57,13 @@ import java.util.Date
 
 class ChatOpenActivity : AppCompatActivity() {
 
-
     lateinit var binding: ActivityChatOpenBinding
-
     private lateinit var msgRecyclerView: RecyclerView
     private lateinit var msgRecyclerAdapter: MessagesAdapter
     private lateinit var messagesList : ArrayList<Messages>
     lateinit var sendButton : ImageButton
     lateinit var messageBox : EditText
-
     lateinit var message : String
-
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
 
@@ -123,7 +119,6 @@ class ChatOpenActivity : AppCompatActivity() {
         var data : Intent?= null
         val imagelaunchContract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
-
             if (result.resultCode == RESULT_OK && result.data != null){
                 data = result.data!!
                 imageUri = data!!.data
@@ -133,9 +128,7 @@ class ChatOpenActivity : AppCompatActivity() {
                 sendImg()
 
                 }
-
             }
-
         }
 
         binding.btnGallery.setOnClickListener {
@@ -151,22 +144,18 @@ class ChatOpenActivity : AppCompatActivity() {
         binding.btnRecordAudio.setOnClickListener {
             binding.sendtextmsg.visibility = View.GONE
             binding.sendaudiomsg.visibility = View.VISIBLE
-
-
         }
 
         binding.btnCancel.setOnClickListener {
-
             destroyAudio()
-
-
         }
 
         val permission = arrayOf(android.Manifest.permission.RECORD_AUDIO)
 
         binding.imgAudioStart.setOnClickListener{
 
-            if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+            if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions(this,permission,101)
             }else{
             recordAudio()
@@ -194,6 +183,8 @@ class ChatOpenActivity : AppCompatActivity() {
 
 
         // code for showing chats
+        binding.progsbar.visibility = View.VISIBLE
+        binding.recyclerViewInbox.visibility = View.GONE
         databaseReference.child("chats").child(senderRoom!!).child("messages")
             .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -205,8 +196,10 @@ class ChatOpenActivity : AppCompatActivity() {
                         val messege = postmsgsnapshot.getValue(Messages::class.java)
 
                         messagesList.add(messege!!)
-
+                        
                     }
+                    binding.progsbar.visibility = View.GONE
+                    binding.recyclerViewInbox.visibility = View.VISIBLE
 
                     msgRecyclerAdapter.notifyDataSetChanged()
 

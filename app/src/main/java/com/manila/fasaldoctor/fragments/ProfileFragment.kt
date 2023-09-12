@@ -6,6 +6,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
+import android.graphics.BlendMode
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -69,6 +70,7 @@ class ProfileFragment : Fragment() {
     lateinit var role:String
     lateinit var userId2 :String
     lateinit var fcmToken:String
+    lateinit var mobile : String
 
 
 
@@ -122,6 +124,7 @@ class ProfileFragment : Fragment() {
                 email = it.child("email").value.toString()
                 role = it.child("role").value.toString()
                 fcmToken = it.child("fcmtoken").value.toString()
+                mobile = it.child("mobile").value.toString()
 
                 _binding?.profileUserName?.text = userName
                 _binding?.profileEmail?.text =  email
@@ -212,7 +215,7 @@ class ProfileFragment : Fragment() {
 //                    val uploadPic =  mapOf("imageUrl" to it.toString())
                     val uploadPic =  it.toString()
 
-                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",uploadPic)
+                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",mobile,uploadPic)
                     
                     
                     // if doesnot work change its value to save picture format

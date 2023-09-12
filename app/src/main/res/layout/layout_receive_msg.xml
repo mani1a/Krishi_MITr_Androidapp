@@ -49,7 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgreceivemsg"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
 
 
@@ -57,7 +58,6 @@
     <androidx.cardview.widget.CardView
         android:layout_margin="10dp"
         app:cardCornerRadius="20dp"
-
         android:background="@drawable/background_receive_msg"
         android:layout_width="250dp"
         android:layout_height="50dp"

@@ -11,7 +11,9 @@ data class User(
     val uid: String? = null,
     val fcmtoken: String? = null,
     var description: String? = null,
+    var mobile : String? = null,
     var imageUrl: String? = null,
+
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),

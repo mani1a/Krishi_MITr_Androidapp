@@ -35,7 +35,7 @@ class FirstActivity : AppCompatActivity() {
 
         binding.btnGetStarted.visibility = View.GONE
 
-        var delay : Long = 2000
+        val delay : Long = 2000
 
         Handler().postDelayed({
             binding.btnGetStarted.visibility = View.VISIBLE

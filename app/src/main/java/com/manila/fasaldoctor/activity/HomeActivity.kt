@@ -16,9 +16,11 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import com.manila.fasaldoctor.fragments.HomeFragment
 import com.manila.fasaldoctor.fragments.ProfileFragment
-import com.manila.fasaldoctor.fragments.FeedFragment
-import com.manila.fasaldoctor.activity.FeedActivity
 import android.content.Intent
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.manila.fasaldoctor.fragments.Feed2Fragment
+import com.manila.fasaldoctor.utils.Layers
 
 
  class HomeActivity : AppCompatActivity() {
@@ -46,6 +48,7 @@ import android.content.Intent
          supportActionBar?.hide()
          replaceFragments(HomeFragment())
 
+
 //         sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
 //         role = sharedPreferences.getString("checkedRole",null).toString()
 //
@@ -59,8 +62,6 @@ import android.content.Intent
 //         role = intent.getStringExtra("role").toString()
 //         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
 //         binding.txtView.text = email
-
-
 
          val userName = intent.getStringExtra("userName")
          val email = intent.getStringExtra("email")
@@ -109,6 +110,8 @@ import android.content.Intent
                      val intent = Intent(this, FeedActivity::class.java)
                      startActivity(intent)
                      true // Return true to indicate that the item click is handled
+
+//                     replaceFragments(Feed2Fragment())
                  }
                  // Handle other menu items if needed
 

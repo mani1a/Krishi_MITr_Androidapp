@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
@@ -59,15 +60,14 @@ class ChatMainActivity : AppCompatActivity() {
 
         userList = ArrayList()
         userrecyclerAdapter = UsersAdapter(this,userList)
-
         userrecyclerView = findViewById(R.id.user_recycler)
         userrecyclerView.layoutManager = LinearLayoutManager(this)
         userrecyclerView.adapter = userrecyclerAdapter
 
 
-        // users list codes
+        // users list ---- codes
 
-        Layers.showProgressBar(this)
+
         fbDatabase.child("Users").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -77,10 +77,6 @@ class ChatMainActivity : AppCompatActivity() {
 
                 if (role == "farmer") supportActionBar?.title = "Chat With Experts"
                 else supportActionBar?.title = "Chat with Farmers"
-
-
-//                Toast.makeText(applicationContext,role,Toast.LENGTH_SHORT).show()
-
 
                 for (postSnapshot in snapshot.children){
 
@@ -92,9 +88,10 @@ class ChatMainActivity : AppCompatActivity() {
 
                         userList.add(currentUser!!)
 
-                    }
+                        binding.userRecycler.visibility = View.VISIBLE
+                        binding.progbarr.visibility = View.GONE
 
-                    Layers.hideProgressBar()
+                    }
 
                 }
                 userrecyclerAdapter.notifyDataSetChanged()
@@ -103,116 +100,13 @@ class ChatMainActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
 
-                Toast.makeText(applicationContext,"Some error Occurred , Please Restrat",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Some error Occurred , Please Restart the App",Toast.LENGTH_LONG).show()
 
             }
 
         })
-//
-//        //Code to show Profile Images
-//        val userId = firebaseAuth.currentUser?.uid
-//        val storageReference : StorageReference = firebaseStorage.reference
-//        val imageRef = storageReference.child("Users_Profile_Images/$userId")
-//        val localFile = File.createTempFile("ProfileImg","jpeg")
-//        imageRef.getFile(localFile).addOnSuccessListener {
-//            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-////            binding?.profileImg?.setImageBitmap(bitmap)
-//        }.addOnFailureListener {
-//            Toast.makeText(this,"Some Error Occureed",Toast.LENGTH_SHORT).show()
-//        }
-
-
-//
-//        binding.btnidback.setOnClickListener {
-//            startActivity(Intent(this,HomeActivity::class.java))
-//        }
-
 
     }
-//        getuserList()
-//        initializeRecycler()
-
-
-
-//        supportActionBar?.setTitle("Chat")
-//        supportActionBar?.show()
-
-//        setActionBar(toolbar)
-//        supportActionBar?.title = "Chat With Experts"
-
-//        userrecyclerView.layoutManager = LinearLayoutManager
-
-//        var userList = ArrayList<User>()
-//        userList.add(User("Manila","manila@gmail.com","Farmer","badBoy"))
-
-//    private fun initializeRecycler(){
-//        userrecyclerView = findViewById(R.id.user_recycler)
-//        layoutManager = GridLayoutManager(this,3)
-//        userList = userList
-//        userrecyclerAdapter= UsersAdapter(this, userList)
-//        userrecyclerView.adapter = userrecyclerAdapter
-//        userrecyclerView.layoutManager = layoutManager
-//
-//    }
-
-
-
-
-//    private fun getuserList(){
-////        var userList = ArrayList<User>()
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////
-////
-////        return userList
-//
-//        var firebaseUser : FirebaseUser = FirebaseAuth.getInstance().currentUser!!
-//        var fbdatabaseref : DatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
-//
-//        fbdatabaseref.addValueEventListener(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                userList.clear()
-//
-//                for (dataSnapShot : DataSnapshot in snapshot.children){
-//                    val user = dataSnapShot.getValue(User::class.java)
-//
-//                    if (user!!.equals(firebaseUser.uid)){
-//                        userList.add(user)
-//
-//                    }
-//
-//                }
-////                userrecyclerAdapter= UsersAdapter(applicationContext , userList)
-//
-//
-//
-//
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                Toast.makeText(applicationContext,error.message,Toast.LENGTH_SHORT).show()
-//
-//
-//            }
-//        })
-////        return getuserList()
-//
-////        initializeRecycler()
-//
-//
-//
-//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         startActivity(Intent(this,HomeActivity::class.java))
