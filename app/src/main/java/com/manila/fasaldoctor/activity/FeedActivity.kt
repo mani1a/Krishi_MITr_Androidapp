@@ -66,7 +66,16 @@ class FeedActivity : AppCompatActivity() {
                     usersArrayList.clear()
                     for (dataSnapshot in snapshot.children) {
                         val post = dataSnapshot.getValue(UserPost::class.java)
-                        post?.let { usersArrayList.add(it) }
+
+                        // Check if the post is not null and contains imageUrl, text, and postId
+                        if (post != null && post.imageUrl != null && post.text != null && post.postId != null) {
+                            val userPost = UserPost(
+                                postId = post.postId,
+                                imageUrl = post.imageUrl,
+                                text = post.text
+                            )
+                            usersArrayList.add(userPost)
+                        }
                     }
                     postAdapter.notifyDataSetChanged()
                 }
@@ -75,6 +84,7 @@ class FeedActivity : AppCompatActivity() {
                     Toast.makeText(this@FeedActivity, error.toString(), Toast.LENGTH_SHORT).show()
                 }
             })
+
         }
     }
 

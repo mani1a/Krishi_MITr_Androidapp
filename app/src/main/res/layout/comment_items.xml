@@ -1,0 +1,27 @@
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Display the email of the commenter -->
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:background="@color/white"
+        android:textStyle="bold" />
+
+    <!-- Display the comment text -->
+    <TextView
+        android:id="@+id/textViewCommentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="4dp"
+        android:text=""
+        android:textStyle="normal" />
+</LinearLayout>
