@@ -29,7 +29,7 @@ class CommentAdapter(private val commentList: ArrayList<Comment>) :
         val commentText = comment.commentText // Access the commentText value
 
         // Set the email and commentText values to the corresponding views
-        holder.emailView.text = "Email: $email"
+        holder.emailView.text = "$email"
         holder.commentView.text = commentText
     }
 
