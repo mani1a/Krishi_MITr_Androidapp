@@ -20,7 +20,7 @@ import com.manila.fasaldoctor.model.User
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.File
 
-class UsersAdapter(private val context: Context, private val userList: ArrayList<User>):
+class UsersAdapter (private val context: Context, private val userList: ArrayList<User>):
     RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     lateinit var firebaseAuth : FirebaseAuth

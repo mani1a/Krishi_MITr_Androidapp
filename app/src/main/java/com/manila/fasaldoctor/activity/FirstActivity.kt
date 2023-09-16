@@ -29,33 +29,35 @@ class FirstActivity : AppCompatActivity() {
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnGetStarted.setOnClickListener {
+
+            Toast.makeText(this, "Get Started", Toast.LENGTH_SHORT).show()
+
+            startActivity(Intent(this, LoginActivity::class.java))
+
+            finish()
+
+        }
+
         grantPermission()
 
         supportActionBar?.hide()
 
         binding.btnGetStarted.visibility = View.GONE
 
-        val delay : Long = 2000
+        val delay: Long = 2000
 
-        Handler().postDelayed({
-            binding.btnGetStarted.visibility = View.VISIBLE
-            binding.progressbar.visibility = View.GONE
-        },delay
+        Handler().postDelayed(
+            {
+                binding.btnGetStarted.visibility = View.VISIBLE
+                binding.progressbar.visibility = View.GONE
+            }, delay
         )
 
-        binding.btnGetStarted.setOnClickListener {
-
-            Toast.makeText(this,"Get Started",Toast.LENGTH_SHORT).show()
-
-            startActivity(Intent(this,LoginActivity::class.java))
-
-//            finish()
-
-        }
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
-//
+
         if (isLoggedIn){
             startActivity(Intent(this,LoginActivity::class.java))
         }
@@ -71,10 +73,7 @@ class FirstActivity : AppCompatActivity() {
 //            startActivity(Intent(this,HomeActivity::class.java))
 //        }
 
-        }
-
-
-
+    }
         // PERMISSION MANAGER/HANDLER
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)
         fun grantPermission(){

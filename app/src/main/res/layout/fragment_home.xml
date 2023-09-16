@@ -18,12 +18,20 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
 
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:queryHint=""/>
+
 
 
         <RelativeLayout
             android:id="@+id/cameraActivity_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/searchBar"
             android:layout_marginTop="0dp"
             android:visibility="gone">
 

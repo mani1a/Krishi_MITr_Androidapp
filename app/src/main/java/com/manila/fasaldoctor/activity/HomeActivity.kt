@@ -17,6 +17,7 @@ import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import com.manila.fasaldoctor.fragments.HomeFragment
 import com.manila.fasaldoctor.fragments.ProfileFragment
 import android.content.Intent
+import android.view.View
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.manila.fasaldoctor.fragments.Feed2Fragment
@@ -92,8 +93,8 @@ import com.manila.fasaldoctor.utils.Layers
 
 
          binding.btnChat.setOnClickListener {
-//             startActivity(Intent(this,ChatMainActivity::class.java))
-             Toast.makeText(this,"Chat with AI is under Development",Toast.LENGTH_SHORT).show()
+             startActivity(Intent(this,RecentChatActivity::class.java))
+//             Toast.makeText(this,"Chat with AI is under Development",Toast.LENGTH_SHORT).show()
          }
 
 
@@ -104,19 +105,25 @@ import com.manila.fasaldoctor.utils.Layers
          bottomNavigationView.setOnItemSelectedListener{
 
              when (it.itemId) {
-                 R.id.home -> replaceFragments(HomeFragment())
+                 R.id.home ->{
+                     replaceFragments(HomeFragment())
+                     binding.btnChat.visibility = View.VISIBLE
+                 }
+
 
                  R.id.feed -> {
-                     val intent = Intent(this, FeedActivity::class.java)
-                     startActivity(intent)
-                     true // Return true to indicate that the item click is handled
+//                     val intent = Intent(this, FeedActivity::class.java)
+//                     startActivity(intent)
+//                     true // Return true to indicate that the item click is handled
 
-//                     replaceFragments(Feed2Fragment())
+                     replaceFragments(Feed2Fragment())
+                     binding.btnChat.visibility = View.GONE
                  }
                  // Handle other menu items if needed
 
                  R.id.profile -> {
                      replaceFragments(ProfileFragment())
+                     binding.btnChat.visibility = View.VISIBLE
 //                     startActivity(Intent(this, ProfileActivity::class.java))
 //                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
 //                         R.anim.bottomnav_animation_slideout)
