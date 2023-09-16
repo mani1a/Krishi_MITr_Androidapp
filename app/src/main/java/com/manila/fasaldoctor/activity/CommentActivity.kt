@@ -35,9 +35,11 @@ class CommentActivity : AppCompatActivity() {
 
         recyclerView.adapter = commentAdapter
 
-        // Retrieve the postId from the intent extras
         val postId = intent.getStringExtra("postId")
+        val email: String? = intent.getStringExtra("email")
+
         println("post id : $postId")
+        println("email id : $email")
         if (postId != null) {
             val commentsReference = database.child("posts").child(postId).child("comments")
 
@@ -74,7 +76,7 @@ class CommentActivity : AppCompatActivity() {
                                     val updatedComments = userPost.comments.toMutableList()
                                     updatedComments.add(
                                         Comment(
-                                            email = "user@email.com",
+                                            email.toString(),
                                             commentText
                                         )
                                     )

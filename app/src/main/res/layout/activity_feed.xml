@@ -37,6 +37,12 @@
       android:layout_centerHorizontal="true"
       android:layout_marginTop="16dp"
       android:layout_marginBottom="16dp" />
+  <ProgressBar
+      android:id="@+id/progressBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:visibility="gone" /> <!-- Initially hidden -->
 
   <!-- RecyclerView -->
   <androidx.recyclerview.widget.RecyclerView
@@ -46,5 +52,15 @@
       android:layout_below="@id/buttonPost"
       android:layout_marginTop="16dp"
       android:background="@color/blue"/>
+
+<!--  <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--      android:id="@+id/bottomNavigationView"-->
+<!--      android:layout_width="match_parent"-->
+<!--      android:layout_height="70dp"-->
+<!--      app:menu="@menu/bottom_nav_items"-->
+<!--      android:layout_alignParentBottom="true"-->
+<!--      app:labelVisibilityMode="selected"-->
+<!--      android:background="@drawable/bg_bottom_nav"-->
+<!--      />-->
 
 </RelativeLayout>

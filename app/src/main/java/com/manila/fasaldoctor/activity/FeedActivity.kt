@@ -1,6 +1,5 @@
 package com.manila.fasaldoctor.activity
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,18 +10,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-
+import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.adapter.PostAdapter
 import com.manila.fasaldoctor.model.UserPost
+import com.google.android.material.navigation.NavigationBarView
+import androidx.fragment.app.Fragment
+import com.manila.fasaldoctor.databinding.ActivityFeedBinding
+import android.content.Intent
+import android.app.ProgressDialog
 
 class FeedActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var button: Button
     private val pickImage = 100
     private var imageUri: Uri? = null
+    lateinit var firebaseStorage: FirebaseStorage
+    lateinit var progressBar : ProgressDialog
     private lateinit var recyclerView: RecyclerView
     private lateinit var usersArrayList: ArrayList<UserPost>
     private lateinit var postAdapter: PostAdapter
@@ -31,6 +38,8 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+        firebaseStorage = FirebaseStorage.getInstance()
+        val storageReference: StorageReference = firebaseStorage.reference
         title = "KotlinApp"
         imageView = findViewById(R.id.imageView)
         button = findViewById(R.id.buttonLoadPicture)
@@ -42,6 +51,8 @@ class FeedActivity : AppCompatActivity() {
         postAdapter = PostAdapter(usersArrayList)
 
         recyclerView.adapter = postAdapter
+
+
 
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -56,7 +67,7 @@ class FeedActivity : AppCompatActivity() {
 
             val postButton = findViewById<Button>(R.id.buttonPost)
             postButton.setOnClickListener {
-                storeData(imageUri)
+                uploadImageToStorage(imageUri)
             }
 
             val database = FirebaseDatabase.getInstance().getReference("posts")
@@ -72,7 +83,8 @@ class FeedActivity : AppCompatActivity() {
                             val userPost = UserPost(
                                 postId = post.postId,
                                 imageUrl = post.imageUrl,
-                                text = post.text
+                                text = post.text,
+                                email = post.email
                             )
                             usersArrayList.add(userPost)
                         }
@@ -84,7 +96,6 @@ class FeedActivity : AppCompatActivity() {
                     Toast.makeText(this@FeedActivity, error.toString(), Toast.LENGTH_SHORT).show()
                 }
             })
-
         }
     }
 
@@ -96,7 +107,33 @@ class FeedActivity : AppCompatActivity() {
         }
     }
 
-    private fun storeData(imageUri: Uri?) {
+    private fun uploadImageToStorage(imageUri: Uri?) {
+        if (imageUri != null) {
+            progressBar = ProgressDialog(this@FeedActivity)
+            progressBar.setTitle("Post uploading....")
+            progressBar.show()
+            val storageReference = firebaseStorage.reference
+            val imagesRef = storageReference.child("images/$uid") // Define the path where the image will be stored
+
+            // Upload the image
+            val uploadTask = imagesRef.putFile(imageUri)
+
+            uploadTask.addOnSuccessListener { taskSnapshot ->
+                // Image uploaded successfully, now get the download URL
+                imagesRef.downloadUrl.addOnSuccessListener { uri ->
+                    val imageUrl = uri.toString()
+
+                    // Once you have the imageUrl, you can use it to store data in the Realtime Database
+                    storeData(imageUrl)
+                }
+            }.addOnFailureListener { e ->
+                // Handle the error
+                showToast("Image upload failed: ${e.message}")
+            }
+        }
+    }
+
+    private fun storeData(imageUrl: String) { // Change the parameter type here
         // Fetch user data from the Realtime Database
         val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
@@ -111,7 +148,7 @@ class FeedActivity : AppCompatActivity() {
                         role = role,
                         uid = uid,
                         text = findViewById<EditText>(R.id.editTextQuestion).text.toString(),
-                        imageUrl = imageUri.toString(),
+                        imageUrl = imageUrl, // Use the imageUrl parameter here
                         timestamp = System.currentTimeMillis(),
                         comments = listOf(),
                         postId = ""
@@ -127,6 +164,8 @@ class FeedActivity : AppCompatActivity() {
                     // Update the post data with the postId as a child
                     postReference.setValue(data).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+
+                            if (progressBar.isShowing)progressBar.dismiss()
                             showToast("Post successfully uploaded!")
                         } else {
                             showToast("Failed to upload post. Please try again.")

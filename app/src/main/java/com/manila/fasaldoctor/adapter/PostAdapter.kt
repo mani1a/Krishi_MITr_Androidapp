@@ -47,9 +47,8 @@ class PostAdapter(private val userList: ArrayList<UserPost>) :
             val context = holder.itemView.context
             val intent = Intent(context, CommentActivity::class.java)
 
-            // You may want to pass some data to the CommentActivity here
-            // For example, you can pass the user's ID or any other relevant information
             intent.putExtra("postId", userList[position].postId)
+            intent.putExtra("email", userList[position].email)
 
             // Start the CommentActivity
             context.startActivity(intent)
