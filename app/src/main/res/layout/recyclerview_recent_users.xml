@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:layout_marginBottom="0dp"
+    android:padding="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp" >
+
+        <RelativeLayout
+            android:id="@+id/btn_open_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="5dp">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/id_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/vector_person"
+                app:civ_border_color="@color/actioncolor"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/id_txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/id_img"
+
+
+
+                android:text="UserNmae"
+
+                android:textColor="@color/actioncolor" />
+
+            <TextView
+                android:id="@+id/id_txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_txt_name"
+
+                android:layout_marginTop="5dp"
+                android:text="Email"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/actioncolor"
+                android:layout_toEndOf="@+id/id_img"/>
+
+            <TextView
+                android:id="@+id/id_txt_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_txt_email"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Role"
+                android:textColor="@color/actioncolor"
+                android:layout_toEndOf="@+id/id_img"
+
+                />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+</RelativeLayout>

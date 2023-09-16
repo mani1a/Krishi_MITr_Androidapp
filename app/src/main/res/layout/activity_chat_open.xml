@@ -42,57 +42,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="15dp"
-        app:cardBackgroundColor="@color/bottom_nav_bg">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/bottom_nav_bg"
+        app:cardCornerRadius="15dp">
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:id="@+id/linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="100"
-        android:orientation="horizontal">
-
-
-        <EditText
-            android:id="@+id/msg_box"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="100"
-            android:background="@drawable/bg_reg_layout"
-            android:layout_gravity="center"
-            android:backgroundTint="#F4F4F4"
-            android:hint="Type your Message"
-            android:padding="12dp"/>
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
 
-        <ImageButton
-            android:id="@+id/btn_record_audio"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:backgroundTint="#4CAF50"
-            android:src="@drawable/vector_mic" />
+            <EditText
+                android:id="@+id/msg_box"
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="100"
+                android:background="@drawable/bg_reg_layout"
 
-        <ImageButton
-            android:id="@+id/btn_gallery"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:backgroundTint="#4CAF50"
-            android:src="@drawable/vector_photolibrary" />
+                android:backgroundTint="#F4F4F4"
+                android:hint="Type your Message"
+                android:padding="10dp"
+                app:cardCornerRadius="10dp"/>
 
-        <ImageButton
-            android:id="@+id/btn_send"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="13"
-            android:backgroundTint="#4CAF50"
-            android:src="@drawable/vector_send" />
+
+            <ImageButton
+                android:id="@+id/btn_record_audio"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:backgroundTint="#4CAF50"
+                android:src="@drawable/vector_mic"
+                />
+
+            <ImageButton
+                android:id="@+id/btn_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:backgroundTint="#4CAF50"
+                android:src="@drawable/vector_photolibrary" />
+
+            <ImageButton
+                android:id="@+id/btn_send"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_weight="13"
+                android:backgroundTint="#4CAF50"
+                android:src="@drawable/vector_send" />
 
         </LinearLayout>
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
     <androidx.cardview.widget.CardView
@@ -150,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Click To Record"
+                    android:text="Click Icon To Record"
                     android:textSize="19sp"
                     android:layout_marginStart="55dp"
                     android:layout_centerVertical="true"/>

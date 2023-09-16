@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView"
         android:layout_marginBottom="1dp"
-        android:background="@color/app_bg" />
+        android:background="@color/whitish_grey" />
 
     <TextView
         android:layout_width="match_parent"

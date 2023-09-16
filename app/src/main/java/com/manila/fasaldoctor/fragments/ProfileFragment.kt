@@ -35,6 +35,7 @@ import com.manila.fasaldoctor.databinding.FragmentProfileBinding
 import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.utils.Layers
 import java.io.File
+import kotlin.properties.Delegates
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,7 +72,9 @@ class ProfileFragment : Fragment() {
     lateinit var userId2 :String
     lateinit var fcmToken:String
     lateinit var mobile : String
-
+    lateinit var description : String
+    lateinit var imageUrl : String
+    lateinit var recent : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,7 +127,10 @@ class ProfileFragment : Fragment() {
                 email = it.child("email").value.toString()
                 role = it.child("role").value.toString()
                 fcmToken = it.child("fcmtoken").value.toString()
+                description = it.child("description").value.toString()
                 mobile = it.child("mobile").value.toString()
+                imageUrl = it.child("imageUrl").value.toString()
+                recent = it.child("recent").value.toString()
 
                 _binding?.profileUserName?.text = userName
                 _binding?.profileEmail?.text =  email
@@ -215,7 +221,7 @@ class ProfileFragment : Fragment() {
 //                    val uploadPic =  mapOf("imageUrl" to it.toString())
                     val uploadPic =  it.toString()
 
-                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",mobile,uploadPic)
+                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",mobile,uploadPic,recent)
                     
                     
                     // if doesnot work change its value to save picture format

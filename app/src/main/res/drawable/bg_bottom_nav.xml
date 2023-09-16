@@ -9,12 +9,13 @@
         android:topRightRadius="20dp"/>
 
     <stroke
-        android:color="@color/black"
+        android:color="@color/actioncolor"
         android:width="1dp"/>
 
     <gradient
         android:angle="90"
-        android:startColor="@color/green"
+        android:startColor="#99D59B"
+        android:endColor="#99D59B"
          />
 
 

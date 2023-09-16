@@ -3,11 +3,16 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="whitish_grey">#F4F4F4</color>
     <color name="app_bg">#F0FFF0</color>
     <color name="bottom_nav_bg">#9DE683</color>
     <color name="green">#FF9DE683</color>
     <color name="actioncolor">#1B681E</color>
     <color name="fabActionButton">#4CAF50</color>
-    <color name="blue">#0000FF</color>
+    <color name="blue">#9494FF</color>
+    <color name="purple">#D4BFFF</color>
+    <color name="purplebutton">#7E57C2</color>
+    <color name="purplebg">#EBE0FF</color>
+
 
 </resources>
