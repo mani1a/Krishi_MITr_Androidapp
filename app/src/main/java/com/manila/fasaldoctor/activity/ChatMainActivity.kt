@@ -67,7 +67,6 @@ class ChatMainActivity : AppCompatActivity() {
 
         // users list ---- codes
 
-
         fbDatabase.child("Users").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.FeedPostActivity">
+
+    <ImageView
+        android:id="@+id/imgView_feed_post"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/vector_add"
+        android:background="@drawable/bg_reg_layout"
+        android:layout_margin="10dp"
+        android:padding="5sp"/>
+
+    <LinearLayout
+        android:id="@+id/linear_post"
+        android:layout_below="@+id/imgView_feed_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/select_image_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="Select Images"
+            android:backgroundTint="@color/actioncolor"
+            />
+
+        <Button
+            android:id="@+id/open_camera_post"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="30dp"
+            android:text="Take Pictures"
+            android:backgroundTint="@color/actioncolor"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/post_text_Q"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_post"
+        android:hint="Ask Your Question"
+        android:maxLines="3"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <EditText
+        android:id="@+id/post_text_Desc"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/post_text_Q"
+        android:hint="Description"
+        android:maxLines="10"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+
+    <Button
+        android:id="@+id/btn_send_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POST"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        />
+
+</RelativeLayout>

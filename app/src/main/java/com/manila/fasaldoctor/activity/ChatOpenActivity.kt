@@ -66,6 +66,7 @@ class ChatOpenActivity : AppCompatActivity() {
     lateinit var message : String
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
     var name : String? = null
     var receiverRoom : String? = null
@@ -83,13 +84,22 @@ class ChatOpenActivity : AppCompatActivity() {
     var playState : Boolean = false
     var recordingStopped : Boolean = false
 
-
+    lateinit var userName : String
+    lateinit var email : String
+    lateinit var role : String
+    lateinit var fcmToken : String
+    lateinit var description : String
+    lateinit var mobile : String
+    lateinit var imageUrl : String
+    lateinit var recent : String
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityChatOpenBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+//        getUsersData()
 
         name = intent.getStringExtra("name")
         receiveruid = intent.getStringExtra("uid")
@@ -100,6 +110,7 @@ class ChatOpenActivity : AppCompatActivity() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference()
         storageReference = FirebaseStorage.getInstance().reference
+        firebaseAuth = FirebaseAuth.getInstance()
 
         senderRoom = receiveruid + senderuid
         receiverRoom = senderuid + receiveruid
@@ -230,7 +241,10 @@ class ChatOpenActivity : AppCompatActivity() {
 
         message = messageBox.text.toString()
 //        time = System.currentTimeMillis()
-        val messageObject = Messages(time!!,message,senderuid)
+        val messageObject = Messages("true",time!!,message,senderuid)
+
+
+        if (message.isNotEmpty()){
 
             databaseReference.child("chats").child(senderRoom!!).child("messages").push()
                 .setValue(messageObject).addOnSuccessListener {
@@ -246,6 +260,11 @@ class ChatOpenActivity : AppCompatActivity() {
 
 //        MessagesAdapter.SentMsgViewholder().imgsend
 
+            databaseReference.child("Users").child(senderuid!!).child("recent").setValue("true")
+
+
+        }
+
     }
 
     private fun sendImg() {
@@ -257,7 +276,7 @@ class ChatOpenActivity : AppCompatActivity() {
             task ->
             task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
                 val img = it.toString()
-                val messageObject = Messages(time!!,"photo",senderuid,img,"")
+                val messageObject = Messages("true",time!!,"photo",senderuid,img,"")
 //                messageObject.msg = "photo"
                 databaseReference.child("chats").child(senderRoom!!).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
@@ -283,7 +302,7 @@ class ChatOpenActivity : AppCompatActivity() {
             task->
             task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
                 val audio = it.toString()
-                val messageObject = Messages(time!!,"audio",senderuid,"",audio)
+                val messageObject = Messages("true",time!!,"audio",senderuid,"",audio)
                 databaseReference.child("chats").child(senderRoom!!).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
                         databaseReference.child("chats").child(receiverRoom!!).child("messages").push()
@@ -316,7 +335,7 @@ class ChatOpenActivity : AppCompatActivity() {
                                 response: Response<PushNotification>
                             ) {
 
-                                Toast.makeText(applicationContext,"Notification Sent",Toast.LENGTH_SHORT).show()
+                               Toast.makeText(applicationContext,"Notification Sent",Toast.LENGTH_SHORT).show()
 
                             }
 
@@ -324,13 +343,8 @@ class ChatOpenActivity : AppCompatActivity() {
 
                                 Toast.makeText(applicationContext,"Something Went Wrong",Toast.LENGTH_SHORT).show()
                             }
-
                         })
-
-
                     }
-
-
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -342,7 +356,7 @@ class ChatOpenActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this,ChatMainActivity::class.java))
+        startActivity(Intent(this,HomeActivity::class.java))
         return super.onOptionsItemSelected(item)
     }
 
@@ -453,6 +467,33 @@ class ChatOpenActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onStop() {
+        finish()
+        super.onStop()
+    }
+
+//    private fun getUsersData(){
+//
+//        val userId = firebaseAuth.currentUser!!.uid
+//
+//        databaseReference.child("Users").child(userId).get().addOnSuccessListener {
+//
+//            userName = it.child("name").value.toString()
+//            email = it.child("email").value.toString()
+//            role = it.child("role").value.toString()
+//            fcmToken = it.child("fcmtoken").value.toString()
+//            description = it.child("description").value.toString()
+//            mobile = it.child("mobile").value.toString()
+//            imageUrl = it.child("imageUrl").value.toString()
+//            recent = it.child("recent").value.toString()
+//
+//
+//        }
+//
+//
+//
+//    }
 
 
 

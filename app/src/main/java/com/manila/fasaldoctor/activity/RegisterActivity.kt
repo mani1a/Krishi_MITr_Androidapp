@@ -219,17 +219,12 @@ class RegisterActivity : AppCompatActivity() {
                 else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
             }
 
-
-
             // pass register data to profile fragment check krke dekhte hai
             intentTohome.putExtra("userName",userName)
             intentTohome.putExtra("email",email)
             intentTohome.putExtra("role",role)
             intentTohome.putExtra("userId",userId)
             intentTohome.putExtra("fcmToken",fcmToken)
-
-
-
 
         })
 

@@ -13,6 +13,7 @@ data class User(
     var description: String? = null,
     var mobile : String? = null,
     var imageUrl: String? = null,
+    var recent : String? = null,
 
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
