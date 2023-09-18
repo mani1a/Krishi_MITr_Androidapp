@@ -38,7 +38,13 @@ class PostAdapter(private val userList: ArrayList<UserPost>) :
 
 
         //
-        Glide.with(holder.itemView.context).load(userList[position].imageUrl).into(holder.imageView)
+        Glide.with(holder.itemView.context)
+            .load(userList[position].imageUrl)
+            .placeholder(R.drawable.progress)
+            .into(holder.imageView)
+
+
+
         holder.textView.text = userList[position].text
 
         //
@@ -48,7 +54,7 @@ class PostAdapter(private val userList: ArrayList<UserPost>) :
             val intent = Intent(context, CommentActivity::class.java)
 
             intent.putExtra("postId", userList[position].postId)
-            intent.putExtra("email", userList[position].email)
+//            intent.putExtra("email", userList[position].email)
 
             // Start the CommentActivity
             context.startActivity(intent)

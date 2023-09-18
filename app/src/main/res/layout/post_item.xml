@@ -9,9 +9,9 @@
         android:layout_height="wrap_content"
         android:text="Post Text Goes Here"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        android:background="@color/white"/>
+        android:textStyle="bold"        android:background="@color/white"/>
+
+    android:layout_margin="16dp"
 
     <ImageView
         android:id="@+id/imageViewPostImage"

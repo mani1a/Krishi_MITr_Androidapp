@@ -12,6 +12,8 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.adapter.CommentAdapter
 import com.manila.fasaldoctor.model.Comment
 import com.manila.fasaldoctor.model.UserPost
+import com.google.firebase.auth.FirebaseAuth
+
 
 class CommentActivity : AppCompatActivity() {
 
@@ -36,10 +38,11 @@ class CommentActivity : AppCompatActivity() {
         recyclerView.adapter = commentAdapter
 
         val postId = intent.getStringExtra("postId")
-        val email: String? = intent.getStringExtra("email")
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserEmail = currentUser?.email
 
         println("post id : $postId")
-        println("email id : $email")
+
         if (postId != null) {
             val commentsReference = database.child("posts").child(postId).child("comments")
 
@@ -76,7 +79,7 @@ class CommentActivity : AppCompatActivity() {
                                     val updatedComments = userPost.comments.toMutableList()
                                     updatedComments.add(
                                         Comment(
-                                            email.toString(),
+                                            currentUserEmail.toString(),
                                             commentText
                                         )
                                     )

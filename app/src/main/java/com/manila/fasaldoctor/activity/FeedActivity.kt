@@ -82,7 +82,7 @@ class FeedActivity : AppCompatActivity() {
                         if (post != null && post.imageUrl != null && post.text != null && post.postId != null) {
                             val userPost = UserPost(
                                 postId = post.postId,
-                                imageUrl = post.imageUrl,
+                                imageUrl = post.imageUrl ,
                                 text = post.text,
                                 email = post.email
                             )
@@ -182,6 +182,8 @@ class FeedActivity : AppCompatActivity() {
             }
         })
     }
+
+
 
     private fun showToast(message: String) {
         Toast.makeText(this@FeedActivity, message, Toast.LENGTH_SHORT).show()
