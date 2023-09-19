@@ -26,7 +26,6 @@
         android:queryHint=""/>
 
 
-
         <RelativeLayout
             android:id="@+id/cameraActivity_layout"
             android:layout_width="match_parent"
@@ -34,8 +33,6 @@
             android:layout_below="@+id/searchBar"
             android:layout_marginTop="0dp"
             android:visibility="gone">
-
-
 
             <ImageView
                 android:id="@+id/captured_image3"

@@ -7,7 +7,7 @@
       android:id="@+id/editTextQuestion"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:hint="Write your question here..."
+      android:hint=" Write your question here... "
       android:layout_alignParentTop="true"
       android:layout_marginTop="16dp"
       android:inputType="textMultiLine" />

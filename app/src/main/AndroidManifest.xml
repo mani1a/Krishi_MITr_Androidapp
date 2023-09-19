@@ -25,7 +25,10 @@
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
         <activity
-            android:name=".activity.RecentChatActivity"
+            android:name=".activity.SecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitynotinuse.RecentChatActivity"
             android:exported="false" />
         <activity
             android:name=".activity.FeedPostActivity"

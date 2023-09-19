@@ -43,7 +43,12 @@ class UsersAdapter (private val context: Context, private val userList: ArrayLis
         holder.userName.text = user.name
         holder.email.text = user.email
         holder.role.text = user.role
-        Glide.with(context).load(user.imageUrl).placeholder(R.drawable.vector_person).into(holder.pic)
+        if (user.role == "farmer"){
+        Glide.with(context).load(user.imageUrl).placeholder(R.drawable.farmer).into(holder.pic)
+        }else{
+        Glide.with(context).load(user.imageUrl).placeholder(R.drawable.expert).into(holder.pic)
+
+        }
 
 
 

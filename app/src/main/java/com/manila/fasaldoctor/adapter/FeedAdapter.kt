@@ -23,8 +23,6 @@ class FeedAdapter(private val context: Context, private val postList: ArrayList<
 
         return ViewHolder(view)
 
-
-
     }
 
     override fun getItemCount(): Int {
@@ -39,10 +37,6 @@ class FeedAdapter(private val context: Context, private val postList: ArrayList<
         holder.role.text = post.post
 
         Glide.with(context).load(post.imagePost).into(holder.postImgView)
-
-
-
-
 
     }
 

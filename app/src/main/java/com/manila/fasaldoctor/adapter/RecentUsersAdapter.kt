@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.activity.ChatOpenActivity
+import com.manila.fasaldoctor.model.RecentUser
 import com.manila.fasaldoctor.model.User
 import de.hdodenhof.circleimageview.CircleImageView
 
-class RecentUsersAdapter (private var  context: Context, private var recentUserList : ArrayList<User>):
+class RecentUsersAdapter (private var  context: Context, private var recentUserList : ArrayList<RecentUser>):
     RecyclerView.Adapter<RecentUsersAdapter.Viewholder>(){
 
     class Viewholder(view : View):RecyclerView.ViewHolder(view) {

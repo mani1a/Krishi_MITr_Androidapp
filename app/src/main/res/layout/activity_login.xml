@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.LoginActivity"
+    android:background="@color/bgcolor">
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,25 +62,31 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
     <Button
         android:layout_below="@+id/TextTextPassword"
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:textSize="17sp"
         android:layout_centerHorizontal="true"
-        android:paddingHorizontal="100dp"/>
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="60dp"/>
 
-    <Button
-        android:layout_below="@+id/buttonLogin"
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Not yet Registered ! - Register Here"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:paddingHorizontal="90dp"/>
+        android:paddingHorizontal="0dp"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/register_font"
+        android:layout_marginBottom="150dp"
+        android:textColor="@color/black"
+        />
 
 </RelativeLayout>

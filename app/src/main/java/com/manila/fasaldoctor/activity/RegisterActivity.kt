@@ -3,8 +3,10 @@ package com.manila.fasaldoctor.activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.wifi.WifiManager.SubsystemRestartTrackingCallback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -34,6 +36,10 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var userId : String
     lateinit var fcmToken : String
     lateinit var mobile : String
+    lateinit var crop1 : String
+    lateinit var crop2 : String
+    lateinit var crop3 : String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +47,9 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+        sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
 
         val radioRoleGroup = binding.radioRoleGroup
 //        val fragment = ProfileFragment()
@@ -53,11 +62,57 @@ class RegisterActivity : AppCompatActivity() {
 
 
         radioRoleGroup.setOnCheckedChangeListener { group, checkedId ->
-
             val farmer = "farmer"
             val expert = "expert"
+
+            if (checkedId == R.id.farmer){
+                role = farmer
+                binding.imgGroup.visibility = View.GONE
+                binding.imgFarmer.visibility = View.VISIBLE
+                binding.imgExpert.visibility = View.GONE
+                binding.dataLayout.visibility = View.VISIBLE
+                binding.btnRegister.visibility = View.GONE
+                binding.btnNext.visibility = View.VISIBLE
+
+            }
+            if (checkedId == R.id.expert){
+                role = expert
+                binding.imgGroup.visibility = View.GONE
+                binding.imgFarmer.visibility = View.GONE
+                binding.imgExpert.visibility = View.VISIBLE
+                binding.dataLayout.visibility = View.VISIBLE
+                binding.btnRegister.visibility = View.GONE
+                binding.btnNext.visibility = View.VISIBLE
+
+            }
+
+
             sharedPreferences = getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
             sharedPreferences.getString("checkedRole", null)
+
+            binding.btnNext.setOnClickListener {
+                binding.dataLayout.visibility = View.GONE
+                binding.selectcroplayout.visibility = View.VISIBLE
+                binding.radioRoleGroup.visibility = View.GONE
+                binding.btnNext.visibility = View.GONE
+                binding.btnRegister.visibility = View.VISIBLE
+                binding.rolechoosetext.text = "You are a : $role"
+
+            }
+
+
+
+            binding.checkPotato.setOnCheckedChangeListener { buttonView, isChecked ->
+                crop1 = "Potato"
+
+            }
+
+            binding.checkTomato.setOnCheckedChangeListener { buttonView, isChecked ->
+                crop2 = "Tomato"
+
+            }
+
+
 
             binding.btnRegister.setOnClickListener {
                 userName = binding.etUserName.text.toString()
@@ -65,78 +120,8 @@ class RegisterActivity : AppCompatActivity() {
                 mobile = binding.editTextMobile.text.toString()
                 val userFarmer = Usersfarmer(userName, email, farmer)
                 val userExpert = Usersexpert(userName, email, expert)
-//                val users = User(userName,email)
-                
+                crop3 = binding.edittextothercrop.text.toString()
 
-//                intentTohome.putExtra("userName",userName)
-//            val uid = FirebaseAuth.getInstance().uid.toString()
-//            println(uid)
-//            Toast.makeText(this,uid,Toast.LENGTH_LONG).show()
-
-                if (checkedId == R.id.farmer){
-                    role = farmer
-
-//                    users = User(userName,email,farmer)
-
-//                    if (userName.isNotEmpty()){
-//                        firebaseDatabaseReference.child(farmer).child(email).setValue(userFarmer)
-//                            .addOnCompleteListener {
-//                                if (it.isSuccessful) Toast.makeText(this,"Updated as Farmer",Toast.LENGTH_SHORT).show()
-//                                else Toast.makeText(this,"failed to update", Toast.LENGTH_SHORT).show()
-//                            }
-////                        firebaseDatabaseReference.child("farmer").setValue(userFarmer).addOnCompleteListener {
-////                            if (it.isSuccessful) Toast.makeText(this,"Updated as Farmer",Toast.LENGTH_SHORT).show()
-////                                else Toast.makeText(this,"failed to update", Toast.LENGTH_SHORT).show()
-////
-////                        }
-//
-//                    }else{
-//                        Toast.makeText(this,"Fill", Toast.LENGTH_SHORT).show()
-//
-//                    }
-//                    intentTohome.putExtra("role",farmer)
-
-
-//                Toast.makeText(this,"farmer",Toast.LENGTH_SHORT).show()
-//                sharedPreferences = getSharedPreferences("farmer",Context.MODE_PRIVATE)
-//                sharedPreferences.getString("farmer", null)
-//                sharedPreferences.edit().putString("checkedRole",farmer).apply()
-////                bundle.putString("checkedRole",farmer)
-////                fragment.arguments = bundle
-//
-                }
-                if (checkedId == R.id.expert){
-                    role = expert
-//                    users = User(userName,email,expert)
-
-//                    if (userName.isNotEmpty()){
-//                        firebaseDatabaseReference.child(expert).child(email).setValue(userExpert)
-//                            .addOnCompleteListener {
-//                                if (it.isSuccessful) Toast.makeText(this,"updated as expert",Toast.LENGTH_SHORT).show()
-//                                else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
-//                            }
-////                        firebaseDatabaseReference.child("expert").setValue(userExpert).addOnCompleteListener {
-////                            if (it.isSuccessful) Toast.makeText(this,"Updated as Farmer",Toast.LENGTH_SHORT).show()
-////                            else Toast.makeText(this,"failed to update", Toast.LENGTH_SHORT).show()
-////
-////                        }
-//
-//                    }
-//                    else{
-//                        Toast.makeText(this,"Fill", Toast.LENGTH_SHORT).show()
-//
-//                    }
-////                    intentTohome.putExtra("role",expert)
-//
-//
-////                Toast.makeText(this,"expert",Toast.LENGTH_SHORT).show()
-////                sharedPreferences = getSharedPreferences("expert",Context.MODE_PRIVATE)
-////                sharedPreferences.getString("expert",null)
-//                sharedPreferences.edit().putString("checkedRole",expert).apply()
-////                bundle.putString("checkedRole",expert)
-////                fragment.arguments = bundle
-
-                }
                 sharedPreferences = getSharedPreferences("userName",Context.MODE_PRIVATE)
                 sharedPreferences.getString("userName",null)
                 sharedPreferences.edit().putString("userName",userName).apply()
@@ -144,16 +129,17 @@ class RegisterActivity : AppCompatActivity() {
                 sharedPreferences = getSharedPreferences("email",Context.MODE_PRIVATE)
                 sharedPreferences.getString("email",null)
                 sharedPreferences.edit().putString("email",email).apply()
-//            bundle.putString("userName",userName)
+
+
+
                 createUsers()
-//                role = rola
-//                intentTohome.("usersdata", users)
+
 
             }
-//            intentTohome.putExtra("userName",userName)
+
         }
 
-//            fragment.arguments = bundle
+
         binding.btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -162,8 +148,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
      private fun createUsers(){
-//        userName = binding.etUserName.text.toString()
-//        email = binding.editTextTextEmailAddress2.text.toString()
+
         val password = binding.editTextTextPassword2.text.toString()
         val confirmPassword = binding.editTextTextConfirmPassword2.text.toString()
 
@@ -174,15 +159,6 @@ class RegisterActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             storeData()
 
-//                            val user : FirebaseUser? = firebaseAuth.currentUser
-//                            val userId = user!!.uid
-//                            val users = User(userName,email,role,userId,"","")
-//
-//                            firebaseDatabaseReference.child(userId).setValue(users).addOnCompleteListener {
-//                                if (it.isSuccessful) Toast.makeText(this,"updated",Toast.LENGTH_SHORT).show()
-//                                else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
-//                            }
-//                            val intentToLogin = Intent(this, HomeActivity::class.java)
                             startActivity(intentTohome)
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
@@ -211,7 +187,7 @@ class RegisterActivity : AppCompatActivity() {
             }
             // Get new FCM registration token
             fcmToken = task.result
-            users = User(userName,email,role,userId,fcmToken,"",mobile)
+            users = User(userName,email,role,userId,fcmToken,"",mobile,"","",crop1,crop2,crop3)
             firebaseDatabaseReference.child(userId).setValue(users).addOnSuccessListener {
                 Layers.hideProgressBar()
             }.addOnCompleteListener {

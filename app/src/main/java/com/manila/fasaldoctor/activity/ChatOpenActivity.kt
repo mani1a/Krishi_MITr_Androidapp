@@ -19,6 +19,7 @@ import android.view.View
 import android.view.Window
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -39,6 +40,7 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.adapter.MessagesAdapter
 import com.manila.fasaldoctor.databinding.ActivityChatOpenBinding
 import com.manila.fasaldoctor.model.Messages
+import com.manila.fasaldoctor.model.RecentUser
 import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.notification.NotificationData
 import com.manila.fasaldoctor.notification.PushNotification
@@ -61,7 +63,7 @@ class ChatOpenActivity : AppCompatActivity() {
     private lateinit var msgRecyclerView: RecyclerView
     private lateinit var msgRecyclerAdapter: MessagesAdapter
     private lateinit var messagesList : ArrayList<Messages>
-    lateinit var sendButton : ImageButton
+    lateinit var sendButton : ImageView
     lateinit var messageBox : EditText
     lateinit var message : String
     private lateinit var databaseReference: DatabaseReference
@@ -93,6 +95,15 @@ class ChatOpenActivity : AppCompatActivity() {
     lateinit var imageUrl : String
     lateinit var recent : String
 
+    var receivername: String? = null
+    var receiveremail: String? = null
+    var receiverrole: String? = null
+    var receiverUID: String? = null
+    var receivermobile : String? = null
+    var receiverimageUrl: String? = null
+    var receiverrecent : String? = null
+    lateinit var recentList : ArrayList<RecentUser>
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityChatOpenBinding.inflate(layoutInflater)
@@ -108,7 +119,7 @@ class ChatOpenActivity : AppCompatActivity() {
         supportActionBar?.title = name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        databaseReference = FirebaseDatabase.getInstance().getReference()
+        databaseReference = FirebaseDatabase.getInstance().reference
         storageReference = FirebaseStorage.getInstance().reference
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -151,7 +162,6 @@ class ChatOpenActivity : AppCompatActivity() {
             sendmsg()
         }
 
-
         binding.btnRecordAudio.setOnClickListener {
             binding.sendtextmsg.visibility = View.GONE
             binding.sendaudiomsg.visibility = View.VISIBLE
@@ -174,7 +184,6 @@ class ChatOpenActivity : AppCompatActivity() {
 
         }
 
-
         binding.imgAudioStop.setOnClickListener {
             stopRecordAudio()
         }
@@ -190,7 +199,6 @@ class ChatOpenActivity : AppCompatActivity() {
         binding.btnSendAudio.setOnClickListener {
             sendAudio()
         }
-
 
 
         // code for showing chats
@@ -214,8 +222,6 @@ class ChatOpenActivity : AppCompatActivity() {
 
                     msgRecyclerAdapter.notifyDataSetChanged()
 
-
-
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -229,8 +235,16 @@ class ChatOpenActivity : AppCompatActivity() {
 
         time = date.format(formatter)
 
-//        audioUri = audioFilePath?.toUri()
+        databaseReference.child("Users").child(receiveruid!!).get().addOnSuccessListener {
+            receivername = it.child("name").value.toString()
+            receiveremail = it.child("email").value.toString()
+            receiverrole = it.child("role").value.toString()
+            receiverUID = it.child("uid").value.toString()
+            receivermobile = it.child("mobile").value.toString()
+            receiverimageUrl = it.child("imageUrl").value.toString()
+            receiverrecent = it.child("recent").value.toString()
 
+        }
 
     }
 
@@ -240,9 +254,10 @@ class ChatOpenActivity : AppCompatActivity() {
     private fun sendmsg(){
 
         message = messageBox.text.toString()
-//        time = System.currentTimeMillis()
-        val messageObject = Messages("true",time!!,message,senderuid)
 
+        val messageObject = Messages("true",time!!,message,senderuid,receiveruid)
+
+        val recentUserList = RecentUser(receivername,receiveremail,receiverrole,receiverUID,receivermobile,receiverimageUrl,receiverrecent)
 
         if (message.isNotEmpty()){
 
@@ -252,19 +267,13 @@ class ChatOpenActivity : AppCompatActivity() {
                         .setValue(messageObject).addOnCompleteListener {
                             if (it.isSuccessful) {
                                 sendNotification(message)
+                                databaseReference.child("RecentUsers").child(senderuid!!).child(receiveruid!!)
+                                    .setValue(recentUserList)
                             }
                         }
                 }
-//        msgRecyclerView.setScrollingTouchSlop(1)
             messageBox.setText("")
-
-//        MessagesAdapter.SentMsgViewholder().imgsend
-
-            databaseReference.child("Users").child(senderuid!!).child("recent").setValue("true")
-
-
         }
-
     }
 
     private fun sendImg() {
@@ -276,7 +285,7 @@ class ChatOpenActivity : AppCompatActivity() {
             task ->
             task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
                 val img = it.toString()
-                val messageObject = Messages("true",time!!,"photo",senderuid,img,"")
+                val messageObject = Messages("true",time!!,"photo",senderuid,receiveruid,img,"")
 //                messageObject.msg = "photo"
                 databaseReference.child("chats").child(senderRoom!!).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
@@ -302,7 +311,7 @@ class ChatOpenActivity : AppCompatActivity() {
             task->
             task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
                 val audio = it.toString()
-                val messageObject = Messages("true",time!!,"audio",senderuid,"",audio)
+                val messageObject = Messages("true",time!!,"audio",senderuid,receiveruid,"",audio)
                 databaseReference.child("chats").child(senderRoom!!).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
                         databaseReference.child("chats").child(receiverRoom!!).child("messages").push()
@@ -472,29 +481,6 @@ class ChatOpenActivity : AppCompatActivity() {
         finish()
         super.onStop()
     }
-
-//    private fun getUsersData(){
-//
-//        val userId = firebaseAuth.currentUser!!.uid
-//
-//        databaseReference.child("Users").child(userId).get().addOnSuccessListener {
-//
-//            userName = it.child("name").value.toString()
-//            email = it.child("email").value.toString()
-//            role = it.child("role").value.toString()
-//            fcmToken = it.child("fcmtoken").value.toString()
-//            description = it.child("description").value.toString()
-//            mobile = it.child("mobile").value.toString()
-//            imageUrl = it.child("imageUrl").value.toString()
-//            recent = it.child("recent").value.toString()
-//
-//
-//        }
-//
-//
-//
-//    }
-
 
 
 

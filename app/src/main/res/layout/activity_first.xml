@@ -5,15 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FirstActivity">
+    tools:context=".activity.FirstActivity"
+    android:background="@color/bgcolor">
+
 
     <TextView
         android:id="@+id/appName"
-        style="@style/Widget.AppCompat.TextView.SpinnerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/appname_font"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:fontFamily="@font/appname_font2"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="40sp"
@@ -21,13 +23,13 @@
 
     <TextView
         android:id="@+id/txt1"
-        android:layout_below="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Started"
-        android:fontFamily="@font/appname_font"
-        android:layout_marginTop="90dp"
+        android:text="@string/get_started"
+        android:fontFamily="@font/appname_font2"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp"
         android:textSize="24sp"
         />
 
@@ -35,37 +37,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressbar"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/txt1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
         android:layout_centerHorizontal="true"/>
 
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/btn_getStarted"
-        android:layout_below="@+id/txt1"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="90dp"
         android:src="@drawable/vector_getstart"
-        android:backgroundTint="@color/actioncolor"
-        android:visibility="gone"
-        />
+        android:background="@drawable/next"
+        android:visibility="gone"/>
 
 
-
-
-
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/btn_getStarted"-->
+<!--        android:text="Made with '❤️'"-->
 <!--        android:layout_alignParentBottom="true"-->
 <!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginBottom="120dp"-->
-<!--        android:src="@drawable/vector_getstart"-->
-<!--        app:fabSize="auto"/>-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:textSize="16sp"/>-->
+
+
 
 
 </RelativeLayout>

@@ -28,24 +28,21 @@ class FirstActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.btnGetStarted.setOnClickListener {
-
-            Toast.makeText(this, "Get Started", Toast.LENGTH_SHORT).show()
-
-            startActivity(Intent(this, LoginActivity::class.java))
-
-            finish()
-
-        }
-
+        supportActionBar?.hide()
         grantPermission()
 
-        supportActionBar?.hide()
+        binding.btnGetStarted.setOnClickListener {
+                    Toast.makeText(this, "Get Started", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, SecondActivity::class.java))
+                    finish()
+        }
 
         binding.btnGetStarted.visibility = View.GONE
 
-        val delay: Long = 2000
+
+
+
+        val delay: Long = 1000
 
         Handler().postDelayed(
             {
@@ -61,17 +58,6 @@ class FirstActivity : AppCompatActivity() {
         if (isLoggedIn){
             startActivity(Intent(this,LoginActivity::class.java))
         }
-//        else{
-////            Toast.makeText(this,"Something Error Occurred",Toast.LENGTH_SHORT).show()
-//
-//        }
-
-
-//        val user = firebaseAuth.currentUser
-//
-//        if ( user!= null ){
-//            startActivity(Intent(this,HomeActivity::class.java))
-//        }
 
     }
         // PERMISSION MANAGER/HANDLER
@@ -85,21 +71,21 @@ class FirstActivity : AppCompatActivity() {
             if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
                 permissionList.add(android.Manifest.permission.POST_NOTIFICATIONS)
             }
-            if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.CAMERA)
-            }
-            if (checkSelfPermission(android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.RECORD_AUDIO)
-            }
-            if (checkSelfPermission(android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.READ_MEDIA_IMAGES)
-            }
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-            if (checkSelfPermission(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE)
-            }
+//            if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.CAMERA)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.RECORD_AUDIO)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.READ_MEDIA_IMAGES)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+//            }
 
             if (permissionList.size > 0){
                 requestPermissions(permissionList.toTypedArray(),101)
@@ -119,7 +105,7 @@ class FirstActivity : AppCompatActivity() {
                 if (it != PackageManager.PERMISSION_GRANTED) grantPermission()
             }
         }
-
+//
     override fun onStop() {
         super.onStop()
         finish()

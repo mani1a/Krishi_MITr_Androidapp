@@ -1,8 +1,5 @@
 package com.manila.fasaldoctor.fragments
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,10 +14,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.manila.fasaldoctor.R
-import com.manila.fasaldoctor.activity.FeedPostActivity
-import com.manila.fasaldoctor.adapter.FeedAdapter
-import com.manila.fasaldoctor.databinding.FragmentFeedBinding
-import com.manila.fasaldoctor.model.PostData
+import com.manila.fasaldoctor.adapter.RecentUsersAdapter
+import com.manila.fasaldoctor.databinding.FragmentRecentChatsBinding
+import com.manila.fasaldoctor.model.RecentUser
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,23 +25,23 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Feed2Fragment.newInstance] factory method to
+ * Use the [RecentChatsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Feed2Fragment : Fragment() {
+class RecentChatsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-
-    private var _binding : FragmentFeedBinding? = null
+    private var _binding : FragmentRecentChatsBinding? = null
     private val binding get() = _binding
 
-    lateinit var feedRecyclerView : RecyclerView
-    lateinit var feedAdapter: FeedAdapter
-    lateinit var postList : ArrayList<PostData>
+    lateinit var recentRecyclerView: RecyclerView
+    lateinit var recentUsersAdapter: RecentUsersAdapter
+    lateinit var recentUserList : ArrayList<RecentUser>
 
-    lateinit var databaseReference: DatabaseReference
+    lateinit var firebaseDatabase: DatabaseReference
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,42 +56,49 @@ class Feed2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentFeedBinding.inflate(inflater,container,false)
+        _binding = FragmentRecentChatsBinding.inflate(layoutInflater)
 
-        binding?.btnPost?.setOnClickListener {
-            startActivity(Intent(context,FeedPostActivity::class.java))
-        }
+        recentUserList = ArrayList()
+//        recentRecyclerView = findViewById(R.id.user_recent_recycler)
+        recentRecyclerView = binding!!.userRecentRecycler
+        recentUsersAdapter = RecentUsersAdapter(requireContext(),recentUserList)
+        recentRecyclerView.layoutManager = LinearLayoutManager(context)
+        recentRecyclerView.adapter = recentUsersAdapter
 
-        val posterID = FirebaseAuth.getInstance().currentUser?.uid
-        databaseReference = FirebaseDatabase.getInstance().reference
+        firebaseDatabase = FirebaseDatabase.getInstance().reference
+        firebaseAuth = FirebaseAuth.getInstance()
 
-        postList = ArrayList()
-        feedAdapter = FeedAdapter(requireContext(),postList)
-//        feedRecyclerView = requireView().findViewById(R.id.recyclerView_feed_fragment)
-        feedRecyclerView = binding?.recyclerViewFeedFragment!!
-        feedRecyclerView.adapter = feedAdapter
-        feedRecyclerView.layoutManager = LinearLayoutManager(context)
+        val senderuid = firebaseAuth.currentUser!!.uid
+
+//        supportActionBar?.title = "Recent Chats"
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
-
-        // codes to show feeds
-        databaseReference.child("PostsSend").addValueEventListener(object : ValueEventListener{
-            @SuppressLint("SuspiciousIndentation")
+        firebaseDatabase.child("RecentUsers").child(senderuid).addValueEventListener(object :
+            ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                postList.clear()
+                recentUserList.clear()
 
-                for (postSnap in snapshot.children){
+                for (postsnap in snapshot.children){
+                    val recentUser = postsnap.getValue(RecentUser::class.java)
 
-                    val postss = postSnap.getValue(PostData::class.java)
+                    if (recentUser == null){
+                        binding?.txt?.visibility = View.VISIBLE
+                        binding?.userRecentRecycler?.visibility = View.GONE
+                        binding?.progbarr?.visibility = View.GONE
 
-                        postList.add(postss!!)
+                    }else{
+                        recentUserList.add(recentUser)
+                        binding?.userRecentRecycler?.visibility = View.VISIBLE
+                        binding?.progbarr?.visibility = View.GONE
+                        binding?.txt?.visibility = View.GONE
 
-                    binding?.feedprogressBar?.visibility = View.GONE
-                    binding?.recyclerViewFeedFragment?.visibility = View.VISIBLE
+                    }
 
 
 
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -108,58 +111,8 @@ class Feed2Fragment : Fragment() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         return binding?.root
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     companion object {
         /**
@@ -168,12 +121,12 @@ class Feed2Fragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Feed2Fragment.
+         * @return A new instance of fragment RecentChatsFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Feed2Fragment().apply {
+            RecentChatsFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

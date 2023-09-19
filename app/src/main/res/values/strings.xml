@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> Krishi MITr </string>
+    <string name="app_name">Krishi MITr </string>
     <string name="open_camera">open Camera</string>
     <string name="take_photo">Take Photo</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -16,4 +16,5 @@
     <string name="prefrences_file_name">Login</string>
     <string name="bottom_nav_bar">Bottom Navigation Bar</string>
     <string name="user_name">username</string>
+    <string name="get_started">Get Started</string>
 </resources>

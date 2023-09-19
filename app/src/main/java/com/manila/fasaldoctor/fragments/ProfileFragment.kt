@@ -109,10 +109,11 @@ class ProfileFragment : Fragment() {
         val localFile = File.createTempFile("ProfileImg","jpeg")
         imageRef.getFile(localFile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            binding?.profileImg?.setImageBitmap(bitmap)
+            Glide.with(this).load(bitmap).placeholder(R.drawable.farmer).into(binding!!.profileImg)
+//            binding?.profileImg?.setImageBitmap(bitmap)
         }.addOnFailureListener {
 //            Toast.makeText(context,"Some Error Occureed",Toast.LENGTH_SHORT).show()
-            Toast.makeText(context,"Profile picture missing",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context,"Profile picture missing",Toast.LENGTH_SHORT).show()
         }
 
         if (userId != null) {
@@ -186,6 +187,9 @@ class ProfileFragment : Fragment() {
 //        bundle.putString("role",role)
 //        bundle.putString("userId",userId)
 //        bundle.putString("fcmToken",fcmToken)
+
+
+
 
 
 

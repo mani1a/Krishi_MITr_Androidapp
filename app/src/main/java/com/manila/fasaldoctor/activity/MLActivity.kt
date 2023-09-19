@@ -2,12 +2,15 @@ package com.manila.fasaldoctor.activity
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityMlactivityBinding
 
@@ -20,14 +23,23 @@ class MLActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        val permission = arrayOf(android.Manifest.permission.CAMERA)
+
 
         binding.openCamera.setOnClickListener {
             val takePicintent =Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+            if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,permission,101)
+            }else{
 
             try {
                 startActivityForResult(takePicintent, 100)
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(this, "Error" + e.localizedMessage, Toast.LENGTH_LONG).show()
+            }
+
             }
         }
 

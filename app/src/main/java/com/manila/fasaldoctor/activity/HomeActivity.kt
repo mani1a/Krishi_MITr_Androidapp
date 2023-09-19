@@ -17,6 +17,7 @@ import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import com.manila.fasaldoctor.fragments.HomeFragment
 import com.manila.fasaldoctor.fragments.ProfileFragment
 import android.content.Intent
+import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -92,10 +93,10 @@ import com.manila.fasaldoctor.utils.Layers
 //         intentTohome.putExtra("",fcmToken)
 
 
-         binding.btnChat.setOnClickListener {
-             startActivity(Intent(this,RecentChatActivity::class.java))
-//             Toast.makeText(this,"Chat with AI is under Development",Toast.LENGTH_SHORT).show()
-         }
+//         binding.btnChat.setOnClickListener {
+//             startActivity(Intent(this,RecentChatActivity::class.java))
+////             Toast.makeText(this,"Chat with AI is under Development",Toast.LENGTH_SHORT).show()
+//         }
 
 
 
@@ -107,23 +108,23 @@ import com.manila.fasaldoctor.utils.Layers
              when (it.itemId) {
                  R.id.home ->{
                      replaceFragments(HomeFragment())
-                     binding.btnChat.visibility = View.VISIBLE
+//                     binding.btnChat.visibility = View.VISIBLE
                  }
 
 
                  R.id.feed -> {
-//                     val intent = Intent(this, FeedActivity::class.java)
-//                     startActivity(intent)
-//                     true // Return true to indicate that the item click is handled
+                     val intent = Intent(this, FeedActivity::class.java)
+                     startActivity(intent)
+                     true // Return true to indicate that the item click is handled
 
-                     replaceFragments(Feed2Fragment())
-                     binding.btnChat.visibility = View.GONE
+//                     replaceFragments(Feed2Fragment())
+//                     binding.btnChat.visibility = View.GONE
                  }
                  // Handle other menu items if needed
 
                  R.id.profile -> {
                      replaceFragments(ProfileFragment())
-                     binding.btnChat.visibility = View.VISIBLE
+//                     binding.btnChat.visibility = View.VISIBLE
 //                     startActivity(Intent(this, ProfileActivity::class.java))
 //                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
 //                         R.anim.bottomnav_animation_slideout)
@@ -145,7 +146,6 @@ import com.manila.fasaldoctor.utils.Layers
 //         fragmentTransaction.addToBackStack("back")
          fragmentTransaction.commit()
      }
-
 
 
 

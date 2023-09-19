@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +17,7 @@ import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityFeedPostBinding
 import com.manila.fasaldoctor.databinding.FragmentFeedBinding
+import com.manila.fasaldoctor.fragments.Feed2Fragment
 import com.manila.fasaldoctor.model.PostData
 
 class FeedPostActivity : AppCompatActivity() {
@@ -73,15 +75,21 @@ class FeedPostActivity : AppCompatActivity() {
 
 
         val posterId = FirebaseAuth.getInstance().currentUser!!.uid
+        val time : Long = System.currentTimeMillis()
 
-        fireBaseStorageReference.child("User_Posted_Images").child(posterId).putFile(image).addOnSuccessListener {
+        fireBaseStorageReference.child("User_Posted_Images").child(posterId+time).putFile(image).addOnSuccessListener {
             task ->
             task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
 
                 val imageSend = it.toString()
                 val postSend = PostData(posterId,post,description,imageSend)
 
-                fireBaseDatabaseReference.child("PostsSend").child(posterId).setValue(postSend).addOnSuccessListener {
+                fireBaseDatabaseReference.child("PostsSend").child(posterId).setValue(postSend)
+                    .addOnSuccessListener {
+                        binding.btnSendPost.visibility = View.GONE
+                        binding.feedPostProgressBar.visibility = View.VISIBLE
+                        startActivity(Intent(this,Feed2Fragment::class.java))
+
                     Toast.makeText(this,"Post Send", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
                     Toast.makeText(this,"Post not Send", Toast.LENGTH_SHORT).show()
@@ -110,3 +118,7 @@ class FeedPostActivity : AppCompatActivity() {
 
     }
 }
+
+
+
+
