@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ChatOpenActivity"
-    android:background="#DEF6DF">
+    android:background="@color/app_bg">
 
 
     <RelativeLayout
@@ -25,9 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="100dp"
             android:overScrollMode="always"
             android:padding="5dp"
@@ -67,14 +67,13 @@
             android:padding="12dp"/>
 
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_record_audio"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:backgroundTint="#4CAF50"
-            android:src="@drawable/microphone"
-            android:layout_gravity="center"/>
+            android:src="@drawable/vector_mic" />
 
         <ImageButton
             android:id="@+id/btn_gallery"
@@ -84,14 +83,13 @@
             android:backgroundTint="#4CAF50"
             android:src="@drawable/vector_photolibrary" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_send"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="13"
             android:backgroundTint="#4CAF50"
-            android:src="@drawable/send"
-            android:layout_gravity="center"/>
+            android:src="@drawable/vector_send" />
 
         </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -203,4 +201,29 @@
         </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
+
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginBottom="80dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:src="@drawable/vector_voice"/>-->
+
+    <!--        <com.google.android.material.textfield.TextInputLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_weight="85"-->
+    <!--            android:padding="0dp"-->
+    <!--            app:placeholderText="Type Your Message">-->
+
+    <!--            <com.google.android.material.textfield.TextInputEditText-->
+    <!--                android:id="@+id/msg_box"-->
+    <!--                android:background="#E4E1E1"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                />-->
+    <!--        </com.google.android.material.textfield.TextInputLayout>-->
 

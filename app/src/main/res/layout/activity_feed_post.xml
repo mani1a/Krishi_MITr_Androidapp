@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FeedPostActivity">
+    tools:context=".activity.FeedPostActivity"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imgView_feed_post"
