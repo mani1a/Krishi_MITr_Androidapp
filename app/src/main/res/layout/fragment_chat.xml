@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ChatFragment">
+
     <FrameLayout
         android:id="@+id/layout_frame_chatSec"
         android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:padding="2dp"
             tools:listitem="@layout/recyclerview_users"
             android:visibility="gone"/>
+
     </FrameLayout>
 
 

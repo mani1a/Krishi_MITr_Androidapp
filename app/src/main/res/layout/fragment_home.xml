@@ -6,200 +6,280 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
+    <ProgressBar
+        android:id="@+id/progbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="675dp"
+        android:layout_height="1265dp"
+        android:contentDescription="Scrolll">
 
-
-        <ProgressBar
-            android:id="@+id/progbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
-
-    <SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:queryHint=""/>
-
-
-
-        <RelativeLayout
-            android:id="@+id/cameraActivity_layout"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/searchBar"
-            android:layout_marginTop="0dp"
-            android:visibility="gone">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
 
 
-
-            <ImageView
-                android:id="@+id/captured_image3"
-                android:layout_width="380dp"
-                android:layout_height="164dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="128dp"
-                android:layout_marginEnd="14dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/rectangle_2_ek1"
-                android:contentDescription="VIEW IMAGE"
-                android:foregroundGravity="center"
-                android:padding="30dp"
-                android:src="@drawable/rectangle_2_ek1" />
-
-
-            <TextView
-                android:id="@+id/editTextText"
-                android:layout_width="360dp"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="73dp"
-                android:layout_marginEnd="19dp"
-                android:backgroundTint="#009688"
-                android:ems="10"
-                android:fontFamily="sans-serif-black"
-                android:inputType="text"
-                android:text="Heal your crop"
-                android:textColor="#149E1A"
-                android:textColorHighlight="#8BC34A"
-                android:textColorHint="#4CAF50"
-                android:clickable="false"
-                android:editable="false"
-                android:textSize="24sp"
-
-                android:textColorLink="#4CAF50" />
-
-            <ImageView
-                android:id="@+id/camera_ek2"
-                android:gravity="center_vertical"
-                android:layout_width="333dp"
-                android:layout_height="80dp"
-                android:layout_alignTop="@+id/captured_image3"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="19dp"
-                android:layout_marginEnd="34dp"
-                android:foregroundGravity="center"
-                android:contentDescription="camera_ek2"
-                android:src="@drawable/output_uploadfiles" />
-
-            <Button
-                android:id="@+id/btnhealcrop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/camera_ek2"
-                android:layout_alignStart="@+id/captured_image3"
-                android:layout_alignEnd="@+id/captured_image3"
-                android:layout_marginStart="67dp"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginEnd="70dp"
-                android:contentDescription="Heal Your Crops"
-                android:drawableStart="@drawable/vector_camera"
-                android:drawableTint="#F3D0D0"
-                android:gravity="center"
-                android:text="Heal Your Crops"
-                app:strokeColor="#009688" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/chatLayout"
-            android:layout_width="match_parent"
-            android:layout_height="355dp"
-            android:layout_below="@+id/cameraActivity_layout"
-            android:layout_marginTop="6dp"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/captured_image2"
-                android:layout_width="wrap_content"
-                android:layout_height="182dp"
-
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="14dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginBottom="46dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/rectangle_2_ek1"
-                android:contentDescription="VIEW IMAGE"
-                android:padding="30dp" />
-
-            <ImageView
-                android:id="@+id/camera_ek"
-                android:layout_width="326dp"
-                android:layout_height="102dp"
-
-                android:layout_alignStart="@+id/captured_image2"
-                android:layout_alignEnd="@+id/captured_image2"
-                android:layout_alignBottom="@+id/captured_image2"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="260dp"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="67dp"
-                android:contentDescription="camera_ek2"
-                android:src="@drawable/outputexpert" />
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/white"
+                android:hint="Search"
+                app:queryHint="Search"
+                app:iconifiedByDefault="false"
+                />
 
-
-            <Button
-                android:id="@+id/btn_chatwithExpert"
-                android:layout_width="277dp"
+            <RelativeLayout
+                android:id="@+id/chatLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/captured_image2"
-                android:layout_alignEnd="@+id/captured_image2"
-                android:layout_alignBottom="@+id/captured_image2"
-                android:layout_marginStart="43dp"
-                android:layout_marginEnd="48dp"
-                android:layout_marginBottom="16dp"
-                android:drawableStart="@drawable/vector_photolibrary"
-                android:text="Chat with expert"
-                android:backgroundTint="@color/fabActionButton"/>
+                android:layout_marginTop="6dp"
+                android:visibility="visible"
+                android:padding="11dp">
 
-            <TextView
-                android:id="@+id/txtChat"
-                android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:layout_above="@+id/captured_image2"
-                android:clickable="false"
-                android:editable="false"
-                android:textSize="24sp"
 
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginEnd="19dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="#009688"
-                android:ems="10"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardchat"
+                    android:layout_width="378dp"
+                    android:layout_height="178dp"
+                    android:elevation="11dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
 
-                android:fontFamily="sans-serif-black"
-                android:inputType="text"
-                android:text="Chat with expert"
-                android:textColor="#149E1A"
-                android:textColorHighlight="#8BC34A"
-                android:textColorHint="#4CAF50"
-                android:textColorLink="#4CAF50" />
 
-        </RelativeLayout>
+                    <Button
+                        android:id="@+id/btn_chatwithExpert"
+                        android:layout_width="278dp"
+                        android:layout_height="wrap_content"
 
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+
+                        android:layout_marginTop="120dp"
+                        android:drawableStart="@drawable/vector_photolibrary"
+                        android:drawableTint="#F3D0D0"
+                        android:text="Chat with expert"
+                        app:strokeColor="#009688" />
+
+                    <TextView
+                        android:id="@+id/txtChat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="19dp"
+                        android:backgroundTint="#009688"
+
+                        android:clickable="false"
+                        android:editable="false"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-black"
+                        android:inputType="text"
+                        android:text="Chat with expert"
+                        android:textColor="#149E1A"
+                        android:textColorHighlight="#8BC34A"
+                        android:textColorHint="#4CAF50"
+                        android:textColorLink="#4CAF50"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:id="@+id/camera_ek"
+                        android:layout_width="261dp"
+                        android:layout_height="85dp"
+
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="40dp"
+                        android:contentDescription="camera_ek2"
+                        android:src="@drawable/outputexpert" />
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cameraActivity_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:visibility="visible"
+                android:padding="11dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardheal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="188dp"
+                    android:elevation="6dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
+
+
+                    <ImageView
+                        android:id="@+id/captured_image3"
+                        android:layout_width="261dp"
+                        android:layout_height="85dp"
+
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="40dp"
+                        android:contentDescription="camera_ek2"
+                        android:src="@drawable/output_uploadfiles" />
+
+                    <Button
+                        android:id="@+id/btnhealcrop"
+                        android:layout_width="278dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="120dp"
+                        android:contentDescription="Heal Your Crops"
+                        android:drawableStart="@drawable/vector_camera"
+                        android:drawableTint="#F3D0D0"
+                        android:gravity="center"
+                        android:text="Heal Your Crops"
+                        app:strokeColor="#009688" />
+
+
+                    <TextView
+                        android:id="@+id/editTextText"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="19dp"
+                        android:backgroundTint="#009688"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-black"
+                        android:inputType="text"
+                        android:text="Heal your crop"
+                        android:textColor="#149E1A"
+                        android:textColorHighlight="#8BC34A"
+                        android:textColorHint="#4CAF50"
+                        android:textColorLink="#4CAF50"
+
+                        android:textSize="24sp"
+                        android:visibility="visible" />
+                </androidx.cardview.widget.CardView>
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:visibility="visible"
+                android:padding="11dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/weathercard"
+                android:layout_width="match_parent"
+                android:layout_height="115dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="6dp"
+                android:layout_marginTop="16dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/textWeather"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="19dp"
+                    android:backgroundTint="#009688"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:ems="10"
+                    android:fontFamily="sans-serif-black"
+                    android:inputType="text"
+                    android:text="Weather"
+                    android:textColor="#5C6BC0"
+                    android:textColorHighlight="#8BC34A"
+                    android:textColorHint="#4CAF50"
+                    android:textColorLink="#4CAF50"
+
+                    android:textSize="24sp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/Location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="19dp"
+                    android:fontFamily="sans-serif-black"
+                    android:inputType="text"
+                    android:text="Location"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/Weatherloc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginEnd="19dp"
+                    android:fontFamily="sans-serif"
+                    android:inputType="text"
+                    android:text="WeatherToday"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/Temperatur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="270dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="19dp"
+                    android:fontFamily="sans-serif"
+                    android:inputType="text"
+                    android:text="20 C"
+                    android:textSize="50sp" />
+
+
+            </androidx.cardview.widget.CardView></RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
 
-<!--<ImageView-->
+
+    <!--<ImageView-->
 <!--android:id="@+id/camera_ek3"-->
 <!--android:layout_width="339dp"-->
 <!--android:layout_height="85dp"-->
