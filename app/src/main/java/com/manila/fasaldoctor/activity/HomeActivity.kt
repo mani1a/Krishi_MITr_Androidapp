@@ -71,12 +71,6 @@ import com.manila.fasaldoctor.utils.Layers
          val userId = intent.getStringExtra("userId")
          val fcmToken = intent.getStringExtra("fcmToken")
 
-         binding.txtView1.text = userName
-         binding.txtView2.text = email
-         binding.txtView3.text = role
-         binding.txtView4.text = userId
-         binding.txtView5.text = fcmToken
-
          val profileFragment = ProfileFragment()
          val bundle = Bundle()
          bundle.putString("userName",userName)

@@ -6,6 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.Feed2Fragment">
 
+    <ProgressBar
+        android:id="@+id/feedprogressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_feed_fragment"
         android:layout_width="match_parent"
@@ -13,7 +19,8 @@
         android:layout_margin="10dp"
         android:padding="5dp"
         tools:listitem="@layout/recyclerview_feed_fragments"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:visibility="gone"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_post"
