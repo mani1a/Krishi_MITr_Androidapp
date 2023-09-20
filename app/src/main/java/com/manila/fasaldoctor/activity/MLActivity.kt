@@ -7,6 +7,8 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -17,6 +19,7 @@ import com.manila.fasaldoctor.databinding.ActivityMlactivityBinding
 class MLActivity : AppCompatActivity() {
     lateinit var binding: ActivityMlactivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+
         binding = ActivityMlactivityBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -53,6 +56,9 @@ class MLActivity : AppCompatActivity() {
             contract.launch("image/*")
 
         }
+
+
+
     }
 
     @Deprecated("Deprecated in Java")

@@ -41,7 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="Cancel" />
+                android:text="Cancel"
+                android:layout_marginStart="100dp"/>
 
             <Button
                 android:id="@+id/btn_upload"
@@ -50,14 +51,18 @@
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@+id/btn_cancel"
                 android:text="Upload" />
+
             <TextView
+                android:id="@+id/tv_prediction"
+                android:text="prediction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_prediction"
-                android:layout_below="@+id/btn_upload"/>
-
+                android:textSize="30dp"
+                android:layout_below="@id/btn_cancel"
+                />
 
         </RelativeLayout>
+
 
 
     </RelativeLayout>
