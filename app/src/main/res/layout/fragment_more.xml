@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.MoreFragment"
+    >
+
+    <RelativeLayout
+        android:id="@+id/profiledatalayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profiledatalayoutCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#f8f9fa"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="5dp"
+            android:elevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_img"
+            android:layout_width="96dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/vector_profile_avatar"
+            app:civ_border_color="@color/actioncolor"
+            app:civ_border_width="2dp" />
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/uploadprofileimg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_img"
+            android:layout_alignParentStart="true"
+            android:backgroundTint="#58CEE2"
+            android:text="Log Out"
+            android:textColor="@color/app_bg"
+            />
+
+        <TextView
+            android:id="@+id/profile_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/profile_img"
+            android:text="UserName"
+            android:textAlignment="textEnd"
+            android:textColor="@color/actioncolor"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_user_name"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/profile_img"
+            android:text="Location"
+            android:textColor="@color/actioncolor"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/profile_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_email"
+            android:layout_centerHorizontal="true"
+            android:layout_toEndOf="@+id/profile_img"
+            android:text="Role"
+            android:textColor="@color/actioncolor"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            />
+
+                <TextView
+            android:id="@+id/profile_Crops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_role"
+            android:layout_centerHorizontal="true"
+            android:layout_toEndOf="@+id/profile_img"
+            android:text="Crops : "
+            android:textColor="@color/actioncolor"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            />
+
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/NewsCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profiledatalayoutCV"
+            android:layout_margin="5dp"
+            android:backgroundTint="#f8f9fa"
+            app:cardCornerRadius="20dp"
+           >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+
+            <ImageView
+                android:id="@+id/imNews"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:src="@drawable/newspaper"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="News"
+                android:layout_toEndOf="@+id/imNews"
+                android:textSize="22sp"
+                android:padding="20dp"/>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/helpline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewsCV"
+            android:layout_margin="5dp"
+            android:backgroundTint="#f8f9fa"
+            app:cardCornerRadius="20dp"
+           >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+
+            <ImageView
+                android:id="@+id/imhelpline"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:src="@drawable/customer_support"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Helpline Number"
+                android:layout_toEndOf="@+id/imhelpline"
+                android:textSize="22sp"
+                android:padding="20dp"/>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+<!--    <Button-->
+<!--            android:id="@+id/btn_logout"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:background="@color/actioncolor"-->
+<!--            android:text="Logout"-->
+<!--            android:textColor="#D8F1BE"-->
+<!--            android:textSize="18sp"-->
+<!--            />-->
+<!--        -->
+<!--        -->
+
+
+
+
+</FrameLayout>

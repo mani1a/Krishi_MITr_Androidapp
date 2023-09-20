@@ -94,19 +94,27 @@
 
     </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/imgprocessView"
-            android:layout_margin="10dp"
-            android:layout_below="@+id/imgselectview"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:cardBackgroundColor="@color/app_bg"
-            app:cardCornerRadius="20dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imgprocessView"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/imgselectview"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/app_bg"
+                app:cardCornerRadius="20dp">
+                <TextView
+                    android:id="@+id/tv_prediction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="prediction"
+                    android:textSize="40dp"
+                    android:gravity="center_horizontal"/>
 
 
-
-
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
 
 

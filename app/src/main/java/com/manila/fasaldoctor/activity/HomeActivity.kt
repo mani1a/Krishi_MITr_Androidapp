@@ -116,8 +116,8 @@ import com.manila.fasaldoctor.utils.Layers
                  }
                  // Handle other menu items if needed
 
-                 R.id.profile -> {
-                     replaceFragments(ProfileFragment())
+                 R.id.More -> {
+//                     replaceFragments(ProfileFragment())
 //                     binding.btnChat.visibility = View.VISIBLE
 //                     startActivity(Intent(this, ProfileActivity::class.java))
 //                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
