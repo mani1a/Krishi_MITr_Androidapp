@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         binding.buttonLogin.setOnClickListener {
             val email = binding.editTextTextEmailAddress.text.toString()
             val password = binding.editTextTextPassword.text.toString()
-            Layers.showProgressBar(this)
+            Layers.showProgressBar(this,"Logging In")
 
             if (email.isNotEmpty() && password.isNotEmpty()){
 

@@ -96,10 +96,12 @@ class HomeFragment : Fragment() {
                     binding?.progbar?.visibility = View.GONE
                     binding?.txtChat?.text = "Chat with Farmers"
                     binding?.btnChatwithExpert?.text = "Chat with Farmers"
+                    binding?.weathercardlayout?.visibility = View.VISIBLE
                 }else{
                     binding?.cameraActivityLayout?.visibility = View.VISIBLE
                     binding?.chatLayout?.visibility = View.VISIBLE
                     binding?.progbar?.visibility = View.GONE
+                    binding?.weathercardlayout?.visibility = View.VISIBLE
 
 
                 }

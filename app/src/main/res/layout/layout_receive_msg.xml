@@ -14,6 +14,7 @@
 
 
     <RelativeLayout
+        android:layout_below="@+id/setTime"
         android:id="@+id/txtLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

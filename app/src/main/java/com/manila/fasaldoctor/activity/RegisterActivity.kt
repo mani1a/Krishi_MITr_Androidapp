@@ -71,8 +71,8 @@ class RegisterActivity : AppCompatActivity() {
                 binding.imgFarmer.visibility = View.VISIBLE
                 binding.imgExpert.visibility = View.GONE
                 binding.dataLayout.visibility = View.VISIBLE
-                binding.btnRegister.visibility = View.GONE
                 binding.btnNext.visibility = View.VISIBLE
+                binding.rolechoosetext.text = "You are a : $role"
 
             }
             if (checkedId == R.id.expert){
@@ -81,8 +81,9 @@ class RegisterActivity : AppCompatActivity() {
                 binding.imgFarmer.visibility = View.GONE
                 binding.imgExpert.visibility = View.VISIBLE
                 binding.dataLayout.visibility = View.VISIBLE
-                binding.btnRegister.visibility = View.GONE
                 binding.btnNext.visibility = View.VISIBLE
+                binding.rolechoosetext.text = "You are a : $role"
+
 
             }
 
@@ -95,8 +96,16 @@ class RegisterActivity : AppCompatActivity() {
                 binding.selectcroplayout.visibility = View.VISIBLE
                 binding.radioRoleGroup.visibility = View.GONE
                 binding.btnNext.visibility = View.GONE
-                binding.btnRegister.visibility = View.VISIBLE
-                binding.rolechoosetext.text = "You are a : $role"
+                binding.buttonLayout.visibility = View.VISIBLE
+
+            }
+
+            binding.btnBack.setOnClickListener {
+                binding.buttonLayout.visibility = View.GONE
+                binding.selectcroplayout.visibility = View.GONE
+                binding.dataLayout.visibility = View.VISIBLE
+                binding.btnNext.visibility = View.VISIBLE
+                binding.radioRoleGroup.visibility = View.VISIBLE
 
             }
 
@@ -176,7 +185,7 @@ class RegisterActivity : AppCompatActivity() {
 
         //for storing data --- also store in profile fragment aLSO
 
-        Layers.showProgressBar(this)
+        Layers.showProgressBar(this,"Loading")
 
         val user : FirebaseUser? = firebaseAuth.currentUser
         userId = user!!.uid

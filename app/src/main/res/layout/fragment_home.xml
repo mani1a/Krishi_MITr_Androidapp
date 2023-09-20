@@ -11,16 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <ScrollView
-        android:layout_width="675dp"
-        android:layout_height="1265dp"
-        android:contentDescription="Scrolll">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -34,7 +33,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="30dp"
                 android:background="@color/white"
-                android:hint="Search"
+                android:hint="@string/search"
                 app:queryHint="Search"
                 app:iconifiedByDefault="false"
                 />
@@ -44,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:padding="11dp">
 
 
@@ -62,14 +61,12 @@
                         android:id="@+id/btn_chatwithExpert"
                         android:layout_width="278dp"
                         android:layout_height="wrap_content"
-
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center_horizontal"
-
                         android:layout_marginTop="120dp"
                         android:drawableStart="@drawable/vector_photolibrary"
                         android:drawableTint="#F3D0D0"
-                        android:text="Chat with expert"
+                        android:text="@string/chat_with_expert"
                         app:strokeColor="#009688" />
 
                     <TextView
@@ -78,19 +75,16 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
-
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="28dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="19dp"
                         android:backgroundTint="#009688"
-
                         android:clickable="false"
                         android:editable="false"
                         android:ems="10"
                         android:fontFamily="sans-serif-black"
-                        android:inputType="text"
-                        android:text="Chat with expert"
+                        android:text="@string/chat_with_expert"
                         android:textColor="#149E1A"
                         android:textColorHighlight="#8BC34A"
                         android:textColorHint="#4CAF50"
@@ -101,11 +95,10 @@
                         android:id="@+id/camera_ek"
                         android:layout_width="261dp"
                         android:layout_height="85dp"
-
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="40dp"
-                        android:contentDescription="camera_ek2"
                         android:src="@drawable/outputexpert" />
+
                 </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
@@ -115,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:padding="11dp">
 
                 <androidx.cardview.widget.CardView
@@ -132,25 +125,21 @@
                         android:id="@+id/captured_image3"
                         android:layout_width="261dp"
                         android:layout_height="85dp"
-
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="40dp"
-                        android:contentDescription="camera_ek2"
                         android:src="@drawable/output_uploadfiles" />
 
                     <Button
                         android:id="@+id/btnhealcrop"
                         android:layout_width="278dp"
                         android:layout_height="wrap_content"
-
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="120dp"
-                        android:contentDescription="Heal Your Crops"
                         android:drawableStart="@drawable/vector_camera"
                         android:drawableTint="#F3D0D0"
                         android:gravity="center"
-                        android:text="Heal Your Crops"
+                        android:text="@string/heal_your_crops"
                         app:strokeColor="#009688" />
 
 
@@ -169,13 +158,11 @@
                         android:editable="false"
                         android:ems="10"
                         android:fontFamily="sans-serif-black"
-                        android:inputType="text"
-                        android:text="Heal your crop"
+                        android:text="@string/heal_your_crops"
                         android:textColor="#149E1A"
                         android:textColorHighlight="#8BC34A"
                         android:textColorHint="#4CAF50"
                         android:textColorLink="#4CAF50"
-
                         android:textSize="24sp"
                         android:visibility="visible" />
                 </androidx.cardview.widget.CardView>
@@ -183,12 +170,15 @@
 
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/weathercardlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:padding="11dp">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/weathercard"
                 android:layout_width="match_parent"
@@ -202,7 +192,7 @@
 
                 <TextView
                     android:id="@+id/textWeather"
-                    android:layout_width="360dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
@@ -215,13 +205,11 @@
                     android:editable="false"
                     android:ems="10"
                     android:fontFamily="sans-serif-black"
-                    android:inputType="text"
-                    android:text="Weather"
+                    android:text="@string/weather"
                     android:textColor="#5C6BC0"
                     android:textColorHighlight="#8BC34A"
                     android:textColorHint="#4CAF50"
                     android:textColorLink="#4CAF50"
-
                     android:textSize="24sp"
                     android:visibility="visible" />
 
@@ -236,8 +224,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="19dp"
                     android:fontFamily="sans-serif-black"
-                    android:inputType="text"
-                    android:text="Location"
+                    android:text="@string/location"
                     android:textSize="14sp"/>
                 <TextView
                     android:id="@+id/Weatherloc"
@@ -250,8 +237,7 @@
                     android:layout_marginTop="70dp"
                     android:layout_marginEnd="19dp"
                     android:fontFamily="sans-serif"
-                    android:inputType="text"
-                    android:text="WeatherToday"
+                    android:text="@string/weathertoday"
                     android:textSize="14sp"/>
 
                 <TextView
@@ -261,11 +247,10 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="270dp"
+                    android:layout_marginStart="230dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="19dp"
                     android:fontFamily="sans-serif"
-                    android:inputType="text"
                     android:text="20 C"
                     android:textSize="50sp" />
 

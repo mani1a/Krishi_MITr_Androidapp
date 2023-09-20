@@ -8,11 +8,11 @@ object Layers {
 
     lateinit var progressBar : ProgressDialog
 
-    fun showProgressBar(context: Context){
+    fun showProgressBar(context: Context , text : String){
         progressBar = ProgressDialog(context)
         progressBar.setCancelable(false)
         progressBar.setContentView(R.layout.progressbar)
-        progressBar.setTitle("Loading")
+        progressBar.setTitle(text)
         progressBar.show()
     }
 

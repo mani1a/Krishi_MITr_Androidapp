@@ -41,13 +41,12 @@ class UsersAdapter (private val context: Context, private val userList: ArrayLis
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = userList[position]
         holder.userName.text = user.name
-        holder.email.text = user.email
+        holder.email.text = "Crop : - ${user.crop1} , ${user.crop2} , ${user.crop3} "
         holder.role.text = user.role
         if (user.role == "farmer"){
         Glide.with(context).load(user.imageUrl).placeholder(R.drawable.farmer).into(holder.pic)
         }else{
         Glide.with(context).load(user.imageUrl).placeholder(R.drawable.expert).into(holder.pic)
-
         }
 
 

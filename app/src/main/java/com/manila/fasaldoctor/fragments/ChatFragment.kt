@@ -46,6 +46,10 @@ class ChatFragment : Fragment() {
     lateinit var layoutManager: GridLayoutManager
     lateinit var userList : ArrayList<User>
 
+    var crop1 : String? = null
+    var crop2 : String? = null
+    var crop3 : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -63,6 +67,16 @@ class ChatFragment : Fragment() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         fbDatabase = FirebaseDatabase.getInstance().getReference()
+
+        binding?.checkPotato?.setOnCheckedChangeListener { buttonView, isChecked ->
+            crop1 = "Potato"
+        }
+        binding?.checkTomato?.setOnCheckedChangeListener { buttonView, isChecked ->
+            crop2 = "Tomato"
+        }
+//        Toast.makeText(context,crop2,Toast.LENGTH_SHORT).show()
+
+
 
 
         //recycler view codes
@@ -99,6 +113,31 @@ class ChatFragment : Fragment() {
                         binding?.progbarr?.visibility = View.GONE
 
                     }
+
+
+                        binding!!.btnFilter.setOnClickListener {
+                            userList.clear()
+                            Toast.makeText(context, "Filtered", Toast.LENGTH_SHORT).show()
+                            if (
+//                                (firebaseAuth.currentUser?.uid != currentUser?.uid)
+//                                && (currentUser?.role != role)
+//                                &&
+                                    (currentUser?.crop1 == crop1 || currentUser?.crop2 == crop2)  ) {
+
+                                    if (currentUser != null) {
+                                        userList.add(currentUser)
+                                    }
+                                    binding?.userRecycler?.visibility = View.VISIBLE
+                                    binding?.progbarr?.visibility = View.GONE
+
+                            }
+
+
+                        }
+
+
+
+
 
                 }
                 userrecyclerAdapter.notifyDataSetChanged()

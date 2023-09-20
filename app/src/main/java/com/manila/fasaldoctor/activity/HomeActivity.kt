@@ -107,11 +107,11 @@ import com.manila.fasaldoctor.utils.Layers
 
 
                  R.id.feed -> {
-                     val intent = Intent(this, FeedActivity::class.java)
-                     startActivity(intent)
-                     true // Return true to indicate that the item click is handled
+//                     val intent = Intent(this, FeedActivity::class.java)
+//                     startActivity(intent)
+//                     true // Return true to indicate that the item click is handled
 
-//                     replaceFragments(Feed2Fragment())
+                     replaceFragments(Feed2Fragment())
 //                     binding.btnChat.visibility = View.GONE
                  }
                  // Handle other menu items if needed
@@ -140,6 +140,7 @@ import com.manila.fasaldoctor.utils.Layers
 //         fragmentTransaction.addToBackStack("back")
          fragmentTransaction.commit()
      }
+
 
 
 

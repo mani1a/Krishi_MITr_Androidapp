@@ -12,6 +12,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityFirstBinding
@@ -39,15 +40,13 @@ class FirstActivity : AppCompatActivity() {
 
         binding.btnGetStarted.visibility = View.GONE
 
-
-
-
         val delay: Long = 1000
 
         Handler().postDelayed(
             {
                 binding.btnGetStarted.visibility = View.VISIBLE
                 binding.progressbar.visibility = View.GONE
+//                startActivity(Intent(this, SecondActivity::class.java))
             }, delay
         )
 
@@ -63,6 +62,7 @@ class FirstActivity : AppCompatActivity() {
         // PERMISSION MANAGER/HANDLER
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)
         fun grantPermission(){
+
             val permissionList = mutableListOf<String>()
 
             if (checkSelfPermission(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED){
