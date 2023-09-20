@@ -155,7 +155,7 @@
             android:layout_marginBottom="0dp"
             android:padding="2dp"
             tools:listitem="@layout/recyclerview_users"
-            android:visibility="goe"/>
+            android:visibility="gone"/>
 
 
 

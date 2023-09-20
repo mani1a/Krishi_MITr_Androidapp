@@ -170,7 +170,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
                 R.id.feed -> Toast.makeText(this,"Under Development",Toast.LENGTH_SHORT).show()
 
-                R.id.profile -> true
+//                R.id.profile -> true
             }
 
             true

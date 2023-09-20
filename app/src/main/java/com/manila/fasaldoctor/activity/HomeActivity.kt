@@ -22,6 +22,7 @@ import android.view.View
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.manila.fasaldoctor.fragments.Feed2Fragment
+import com.manila.fasaldoctor.fragments.MoreFragment
 import com.manila.fasaldoctor.utils.Layers
 
 
@@ -117,7 +118,7 @@ import com.manila.fasaldoctor.utils.Layers
                  // Handle other menu items if needed
 
                  R.id.More -> {
-//                     replaceFragments(ProfileFragment())
+                     replaceFragments(MoreFragment())
 //                     binding.btnChat.visibility = View.VISIBLE
 //                     startActivity(Intent(this, ProfileActivity::class.java))
 //                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
