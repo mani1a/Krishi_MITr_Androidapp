@@ -17,4 +17,11 @@
     <string name="bottom_nav_bar">Bottom Navigation Bar</string>
     <string name="user_name">username</string>
     <string name="get_started">Get Started</string>
+    <string name="search">Search</string>
+    <string name="chat_with_expert">Chat with Expert</string>
+    <string name="heal_your_crops">Heal Your Crops</string>
+    <string name="weather">Weather</string>
+    <string name="location">Location</string>
+    <string name="weathertoday">WeatherToday</string>
+    <string name="devmsg">Made with \'❤️\'</string>
 </resources>

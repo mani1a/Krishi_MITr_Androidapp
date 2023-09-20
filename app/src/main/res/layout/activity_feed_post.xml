@@ -14,7 +14,7 @@
         android:layout_height="200dp"
         android:src="@drawable/vector_add"
         android:background="@drawable/bg_reg_layout"
-        android:layout_margin="10dp"
+        android:layout_margin="40dp"
         android:padding="5sp"/>
 
     <LinearLayout
@@ -65,7 +65,7 @@
         android:id="@+id/post_text_Desc"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/post_text_Q"
         android:hint="Description"
         android:maxLines="10"

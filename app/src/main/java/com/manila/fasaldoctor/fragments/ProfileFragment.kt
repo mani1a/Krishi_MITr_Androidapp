@@ -33,6 +33,7 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.activity.LoginActivity
 import com.manila.fasaldoctor.databinding.FragmentProfileBinding
 import com.manila.fasaldoctor.model.User
+import com.manila.fasaldoctor.utils.DialogImageOpen
 import com.manila.fasaldoctor.utils.Layers
 import java.io.File
 import kotlin.properties.Delegates
@@ -166,6 +167,11 @@ class ProfileFragment : Fragment() {
 
         }
 
+        binding?.profileImg?.setOnClickListener {
+            DialogImageOpen.showDialogBox(requireContext(),imageUri.toString())
+
+        }
+
         binding?.btnLogout?.setOnClickListener {
             firebaseAuth.signOut()
             Toast.makeText(context,"Logged Out", Toast.LENGTH_SHORT).show()
@@ -209,7 +215,7 @@ class ProfileFragment : Fragment() {
     private fun uploadPImg(){
 
 
-        Layers.showProgressBar(requireContext())
+        Layers.showProgressBar(requireContext(),"Uploading.")
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 //        imageUri = User.imageURl as Uri

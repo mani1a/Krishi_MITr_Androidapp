@@ -22,12 +22,14 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -75,7 +77,7 @@ class ChatOpenActivity : AppCompatActivity() {
     var senderRoom : String? = null
     var receiveruid : String? = null
     var senderuid : String? = null
-    var imageUri: Uri? = null
+    lateinit var imageUri: Uri
     var time : String? = null
     var audioFilePath : String? = null
     var audioUri : Uri? = null
@@ -102,7 +104,12 @@ class ChatOpenActivity : AppCompatActivity() {
     var receivermobile : String? = null
     var receiverimageUrl: String? = null
     var receiverrecent : String? = null
+    var receiverfcmToken : String? = null
     lateinit var recentList : ArrayList<RecentUser>
+
+
+
+    // don't do cherchhar with this code --- nhi to aaaaaaaaaggggg laga denge
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -138,18 +145,14 @@ class ChatOpenActivity : AppCompatActivity() {
         msgRecyclerView.layoutManager = LinearLayoutManager(this)
         msgRecyclerView.adapter = msgRecyclerAdapter
 
-        var data : Intent?= null
+
         val imagelaunchContract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
             if (result.resultCode == RESULT_OK && result.data != null){
-                data = result.data!!
-                imageUri = data!!.data
-
-                if (imageUri != null){
+                val data: Intent? = result.data!!
+                imageUri = data!!.data!!
 
                 sendImg()
-
-                }
             }
         }
 
@@ -157,6 +160,7 @@ class ChatOpenActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             imagelaunchContract.launch(intent)
         }
+
 
         sendButton.setOnClickListener {
             sendmsg()
@@ -179,7 +183,7 @@ class ChatOpenActivity : AppCompatActivity() {
                 != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions(this,permission,101)
             }else{
-            recordAudio()
+                recordAudio()
             }
 
         }
@@ -236,6 +240,7 @@ class ChatOpenActivity : AppCompatActivity() {
         time = date.format(formatter)
 
         databaseReference.child("Users").child(receiveruid!!).get().addOnSuccessListener {
+
             receivername = it.child("name").value.toString()
             receiveremail = it.child("email").value.toString()
             receiverrole = it.child("role").value.toString()
@@ -243,6 +248,7 @@ class ChatOpenActivity : AppCompatActivity() {
             receivermobile = it.child("mobile").value.toString()
             receiverimageUrl = it.child("imageUrl").value.toString()
             receiverrecent = it.child("recent").value.toString()
+            receiverfcmToken
 
         }
 
@@ -278,26 +284,30 @@ class ChatOpenActivity : AppCompatActivity() {
 
     private fun sendImg() {
 
-        Layers.showProgressBar(this)
+        Layers.showProgressBar(this,"Sending Image")
 
         storageReference.child("Users_chat_Img").child(senderuid!!).child(time+"image.jpeg")
-            .putFile(imageUri!!).addOnSuccessListener {
+            .putFile(imageUri).addOnSuccessListener {
             task ->
-            task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
-                val img = it.toString()
-                val messageObject = Messages("true",time!!,"photo",senderuid,receiveruid,img,"")
-//                messageObject.msg = "photo"
-                databaseReference.child("chats").child(senderRoom!!).child("messages").push()
-                    .setValue(messageObject).addOnSuccessListener {
-                        databaseReference.child("chats").child(receiverRoom!!).child("messages").push()
-                            .setValue(messageObject).addOnCompleteListener {
-                                if (it.isSuccessful) {
-                                    Layers.hideProgressBar()
-//                                    sendNotification(message)
+                task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+                    val img = it.toString()
+                    val messageObject = Messages("true",time!!,"photo",senderuid,receiveruid,img,"")
+            //                messageObject.msg = "photo"
+                    databaseReference.child("chats").child(senderRoom!!).child("messages").push()
+                        .setValue(messageObject).addOnSuccessListener {
+                            databaseReference.child("chats").child(receiverRoom!!).child("messages")
+                                .push().setValue(messageObject).addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        Layers.hideProgressBar()
+            //                                    sendNotification(message)
+                                    }
                                 }
-                            }
-                    }
-            }
+                        }
+                }?.addOnFailureListener {
+
+                    Toast.makeText(this,"some Error Occured",Toast.LENGTH_SHORT).show()
+
+                }
         }
     }
 
@@ -305,7 +315,7 @@ class ChatOpenActivity : AppCompatActivity() {
 
         audioUri = Uri.fromFile(File(audioFilePath!!))
 
-        Layers.showProgressBar(this)
+        Layers.showProgressBar(this,"Sending Audio")
         storageReference.child("Users_Chat_Audio").child(senderuid!!).child(time+"audio.3gp")
             .putFile(audioUri!!).addOnSuccessListener {
             task->
@@ -365,7 +375,7 @@ class ChatOpenActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this,HomeActivity::class.java))
+        startActivity(Intent(this,ChatMainActivity::class.java))
         return super.onOptionsItemSelected(item)
     }
 
@@ -477,10 +487,6 @@ class ChatOpenActivity : AppCompatActivity() {
 
     }
 
-    override fun onStop() {
-        finish()
-        super.onStop()
-    }
 
 
 

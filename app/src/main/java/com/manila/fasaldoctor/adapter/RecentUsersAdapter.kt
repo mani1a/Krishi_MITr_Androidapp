@@ -49,7 +49,12 @@ class RecentUsersAdapter (private var  context: Context, private var recentUserL
         holder.userName.text = user.name
         holder.email.text = user.email
         holder.role.text = user.role
-        Glide.with(context).load(user.imageUrl).placeholder(R.drawable.vector_person).into(holder.pic)
+        if (user.role == "farmer"){
+            Glide.with(context).load(user.imageUrl).placeholder(R.drawable.farmer).into(holder.pic)
+        }else{
+            Glide.with(context).load(user.imageUrl).placeholder(R.drawable.expert).into(holder.pic)
+        }
+
 
         holder.openChat.setOnClickListener {
 

@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.model.Messages
+import com.manila.fasaldoctor.utils.DialogImageOpen
+import com.squareup.picasso.Picasso
 
 class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -82,15 +84,18 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
                 holder.sendmsg.visibility = View.GONE
                 holder.imgsend.visibility = View.VISIBLE
                 holder.txtLayout.visibility = View.GONE
+                Glide.with(context).load(currentMsg.image).placeholder(R.drawable.farmer).into(holder.imgsend)
+                holder.imgsend.setOnClickListener {
+                    currentMsg.image?.let { it1 -> DialogImageOpen.showDialogBox(context, it1) }
+                }
 
-                Glide.with(context).load(currentMsg.image).into(holder.imgsend)
 
             }
 
 
             if (currentMsg.msg.equals("audio")){
 
-                var audioPath = currentMsg.audio
+                val audioPath = currentMsg.audio
 
                 holder.sendmsg.visibility = View.GONE
                 holder.imgsend.visibility = View.GONE
@@ -141,12 +146,15 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
                 holder.receivemsg.visibility = View.GONE
                 holder.txtLayout.visibility = View.GONE
                 Glide.with(context).load(currentMsg.image).into(holder.imgreceive)
+                holder.imgreceive.setOnClickListener {
+                    DialogImageOpen.showDialogBox(context,currentMsg.image!!)
+                }
             }
 
 
             if (currentMsg.msg.equals("audio")){
 
-                var audioPath = currentMsg.audio
+                val audioPath = currentMsg.audio
 
                 holder.receivemsg.visibility = View.GONE
                 holder.imgreceive.visibility = View.GONE
@@ -255,6 +263,7 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
         val txt : TextView = itemView.findViewById(R.id.audiomsg)
 
     }
+
 
 
 }
