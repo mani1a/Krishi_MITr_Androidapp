@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import com.manila.fasaldoctor.databinding.ActivityFeedBinding
 import android.content.Intent
 import android.app.ProgressDialog
+import android.view.View
 
 class FeedActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
@@ -35,20 +36,30 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var postAdapter: PostAdapter
     private lateinit var uid: String // Declare uid at the top
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+
+        val buttonAddPost = findViewById<Button>(R.id.buttonAddPost)
+        val editTextQuestion = findViewById<EditText>(R.id.editTextQuestion)
+        val buttonLoadPicture = findViewById<Button>(R.id.buttonLoadPicture)
+        val postButton = findViewById<Button>(R.id.buttonPost)
+        imageView = findViewById(R.id.imageView)
+        button = findViewById(R.id.buttonLoadPicture)
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserEmail = currentUser?.email
+
         firebaseStorage = FirebaseStorage.getInstance()
         val storageReference: StorageReference = firebaseStorage.reference
         title = "KotlinApp"
-        imageView = findViewById(R.id.imageView)
-        button = findViewById(R.id.buttonLoadPicture)
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         usersArrayList = arrayListOf()
-        postAdapter = PostAdapter(usersArrayList)
+        postAdapter = PostAdapter(usersArrayList, currentUserEmail.toString())
 
         recyclerView.adapter = postAdapter
 
@@ -56,6 +67,24 @@ class FeedActivity : AppCompatActivity() {
 
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
+
+        buttonAddPost.setOnClickListener {
+            // Toggle visibility of other elements
+            if (editTextQuestion.visibility == View.GONE) {
+                editTextQuestion.visibility = View.VISIBLE
+                buttonLoadPicture.visibility = View.VISIBLE
+                postButton.visibility = View.VISIBLE
+                imageView.visibility = View.VISIBLE
+                buttonAddPost.text = " Slide up (post later) "
+            } else {
+                editTextQuestion.visibility = View.GONE
+                buttonLoadPicture.visibility = View.GONE
+                postButton.visibility = View.GONE
+                imageView.visibility = View.GONE
+                buttonAddPost.text = " Add Post + "
+            }
+        }
+
 
         if (user != null) {
             uid = user.uid // Assign the UID here
@@ -65,7 +94,7 @@ class FeedActivity : AppCompatActivity() {
                 startActivityForResult(gallery, pickImage)
             }
 
-            val postButton = findViewById<Button>(R.id.buttonPost)
+
             postButton.setOnClickListener {
                 uploadImageToStorage(imageUri)
             }
@@ -133,7 +162,14 @@ class FeedActivity : AppCompatActivity() {
         }
     }
 
-    private fun storeData(imageUrl: String) { // Change the parameter type here
+    private fun storeData(imageUrl: String) {
+        val buttonAddPost = findViewById<Button>(R.id.buttonAddPost)
+        val editTextQuestion = findViewById<EditText>(R.id.editTextQuestion)
+        val buttonLoadPicture = findViewById<Button>(R.id.buttonLoadPicture)
+        val postButton = findViewById<Button>(R.id.buttonPost)
+        imageView = findViewById(R.id.imageView)
+        button = findViewById(R.id.buttonLoadPicture)
+        // Change the parameter type here
         // Fetch user data from the Realtime Database
         val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
@@ -167,6 +203,11 @@ class FeedActivity : AppCompatActivity() {
 
                             if (progressBar.isShowing)progressBar.dismiss()
                             showToast("Post successfully uploaded!")
+                            editTextQuestion.visibility = View.GONE
+                            buttonLoadPicture.visibility = View.GONE
+                            postButton.visibility = View.GONE
+                            imageView.visibility = View.GONE
+                            buttonAddPost.text = " Add Post + "
                         } else {
                             showToast("Failed to upload post. Please try again.")
                         }
