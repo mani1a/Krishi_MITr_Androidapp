@@ -16,9 +16,14 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import com.manila.fasaldoctor.fragments.HomeFragment
 import com.manila.fasaldoctor.fragments.ProfileFragment
-import com.manila.fasaldoctor.fragments.FeedFragment
-import com.manila.fasaldoctor.activity.FeedActivity
 import android.content.Intent
+import android.view.MenuItem
+import android.view.View
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.manila.fasaldoctor.fragments.Feed2Fragment
+import com.manila.fasaldoctor.fragments.MoreFragment
+import com.manila.fasaldoctor.utils.Layers
 
 
  class HomeActivity : AppCompatActivity() {
@@ -46,6 +51,7 @@ import android.content.Intent
          supportActionBar?.hide()
          replaceFragments(HomeFragment())
 
+
 //         sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
 //         role = sharedPreferences.getString("checkedRole",null).toString()
 //
@@ -60,19 +66,11 @@ import android.content.Intent
 //         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
 //         binding.txtView.text = email
 
-
-
          val userName = intent.getStringExtra("userName")
          val email = intent.getStringExtra("email")
          val role = intent.getStringExtra("role")
          val userId = intent.getStringExtra("userId")
          val fcmToken = intent.getStringExtra("fcmToken")
-
-         binding.txtView1.text = userName
-         binding.txtView2.text = email
-         binding.txtView3.text = role
-         binding.txtView4.text = userId
-         binding.txtView5.text = fcmToken
 
          val profileFragment = ProfileFragment()
          val bundle = Bundle()
@@ -90,107 +88,38 @@ import android.content.Intent
 //         intentTohome.putExtra("",fcmToken)
 
 
-         binding.btnChat.setOnClickListener {
-//             startActivity(Intent(this,ChatMainActivity::class.java))
-             Toast.makeText(this,"Chat with AI is under Development",Toast.LENGTH_SHORT).show()
-         }
-
-//         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
-//         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
-
-//         if(isLoggedIn){
-//             startActivity(Intent(this,LoginActivity::class.java))
-//         }else{
-//
-//         }
-//
-//
-//         sharedPreferences = getSharedPreferences(getString(R.string.user_name),Context.MODE_PRIVATE)
-//         var sharedUserName = sharedPreferences.getString("userName", null).toString()
-//         Toast.makeText(this,sharedUserName,Toast.LENGTH_LONG).show()
-//
-//         sharedPreferences =getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
-//         var role = sharedPreferences.getString("checkedRole", null).toString()
-//
-//         firebaseStorageRefrence = FirebaseStorage.getInstance()
-//
-//         frameLayout = findViewById(R.id.frameLayout)
-////         openCamera = findViewById(R.id.open_camera)
-////         openGallery = findViewById(R.id.open_gallery)
-//         imgView = findViewById(R.id.captured_image)
-
-//         val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
-//             imgView.setImageURI(it)
-//         }
-
-//         val cloudContract = registerForActivityResult(ActivityResultContracts.GetContent()){
-//             imgView.setImageURI(it)
-//             if (it != null) {
-//                 imageUri = it
-//             }
-//         }
-
-//         binding.selectImage.setOnClickListener {
-//             cloudContract.launch("image/*")
-//             cloudContract.apply {
-//                 showCustomDialogBox()
-//             }
-//         }
-//
-//         binding.btnFirebase.setOnClickListener {
-//             uploadImage()
+//         binding.btnChat.setOnClickListener {
+//             startActivity(Intent(this,RecentChatActivity::class.java))
+////             Toast.makeText(this,"Chat with AI is under Development",Toast.LENGTH_SHORT).show()
 //         }
 
 
-         //donot move it from here
 
-//        grantPermission()
-//        replaceFragments(HomeFragment())
-
-//         binding.btnLogout.setOnClickListener {
-//             if (isLoggedIn) {
-//                 sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
-//                 startActivity(Intent(this, LoginActivity::class.java))
-////                Toast.makeText(this,"LoggedIn",Toast.LENGTH_SHORT).show()
-//             } else {
-////                sharedPreferences.edit().putBoolean("isLoggedIn",false).apply()
-////                startActivity(Intent(this,LoginActivity::class.java))
-//                 Toast.makeText(this, "LoggedIn", Toast.LENGTH_SHORT).show()
-//             }
-//         }
-//         openCamera.setOnClickListener {
-//             Toast.makeText(this, "open camera", Toast.LENGTH_SHORT).show()
-//             val intent = Intent(this, CameraActivity::class.java)
-//             startActivity(intent)
-//         }
-
-//         openCamera.setOnClickListener {
-//             val takePicintent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//
-//             try {
-//                 startActivityForResult(takePicintent,REQUEST_CAMERA_CODE)
-//             }catch (e : ActivityNotFoundException){
-//                 Toast.makeText(this,"Error"+e.localizedMessage,Toast.LENGTH_LONG).show()
-//             }
-//
-//         }
 
          val bottomNavigationView:NavigationBarView  = binding.bottomNavigationView
          bottomNavigationView.isItemActiveIndicatorEnabled
          bottomNavigationView.setOnItemSelectedListener{
 
              when (it.itemId) {
-                 R.id.home -> replaceFragments(HomeFragment())
+                 R.id.home ->{
+                     replaceFragments(HomeFragment())
+//                     binding.btnChat.visibility = View.VISIBLE
+                 }
+
 
                  R.id.feed -> {
-                     val intent = Intent(this, FeedActivity::class.java)
-                     startActivity(intent)
-                     true // Return true to indicate that the item click is handled
+//                     val intent = Intent(this, FeedActivity::class.java)
+//                     startActivity(intent)
+//                     true // Return true to indicate that the item click is handled
+
+                     replaceFragments(Feed2Fragment())
+//                     binding.btnChat.visibility = View.GONE
                  }
                  // Handle other menu items if needed
 
-                 R.id.profile -> {
-                     replaceFragments(ProfileFragment())
+                 R.id.More -> {
+                     replaceFragments(MoreFragment())
+//                     binding.btnChat.visibility = View.VISIBLE
 //                     startActivity(Intent(this, ProfileActivity::class.java))
 //                     overridePendingTransition(R.anim.bottomnav_animation_slidein,
 //                         R.anim.bottomnav_animation_slideout)
@@ -201,20 +130,41 @@ import android.content.Intent
              true
          }
 
-//         binding.btnChat.setOnClickListener {
-//             startActivity(Intent(this,ChatMainActivity::class.java))
-////             Toast.makeText(this,"kaam chaalu hai .. sabar karo hahhahhahha",Toast.LENGTH_SHORT).show()
-//         }
-//
-////         openGallery.setOnClickListener {
-////             contract.launch("image/*")
-////         }
 
-//         sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
-
-//         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
 
      }
+
+     private fun replaceFragments(fragment: Fragment){
+         val fragmentManager = supportFragmentManager
+         val fragmentTransaction = fragmentManager.beginTransaction()
+         fragmentTransaction.replace(R.id.frameLayout,fragment)
+//         fragmentTransaction.addToBackStack("back")
+         fragmentTransaction.commit()
+     }
+
+
+
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //     private fun uploadImage() {
 //
@@ -270,104 +220,6 @@ import android.content.Intent
 //                 }
 //             }
 //
-//     }
-//
-//
-//     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//         if (requestCode == REQUEST_CAMERA_CODE && resultCode == RESULT_OK){
-//             val imagemap = data?.extras?.get("data") as Bitmap
-//             imgView.setImageBitmap(imagemap)
-//
-//         }
-//         else{
-//             super.onActivityResult(requestCode, resultCode, data)
-//
-//         }
-//
-//     }
-
-//     private fun selectImage() {
-//         val intent = Intent()
-//         intent.setType("image/*")
-//         intent.setAction(Intent.ACTION_GET_CONTENT)
-//         startActivityForResult(intent,100)
-//     }
-//
-//     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//         super.onActivityResult(requestCode, resultCode, data)
-//         if(resultCode == 100 && data != null){
-//
-//             imageUri = data.data!!
-//             binding.capturedImage.setImageURI(imageUri)
-//
-//         }
-//     }
-
-//     @Deprecated("Deprecated in Java")
-//     override fun onBackPressed() {
-//         super.onBackPressed()
-//         finish()
-//
-//     }
-
-//     override fun onStop() {
-//         super.onStop()
-//         finish()
-//     }
-
-//     fun showCustomDialogBox(){
-//         val dialog = Dialog(this)
-//         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//         dialog.setCancelable(false)
-//         dialog.setContentView(R.layout.layout_upload_cardview)
-//         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//         val image : ImageView = dialog.findViewById(R.id.showSelectedImg)
-//         val uploadbtn : Button = dialog.findViewById(R.id.btn_upload)
-//         val cancelbtn: Button = dialog.findViewById(R.id.btn_cancel)
-////        image.setImageURI(photo)
-//         uploadbtn.setOnClickListener {
-//             uploadprofImg()
-//         }
-//         cancelbtn.setOnClickListener {
-//             dialog.dismiss()
-//         }
-//         dialog.show()
-//
-//     }
-
-//     private fun uploadprofImg() {
-//         
-//     }
-     private fun replaceFragments(fragment: Fragment){
-         val fragmentManager = supportFragmentManager
-         val fragmentTransaction = fragmentManager.beginTransaction()
-         fragmentTransaction.replace(R.id.frameLayout,fragment)
-//         fragmentTransaction.addToBackStack("back")
-         fragmentTransaction.commit()
-     }
-
-
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
 //            when(it.itemId){

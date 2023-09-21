@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SecondActivity"
+    android:background="@color/bgcolor">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_lang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" SELECT YOUR LANGUAGE  / भाषा चुने  "
+            android:textSize="22sp"
+            android:maxLines="2"
+            android:textStyle="bold"/>
+
+        <RadioGroup
+            android:layout_below="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/lang_eng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:textSize="22sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30sp"
+                android:padding="20dp"/>
+
+            <RadioButton
+                android:id="@+id/lang_hindi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="हिंदी"
+                android:textSize="22sp"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="30dp"
+                android:padding="20dp"/>
+
+        </RadioGroup>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_below="@+id/cv_lang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/next"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

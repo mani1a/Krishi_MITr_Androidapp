@@ -6,6 +6,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
+import android.graphics.BlendMode
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -32,8 +33,10 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.activity.LoginActivity
 import com.manila.fasaldoctor.databinding.FragmentProfileBinding
 import com.manila.fasaldoctor.model.User
+import com.manila.fasaldoctor.utils.DialogImageOpen
 import com.manila.fasaldoctor.utils.Layers
 import java.io.File
+import kotlin.properties.Delegates
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,7 +72,10 @@ class ProfileFragment : Fragment() {
     lateinit var role:String
     lateinit var userId2 :String
     lateinit var fcmToken:String
-
+    lateinit var mobile : String
+    lateinit var description : String
+    lateinit var imageUrl : String
+    lateinit var recent : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,10 +110,11 @@ class ProfileFragment : Fragment() {
         val localFile = File.createTempFile("ProfileImg","jpeg")
         imageRef.getFile(localFile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            binding?.profileImg?.setImageBitmap(bitmap)
+            Glide.with(this).load(bitmap).placeholder(R.drawable.farmer).into(binding!!.profileImg)
+//            binding?.profileImg?.setImageBitmap(bitmap)
         }.addOnFailureListener {
 //            Toast.makeText(context,"Some Error Occureed",Toast.LENGTH_SHORT).show()
-            Toast.makeText(context,"Profile picture missing",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context,"Profile picture missing",Toast.LENGTH_SHORT).show()
         }
 
         if (userId != null) {
@@ -122,6 +129,10 @@ class ProfileFragment : Fragment() {
                 email = it.child("email").value.toString()
                 role = it.child("role").value.toString()
                 fcmToken = it.child("fcmtoken").value.toString()
+                description = it.child("description").value.toString()
+                mobile = it.child("mobile").value.toString()
+                imageUrl = it.child("imageUrl").value.toString()
+                recent = it.child("recent").value.toString()
 
                 _binding?.profileUserName?.text = userName
                 _binding?.profileEmail?.text =  email
@@ -150,10 +161,14 @@ class ProfileFragment : Fragment() {
 
         binding?.uploadprofileimg?.setOnClickListener {
 //            imageContract.launch("image/*")
+
             val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             imagePicker.launch(intent)
 
+        }
 
+        binding?.profileImg?.setOnClickListener {
+            DialogImageOpen.showDialogBox(requireContext(),imageUri.toString())
 
         }
 
@@ -161,9 +176,9 @@ class ProfileFragment : Fragment() {
             firebaseAuth.signOut()
             Toast.makeText(context,"Logged Out", Toast.LENGTH_SHORT).show()
             startActivity(Intent(context, LoginActivity::class.java))
+
 //            finish()
 //            var sharedPreferences: SharedPreferences? = null
-
 //            sharedPreferences.edit().putBoolean("isLoggedIn",false).apply()
         }
 
@@ -189,6 +204,9 @@ class ProfileFragment : Fragment() {
 
 
 
+
+
+
         return binding?.root
 
 
@@ -197,7 +215,7 @@ class ProfileFragment : Fragment() {
     private fun uploadPImg(){
 
 
-        Layers.showProgressBar(requireContext())
+        Layers.showProgressBar(requireContext(),"Uploading.")
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 //        imageUri = User.imageURl as Uri
@@ -213,7 +231,7 @@ class ProfileFragment : Fragment() {
 //                    val uploadPic =  mapOf("imageUrl" to it.toString())
                     val uploadPic =  it.toString()
 
-                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",uploadPic)
+                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",mobile,uploadPic,recent)
                     
                     
                     // if doesnot work change its value to save picture format

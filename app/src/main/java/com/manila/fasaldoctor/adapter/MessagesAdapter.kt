@@ -1,24 +1,38 @@
 package com.manila.fasaldoctor.adapter
 
 import android.content.Context
+import android.media.MediaPlayer
+import android.net.Uri
+import android.opengl.Visibility
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.model.Messages
+import com.manila.fasaldoctor.utils.DialogImageOpen
+import com.squareup.picasso.Picasso
 
 class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val Item_receive = 1;
     val Item_send = 2;
-    val Img_receive = 3;
-    val Img_send = 4;
+    var mediaPlayer : MediaPlayer? = null
+    var audioPath : String? = null
+    lateinit var currentMsg : Messages
+    var state : Boolean = false
 
 
 
@@ -28,7 +42,7 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
             // it will inflate and bind with receiver msg
 
             val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_receive_msg,parent,false)
-            val view2 = LayoutInflater.from(parent.context).inflate(R.layout.layout_receive_img,parent,false)
+//            val view2 = LayoutInflater.from(parent.context).inflate(R.layout.layout_receive_img,parent,false)
 
 //            return ReceiveMsgViewholder(view)
             return ReceiveMsgViewholder(view)
@@ -39,7 +53,7 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
             // it will inflate and bind with sender msg
 
             val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_send_msg,parent,false)
-            val view2 = LayoutInflater.from(parent.context).inflate(R.layout.layout_send_img,parent,false)
+//            val view2 = LayoutInflater.from(parent.context).inflate(R.layout.layout_send_img,parent,false)
 
             return SentMsgViewholder(view)
 
@@ -52,47 +66,134 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-            val currentMsg = messagesList[position]
+         currentMsg = messagesList[position]
+
+
 
         if(holder.javaClass == SentMsgViewholder::class.java){
             //for sending msgs
+
             val viewholder = holder as SentMsgViewholder
+            holder.setTime.text = currentMsg.time.toString()
+
             holder.sendmsg.text = currentMsg.msg
-            Glide.with(context).load(currentMsg.image).into(holder.imgsend)
 
+
+            if (currentMsg.msg.equals("photo")){
+
+                holder.sendmsg.visibility = View.GONE
+                holder.imgsend.visibility = View.VISIBLE
+                holder.txtLayout.visibility = View.GONE
+                Glide.with(context).load(currentMsg.image).placeholder(R.drawable.farmer).into(holder.imgsend)
+                holder.imgsend.setOnClickListener {
+                    currentMsg.image?.let { it1 -> DialogImageOpen.showDialogBox(context, it1) }
+                }
+
+
+            }
+
+
+            if (currentMsg.msg.equals("audio")){
+
+                val audioPath = currentMsg.audio
+
+                holder.sendmsg.visibility = View.GONE
+                holder.imgsend.visibility = View.GONE
+                holder.txtLayout.visibility = View.GONE
+                holder.audioLayout.visibility = View.VISIBLE
+                holder.btnPlay.visibility = View.VISIBLE
+
+                holder.btnPlay.setOnClickListener {
+
+                    mediaPlayer = MediaPlayer()
+                    mediaPlayer?.setDataSource(audioPath)
+                    mediaPlayer?.prepare()
+                    mediaPlayer?.start()
+                    mediaPlayer?.setOnCompletionListener {
+                        holder.btnPlay.visibility = View.VISIBLE
+                        holder.btnPause.visibility = View.GONE
+                    }
+
+//                    Toast.makeText(context,"play",Toast.LENGTH_SHORT).show()
+
+                    holder.btnPause.visibility = View.VISIBLE
+
+                }
+
+                holder.btnPause.setOnClickListener {
+//                    Toast.makeText(context,"pause",Toast.LENGTH_SHORT).show()
+                    holder.btnPlay.visibility = View.VISIBLE
+                    holder.btnPause.visibility = View.GONE
+                    mediaPlayer?.stop()
+                    mediaPlayer?.release()
+
+                }
+
+
+            }
         }
 
-        if (holder.javaClass == ReceiveMsgViewholder::class.java){
+        else {
+
             val viewholder = holder as ReceiveMsgViewholder
+            holder.setTime.text = currentMsg.time.toString()
+
             holder.receivemsg.text = currentMsg.msg
-            Glide.with(context).load(currentMsg.image).into(holder.imgreceive)
+
+
+            if (currentMsg.msg.equals("photo")){
+                holder.imgreceive.visibility = View.VISIBLE
+                holder.receivemsg.visibility = View.GONE
+                holder.txtLayout.visibility = View.GONE
+                Glide.with(context).load(currentMsg.image).into(holder.imgreceive)
+                holder.imgreceive.setOnClickListener {
+                    DialogImageOpen.showDialogBox(context,currentMsg.image!!)
+                }
+            }
+
+
+            if (currentMsg.msg.equals("audio")){
+
+                val audioPath = currentMsg.audio
+
+                holder.receivemsg.visibility = View.GONE
+                holder.imgreceive.visibility = View.GONE
+                holder.txtLayout.visibility = View.GONE
+
+                holder.audioLayout.visibility = View.VISIBLE
+                holder.btnPlay.visibility = View.VISIBLE
+
+                holder.btnPlay.setOnClickListener {
+
+
+                    mediaPlayer = MediaPlayer()
+                    mediaPlayer?.setDataSource(audioPath)
+                    mediaPlayer?.prepare()
+                    mediaPlayer?.start()
+                    mediaPlayer?.setOnCompletionListener {
+                        holder.btnPlay.visibility = View.VISIBLE
+                        holder.btnPause.visibility = View.GONE
+                    }
+
+//                    Toast.makeText(context,"play",Toast.LENGTH_SHORT).show()
+                    holder.btnPause.visibility = View.VISIBLE
+
+                }
+
+                holder.btnPause.setOnClickListener {
+//                    Toast.makeText(context,"pause",Toast.LENGTH_SHORT).show()
+
+                    holder.btnPlay.visibility = View.VISIBLE
+                    holder.btnPause.visibility = View.GONE
+
+                    mediaPlayer?.stop()
+                    mediaPlayer?.release()
+
+                }
+
+            }
 
         }
-
-        if (holder.javaClass == SentImgViewholder::class.java){
-            val viewholder = holder as SentImgViewholder
-
-            Glide.with(context).load(currentMsg.image).into(holder.imgsend)
-
-
-        }
-
-        if (holder.javaClass == ReceiveImgViewholder::class.java){
-            val viewholder = holder as ReceiveImgViewholder
-            Glide.with(context).load(currentMsg.image).into(holder.imgreceive)
-
-        }
-
-
-//        else{
-//            // for receiving msgs
-//
-//            val viewholder = holder as ReceiveMsgViewholder
-//            holder.receivemsg.text = currentMsg.msg
-//
-////            Glide.with(context).load(currentMsg.image).into(holder.imgreceive)
-//
-//        }
 
     }
 
@@ -101,56 +202,68 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
         val currentMsg = messagesList[position]
 
         if (FirebaseAuth.getInstance().currentUser?.uid.equals(currentMsg.senderID)){
+
             return Item_send
 
         }
         else{
+
             return Item_receive
+
         }
 
         return super.getItemViewType(position)
+
     }
 
 
     override fun getItemCount(): Int {
+
         return messagesList.size
+
     }
 
     class SentMsgViewholder(itemView : View ): RecyclerView.ViewHolder(itemView){
+
+        val txtLayout : RelativeLayout = itemView.findViewById(R.id.txtLayout)
 
         val sendmsg : TextView = itemView.findViewById(R.id.txtsendmsg)
 
         val imgsend : ImageView = itemView.findViewById(R.id.imgsendmsg)
 
+        val setTime : TextView = itemView.findViewById(R.id.setTime)
+
+        val audioLayout : LinearLayout = itemView.findViewById(R.id.sendaudiolayout)
+
+        val btnPlay : ImageButton = itemView.findViewById(R.id.play)
+
+        val btnPause : ImageButton = itemView.findViewById(R.id.pause)
+
+        val txt : TextView = itemView.findViewById(R.id.audiomsg)
+
+
     }
 
     class ReceiveMsgViewholder(itemView : View ): RecyclerView.ViewHolder(itemView){
+
+        val txtLayout : RelativeLayout = itemView.findViewById(R.id.txtLayout)
 
         val receivemsg : TextView = itemView.findViewById(R.id.txtreceivemsg)
 
         val imgreceive : ImageView = itemView.findViewById(R.id.imgreceivemsg)
 
-    }
-    class SentImgViewholder(itemView : View ): RecyclerView.ViewHolder(itemView){
+        val setTime : TextView = itemView.findViewById(R.id.setTime)
 
-//        val sendmsg : TextView = itemView.findViewById(R.id.txtsendmsg)
+        val audioLayout : LinearLayout = itemView.findViewById(R.id.receiveaudiolayout)
 
-        val imgsend : ImageView = itemView.findViewById(R.id.imgsendmsg)
+        val btnPlay : ImageButton = itemView.findViewById(R.id.play)
 
-    }
+        val btnPause : ImageButton = itemView.findViewById(R.id.pause)
 
-    class ReceiveImgViewholder(itemView : View ): RecyclerView.ViewHolder(itemView){
-
-//        val receivemsg : TextView = itemView.findViewById(R.id.txtreceivemsg)
-
-        val imgreceive : ImageView = itemView.findViewById(R.id.imgreceivemsg)
+        val txt : TextView = itemView.findViewById(R.id.audiomsg)
 
     }
 
-    companion object{
-        private const val VIEW_TYPE_TEXT = 1;
-        private const val VIEW_TYPE_IMAGE = 2
 
-    }
 
 }

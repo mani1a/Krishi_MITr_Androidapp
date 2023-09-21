@@ -20,19 +20,15 @@ import com.manila.fasaldoctor.model.User
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.File
 
-class UsersAdapter(private val context: Context, private val userList: ArrayList<User>):
+class UsersAdapter (private val context: Context, private val userList: ArrayList<User>):
     RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     lateinit var firebaseAuth : FirebaseAuth
     lateinit var firebaseStorage: FirebaseStorage
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_users,parent,false)
-
-
 
         return ViewHolder(view)
 
@@ -45,9 +41,13 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = userList[position]
         holder.userName.text = user.name
-        holder.email.text = user.email
+        holder.email.text = "Crop : - ${user.crop1} , ${user.crop2} , ${user.crop3} "
         holder.role.text = user.role
-        Glide.with(context).load(user.imageUrl).into(holder.pic)
+        if (user.role == "farmer"){
+        Glide.with(context).load(user.imageUrl).placeholder(R.drawable.farmer).into(holder.pic)
+        }else{
+        Glide.with(context).load(user.imageUrl).placeholder(R.drawable.expert).into(holder.pic)
+        }
 
 
 
@@ -62,7 +62,6 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
             context.startActivity(intent)
 
 
-//            val fragmentManager =
         }
 //        holder.pic.setImageBitmap(user.imageUrl)
 
@@ -94,6 +93,7 @@ class UsersAdapter(private val context: Context, private val userList: ArrayList
         val role : TextView = view.findViewById(R.id.id_txt_role)
         val pic : CircleImageView = view.findViewById(R.id.id_img)
         val openChat : RelativeLayout = view.findViewById(R.id.btn_open_chat)
+
     }
 
 

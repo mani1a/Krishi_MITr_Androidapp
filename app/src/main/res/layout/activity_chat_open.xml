@@ -8,58 +8,16 @@
     tools:context=".activity.ChatOpenActivity"
     android:background="@color/app_bg">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/inbox_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/green">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/green">
-
-            <ImageButton
-                android:id="@+id/inbox_btn_back"
-                android:layout_width="40dp"
-                android:layout_height="37dp"
-                android:layout_centerVertical="true"
-                android:background="@color/green"
-                android:src="@drawable/vector_back"
-                app:tint="#000C01" />
-
-            <TextView
-                android:id="@+id/inbox_txt_name"
-                android:layout_marginTop="4dp"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/inbox_txt_uid"
-                android:layout_centerInParent="true"
-                android:layout_below="@+id/inbox_txt_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="uid"
-                android:textSize="14sp"/>
-
-        </RelativeLayout>
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
-
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <ProgressBar
+            android:id="@+id/progsbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_inbox"
@@ -69,58 +27,179 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="66dp"
+            android:layout_marginBottom="100dp"
             android:overScrollMode="always"
-            android:padding="5dp" />
-
-
+            android:padding="5dp"
+            />
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/check"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sendtextmsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/bottom_nav_bg">
 
     <LinearLayout
         android:layout_margin="10dp"
         android:id="@+id/linear_layout"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="100"
         android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dp"
+
+        <EditText
+            android:id="@+id/msg_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:background="@drawable/bg_reg_layout"
+            android:layout_gravity="center"
+            android:backgroundTint="#F4F4F4"
+            android:hint="Type your Message"
+            android:padding="12dp"/>
+
+
+        <ImageButton
+            android:id="@+id/btn_record_audio"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_weight="80"
-            android:padding="0dp"
-            app:placeholderText="Type Your Message">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/msg_box"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_weight="1"
+            android:backgroundTint="#4CAF50"
+            android:src="@drawable/vector_mic" />
 
         <ImageButton
             android:id="@+id/btn_gallery"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_weight="10"
+            android:layout_weight="1"
             android:backgroundTint="#4CAF50"
-            android:src="@drawable/ic_gallery" />
+            android:src="@drawable/vector_photolibrary" />
 
         <ImageButton
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_weight="10"
+            android:layout_weight="13"
             android:backgroundTint="#4CAF50"
             android:src="@drawable/vector_send" />
 
-    </LinearLayout>
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sendaudiomsg"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/bottom_nav_bg"
+        android:visibility="gone">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/linear_layout_send_audio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/img_audio_start"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#4CAF50"
+                    android:src="@drawable/vector_mic"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/img_audio_stop"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#4CAF50"
+                    android:src="@drawable/vector_mic_off"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"/>
+
+
+                <TextView
+                    android:id="@+id/txtview_recording"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Click Icon To Record"
+                    android:textSize="19sp"
+                    android:layout_marginStart="55dp"
+                    android:layout_centerVertical="true"/>
+
+
+                <ImageButton
+                    android:id="@+id/btn_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vector_play"
+                    android:layout_toLeftOf="@+id/btn_send_audio"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"/>
+
+
+                <ImageButton
+                    android:id="@+id/btn_pause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vector_pause"
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/btn_send_audio"/>
+
+
+                <ImageButton
+                    android:id="@+id/btn_send_audio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#9CE582"
+                    android:src="@drawable/vector_send"
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/btn_cancel"/>
+
+                <ImageButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:src="@drawable/vector_cancel"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="#FF9CE582"/>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
 
@@ -133,3 +212,19 @@
 <!--        android:layout_marginBottom="80dp"-->
 <!--        android:layout_marginEnd="20dp"-->
 <!--        android:src="@drawable/vector_voice"/>-->
+
+    <!--        <com.google.android.material.textfield.TextInputLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_weight="85"-->
+    <!--            android:padding="0dp"-->
+    <!--            app:placeholderText="Type Your Message">-->
+
+    <!--            <com.google.android.material.textfield.TextInputEditText-->
+    <!--                android:id="@+id/msg_box"-->
+    <!--                android:background="#E4E1E1"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                />-->
+    <!--        </com.google.android.material.textfield.TextInputLayout>-->
+

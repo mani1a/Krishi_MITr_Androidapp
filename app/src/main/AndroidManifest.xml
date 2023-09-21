@@ -11,6 +11,7 @@
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -23,6 +24,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.SecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitynotinuse.RecentChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.FeedPostActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.CommentActivity"
             android:exported="false" />

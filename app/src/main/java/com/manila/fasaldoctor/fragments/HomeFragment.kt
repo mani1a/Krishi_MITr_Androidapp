@@ -13,6 +13,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.activity.ChatMainActivity
@@ -39,6 +42,8 @@ class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding?= null
     private val binding get() = _binding
     lateinit var firebaseStorageRefrence : FirebaseStorage
+    lateinit var firebaseDatabase: DatabaseReference
+    var role : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +81,37 @@ class HomeFragment : Fragment() {
 //            contract.launch("image/*")
 //
 //        }
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        firebaseDatabase = FirebaseDatabase.getInstance().reference
+        if (userId != null) {
+            firebaseDatabase.child("Users").child(userId).get().addOnSuccessListener {
+
+                role = it.child("role").value.toString()
+
+                if (role == "expert"){
+                    binding?.cameraActivityLayout?.visibility = View.GONE
+                    binding?.chatLayout?.visibility = View.VISIBLE
+                    binding?.progbar?.visibility = View.GONE
+                    binding?.txtChat?.text = "Chat with Farmers"
+                    binding?.btnChatwithExpert?.text = "Chat with Farmers"
+                    binding?.weathercardlayout?.visibility = View.VISIBLE
+                }else{
+                    binding?.cameraActivityLayout?.visibility = View.VISIBLE
+                    binding?.chatLayout?.visibility = View.VISIBLE
+                    binding?.progbar?.visibility = View.GONE
+                    binding?.weathercardlayout?.visibility = View.VISIBLE
+
+
+                }
+
+
+            }
+        }
+
+
+
 
         binding?.btnhealcrop?.setOnClickListener {
             startActivity(Intent(context,MLActivity::class.java))
