@@ -8,8 +8,11 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityFirstBinding
@@ -25,62 +28,64 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
-        grantPermission()
         setContentView(binding.root)
-
         supportActionBar?.hide()
-
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Are intezar karo thora load ho raha h -- Nhi ho raha to ek baar click kr lo")
-
+        grantPermission()
 
         binding.btnGetStarted.setOnClickListener {
-            progressDialog.show()
-            startActivity(Intent(this,LoginActivity::class.java))
-            if (progressDialog.isShowing)progressDialog.dismiss()
-            finish()
+                    Toast.makeText(this, "Get Started", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, SecondActivity::class.java))
+                    finish()
         }
+
+        binding.btnGetStarted.visibility = View.GONE
+
+        val delay: Long = 1000
+
+        Handler().postDelayed(
+            {
+                binding.btnGetStarted.visibility = View.VISIBLE
+                binding.progressbar.visibility = View.GONE
+//                startActivity(Intent(this, SecondActivity::class.java))
+            }, delay
+        )
+
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
-//
+
         if (isLoggedIn){
             startActivity(Intent(this,LoginActivity::class.java))
         }
-//        else{
-////            Toast.makeText(this,"Something Error Occurred",Toast.LENGTH_SHORT).show()
-//
-//        }
 
-
-//        val user = firebaseAuth.currentUser
-//
-//        if ( user!= null ){
-//            startActivity(Intent(this,HomeActivity::class.java))
-//        }
-
-        }
-
-
-
+    }
         // PERMISSION MANAGER/HANDLER
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)
         fun grantPermission(){
-            val permissionList = mutableListOf<String>()
 
-            if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.CAMERA)
-            }
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-            if (checkSelfPermission(android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
-                permissionList.add(android.Manifest.permission.READ_MEDIA_IMAGES)
-            }
+            val permissionList = mutableListOf<String>()
 
             if (checkSelfPermission(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED){
                 permissionList.add(android.Manifest.permission.ACCESS_NOTIFICATION_POLICY)
             }
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
+//            if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.CAMERA)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.RECORD_AUDIO)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.READ_MEDIA_IMAGES)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//            }
+//            if (checkSelfPermission(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+//                permissionList.add(android.Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+//            }
 
             if (permissionList.size > 0){
                 requestPermissions(permissionList.toTypedArray(),101)
@@ -100,7 +105,7 @@ class FirstActivity : AppCompatActivity() {
                 if (it != PackageManager.PERMISSION_GRANTED) grantPermission()
             }
         }
-
+//
     override fun onStop() {
         super.onStop()
         finish()

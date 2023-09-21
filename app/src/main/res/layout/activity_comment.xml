@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Post Comment"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/editTextComment"
         tools:layout_editor_absoluteX="134dp" />
 
@@ -39,5 +40,22 @@
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_marginTop="16dp"
     />
+=======
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextComment" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="415dp"
+        android:layout_height="422dp"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPostComment"
+        app:layout_constraintVertical_bias="1.0" />
+>>>>>>> 3dcd054d7dc82565665825ab0afb60e2af49f0d2
 
 </androidx.constraintlayout.widget.ConstraintLayout>

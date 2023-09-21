@@ -6,8 +6,11 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +24,13 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
+import com.manila.fasaldoctor.adapter.ChatViewPagerAdapter
 import com.manila.fasaldoctor.adapter.UsersAdapter
 import com.manila.fasaldoctor.databinding.ActivityChatMainBinding
+import com.manila.fasaldoctor.fragments.ChatFragment
+import com.manila.fasaldoctor.fragments.HomeFragment
+import com.manila.fasaldoctor.fragments.ProfileFragment
+import com.manila.fasaldoctor.fragments.RecentChatsFragment
 import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.utils.Layers
 import java.io.File
@@ -38,200 +46,93 @@ class ChatMainActivity : AppCompatActivity() {
     lateinit var fbDatabase : DatabaseReference
     lateinit var firebaseAuth: FirebaseAuth
     lateinit var firebaseStorage: FirebaseStorage
+    lateinit var currentRole : String
+    lateinit var role : String
 
 
-//    companion object{
-//        lateinit var userList : ArrayList<User>
-//
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityChatMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide()
+        supportActionBar?.title = "CHAT"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        firebaseAuth = FirebaseAuth.getInstance()
+
+        val fragmentArrayList = ArrayList<Fragment>()
+        fragmentArrayList.add(ChatFragment())
+        fragmentArrayList.add(RecentChatsFragment())
+        val adapter = ChatViewPagerAdapter(this,supportFragmentManager,fragmentArrayList)
+        binding.viewPager.adapter = adapter
+        binding.tab.setupWithViewPager(binding.viewPager)
+
+//        firebaseAuth = FirebaseAuth.getInstance()
         fbDatabase = FirebaseDatabase.getInstance().getReference()
-//        fbStorage = FirebaseStorage.getInstance()
+        fbDatabase.child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid).child("role")
+            .get().addOnSuccessListener {
+                role = it.value.toString()
 
-
-        //recycler view codes
-
-        userList = ArrayList()
-        userrecyclerAdapter = UsersAdapter(this,userList)
-
-        userrecyclerView = findViewById(R.id.user_recycler)
-        userrecyclerView.layoutManager = LinearLayoutManager(this)
-        userrecyclerView.adapter = userrecyclerAdapter
-
-        // users list codes
-
-        Layers.showProgressBar(this)
-        fbDatabase.child("Users").addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                userList.clear()
-
-                for (postSnapshot in snapshot.children){
-
-                    val currentUser = postSnapshot.getValue(User::class.java)
-                    val farmer = "farmer";
-                    val expert = "expert";
-                    var currentRole : String? = null
-
-//                    fbDatabase.child("Users").child(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {
-//                        currentRole = it.child("role").toString()
-//                    }
-
-                    if (firebaseAuth.currentUser?.uid != currentUser?.uid){
-
-//                        if (currentUser?.role != currentRole){
-                        userList.add(currentUser!!)
-
-//                        }
-
-                    }
-
-                    Layers.hideProgressBar()
-
-
-
-                }
-                userrecyclerAdapter.notifyDataSetChanged()
-
-
-
+                if(role == "farmer") supportActionBar?.title = "Chat with Expert"
+                else supportActionBar?.title = "Chat with Farmer"
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext,"Some error Occurred , Please Restrat",Toast.LENGTH_LONG).show()
 
-            }
-
-        })
 //
-//        //Code to show Profile Images
-//        val userId = firebaseAuth.currentUser?.uid
-//        val storageReference : StorageReference = firebaseStorage.reference
-//        val imageRef = storageReference.child("Users_Profile_Images/$userId")
-//        val localFile = File.createTempFile("ProfileImg","jpeg")
-//        imageRef.getFile(localFile).addOnSuccessListener {
-//            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-////            binding?.profileImg?.setImageBitmap(bitmap)
-//        }.addOnFailureListener {
-//            Toast.makeText(this,"Some Error Occureed",Toast.LENGTH_SHORT).show()
-//        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        binding.btnidback.setOnClickListener {
-            startActivity(Intent(this,HomeActivity::class.java))
-        }
-
-
-
-
-
-
-    }
-//        getuserList()
-//        initializeRecycler()
-
-
-
-//        supportActionBar?.setTitle("Chat")
-//        supportActionBar?.show()
-
-//        setActionBar(toolbar)
-//        supportActionBar?.title = "Chat With Experts"
-
-//        userrecyclerView.layoutManager = LinearLayoutManager
-
-//        var userList = ArrayList<User>()
-//        userList.add(User("Manila","manila@gmail.com","Farmer","badBoy"))
-
-//    private fun initializeRecycler(){
+//
+//        //recycler view codes
+//        userList = ArrayList()
+//        userrecyclerAdapter = UsersAdapter(this,userList)
 //        userrecyclerView = findViewById(R.id.user_recycler)
-//        layoutManager = GridLayoutManager(this,3)
-//        userList = userList
-//        userrecyclerAdapter= UsersAdapter(this, userList)
+//        userrecyclerView.layoutManager = LinearLayoutManager(this)
 //        userrecyclerView.adapter = userrecyclerAdapter
-//        userrecyclerView.layoutManager = layoutManager
 //
-//    }
-
-
-
-
-//    private fun getuserList(){
-////        var userList = ArrayList<User>()
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////        userList.add(User("Manila", "manila@gmail.com", "Farmer", "badBoy"))
-////
-////
-////        return userList
 //
-//        var firebaseUser : FirebaseUser = FirebaseAuth.getInstance().currentUser!!
-//        var fbdatabaseref : DatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
-//
-//        fbdatabaseref.addValueEventListener(object : ValueEventListener{
+//        // users list ---- codes
+//        fbDatabase.child("Users").addValueEventListener(object : ValueEventListener{
 //            override fun onDataChange(snapshot: DataSnapshot) {
+//
 //                userList.clear()
 //
-//                for (dataSnapShot : DataSnapshot in snapshot.children){
-//                    val user = dataSnapShot.getValue(User::class.java)
+//                val role = snapshot.child(firebaseAuth.currentUser!!.uid).child("role").value.toString()
 //
-//                    if (user!!.equals(firebaseUser.uid)){
-//                        userList.add(user)
+//                if (role == "farmer") supportActionBar?.title = "Chat With Experts"
+//                else supportActionBar?.title = "Chat with Farmers"
+//
+//                for (postSnapshot in snapshot.children){
+//
+//                    val currentUser = postSnapshot.getValue(User::class.java)
+//                    val farmer = "farmer";
+//                    val expert = "expert";
+//
+//                    if ((firebaseAuth.currentUser?.uid != currentUser?.uid) && (currentUser?.role != role)){
+//
+//                        userList.add(currentUser!!)
+//
+//                        binding.userRecycler.visibility = View.VISIBLE
+//                        binding.progbarr.visibility = View.GONE
 //
 //                    }
 //
 //                }
-////                userrecyclerAdapter= UsersAdapter(applicationContext , userList)
-//
-//
-//
+//                userrecyclerAdapter.notifyDataSetChanged()
 //
 //            }
 //
 //            override fun onCancelled(error: DatabaseError) {
-//                Toast.makeText(applicationContext,error.message,Toast.LENGTH_SHORT).show()
 //
+//                Toast.makeText(applicationContext,"Some error Occurred , Please Restart the App",Toast.LENGTH_LONG).show()
 //
 //            }
+//
 //        })
-////        return getuserList()
-//
-////        initializeRecycler()
-//
-//
-//
-//    }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        startActivity(Intent(this,HomeActivity::class.java))
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onStop() {
         finish()

@@ -5,42 +5,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FirstActivity">
+    tools:context=".activity.FirstActivity"
+    android:background="@color/bgcolor">
+
 
     <TextView
-        style="@style/Widget.AppCompat.TextView.SpinnerItem"
+        android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/appname_font"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:fontFamily="@font/appname_font2"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="40sp"
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Started"
-        android:fontFamily="@font/appname_font"
-        android:layout_above="@+id/btn_getStarted"
+        android:text="@string/get_started"
+        android:fontFamily="@font/appname_font2"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp"
         android:textSize="24sp"
-        android:layout_marginBottom="10dp"/>
+        />
 
-
-
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/progressbar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/btn_getStarted"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="120dp"
-        android:src="@drawable/vector_getstart"
-        app:fabSize="auto"/>
+        android:layout_marginBottom="90dp"
+        android:background="@drawable/next"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/devmsg"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"/>
+
+
 
 
 </RelativeLayout>

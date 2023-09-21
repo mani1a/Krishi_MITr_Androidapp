@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityLoginBinding
+import com.manila.fasaldoctor.utils.Layers
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -26,8 +27,6 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-//        if (progressDialog.isShowing)progressDialog.dismiss()
-
         firebaseAuth = FirebaseAuth.getInstance()
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
@@ -41,11 +40,13 @@ class LoginActivity : AppCompatActivity() {
         binding.buttonLogin.setOnClickListener {
             val email = binding.editTextTextEmailAddress.text.toString()
             val password = binding.editTextTextPassword.text.toString()
+            Layers.showProgressBar(this,"Logging In")
 
             if (email.isNotEmpty() && password.isNotEmpty()){
 
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful){
+                        Layers.hideProgressBar()
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
 
@@ -75,10 +76,5 @@ class LoginActivity : AppCompatActivity() {
         finish()
         super.onStop()
     }
-
-
-
-
-
 
 }
