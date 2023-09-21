@@ -10,5 +10,6 @@
     <color name="fabActionButton">#4CAF50</color>
     <color name="blue">#0000FF</color>
     <color name="bgcolor">#DEF6DF</color>
+    <color name="morefragmentCV">#DFE0E2</color>
 
 </resources>

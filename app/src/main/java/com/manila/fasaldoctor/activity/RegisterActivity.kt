@@ -70,9 +70,21 @@ class RegisterActivity : AppCompatActivity() {
                 binding.imgGroup.visibility = View.GONE
                 binding.imgFarmer.visibility = View.VISIBLE
                 binding.imgExpert.visibility = View.GONE
-                binding.dataLayout.visibility = View.VISIBLE
-                binding.btnNext.visibility = View.VISIBLE
+                binding.dataLayout.visibility = View.GONE
+                binding.mobileReglayout.visibility = View.VISIBLE
+                binding.btnNext.visibility = View.GONE
                 binding.rolechoosetext.text = "You are a : $role"
+
+                binding.btnRegEmail.setOnClickListener {
+                    binding.dataLayout.visibility = View.VISIBLE
+                    binding.mobileReglayout.visibility = View.GONE
+                    binding.btnNext.visibility = View.VISIBLE
+
+                }
+
+                binding.btnRegMobile.setOnClickListener {
+                    startActivity(Intent(this,OtpRegActivity::class.java))
+                }
 
             }
             if (checkedId == R.id.expert){
@@ -81,6 +93,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.imgFarmer.visibility = View.GONE
                 binding.imgExpert.visibility = View.VISIBLE
                 binding.dataLayout.visibility = View.VISIBLE
+                binding.mobileReglayout.visibility = View.GONE
                 binding.btnNext.visibility = View.VISIBLE
                 binding.rolechoosetext.text = "You are a : $role"
 
@@ -167,7 +180,6 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener { it ->
                         if (it.isSuccessful) {
                             storeData()
-
                             startActivity(intentTohome)
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()

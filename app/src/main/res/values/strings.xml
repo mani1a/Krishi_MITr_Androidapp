@@ -24,11 +24,10 @@
     <string name="location">Location</string>
     <string name="weathertoday">WeatherToday</string>
     <string name="devmsg">Made with \'❤️\'</string>
-    
-    
-    
-<!--    location selection-->
-    
+
+
+    <!--    location selection-->
+
     <string-array name="Location">
         <item>1</item>
         <item>2</item>

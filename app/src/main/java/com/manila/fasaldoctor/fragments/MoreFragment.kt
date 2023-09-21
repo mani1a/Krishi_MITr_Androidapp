@@ -124,6 +124,14 @@ class MoreFragment : Fragment() {
                 binding?.showprofileProgressBar?.visibility = View.GONE
                 binding?.profileLayout?.visibility = View.VISIBLE
 
+                if (role == "farmer"){
+                    binding?.btnVerify?.visibility = View.GONE
+                }
+                else{
+                    binding?.btnVerify?.visibility = View.VISIBLE
+
+                }
+
 
 
             }

@@ -97,11 +97,15 @@ class HomeFragment : Fragment() {
                     binding?.txtChat?.text = "Chat with Farmers"
                     binding?.btnChatwithExpert?.text = "Chat with Farmers"
                     binding?.weathercardlayout?.visibility = View.VISIBLE
+                    binding?.kisaanNewslayout?.visibility = View.VISIBLE
+                    binding?.soilTestingLayout?.visibility = View.VISIBLE
                 }else{
                     binding?.cameraActivityLayout?.visibility = View.VISIBLE
                     binding?.chatLayout?.visibility = View.VISIBLE
                     binding?.progbar?.visibility = View.GONE
                     binding?.weathercardlayout?.visibility = View.VISIBLE
+                    binding?.kisaanNewslayout?.visibility = View.VISIBLE
+                    binding?.soilTestingLayout?.visibility = View.VISIBLE
 
 
                 }

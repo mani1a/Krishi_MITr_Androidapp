@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -24,7 +25,8 @@ class MLActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
+        supportActionBar?.title = "Heal Your Crops"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val permission = arrayOf(android.Manifest.permission.CAMERA)
 
@@ -72,5 +74,10 @@ class MLActivity : AppCompatActivity() {
             super.onActivityResult(requestCode, resultCode, data)
 
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        startActivity(Intent(this,HomeActivity::class.java))
+        return super.onOptionsItemSelected(item)
     }
 }

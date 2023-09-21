@@ -42,8 +42,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_img"
-                    android:layout_width="96dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="20dp"
                     android:scaleType="centerCrop"
@@ -57,10 +57,32 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/profile_img"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#58CEE2"
+                    android:layout_marginTop="25dp"
+                    android:backgroundTint="#A9DEF9"
                     android:text="Log Out"
-                    android:textColor="@color/app_bg" />
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_verify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_logout"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#A9DEF9"
+                    android:text="Get Certified"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    app:icon="@drawable/quality"
+                    app:iconSize="30dp"
+                    app:iconTint="@color/black"
+                    app:iconPadding="20dp"
+                    app:iconGravity="textStart"
+                    android:visibility="gone"/>
+
+
+
+
 
                 <TextView
                     android:id="@+id/profile_user_name"
@@ -74,7 +96,8 @@
                     android:text="UserName"
                     android:textAlignment="textEnd"
                     android:textColor="@color/actioncolor"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/profile_email"
@@ -86,26 +109,24 @@
                     android:layout_toRightOf="@+id/profile_img"
                     android:text="Location"
                     android:textColor="@color/actioncolor"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/profile_role"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/profile_email"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/profile_img"
+                    android:layout_below="@+id/profile_img"
+                    android:gravity="center"
                     android:text="Role"
                     android:textColor="@color/actioncolor"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
 
 
                 <TextView
                     android:id="@+id/profile_Crops"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/profile_role"
+                    android:layout_below="@+id/profile_email"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/profile_img"
@@ -118,16 +139,29 @@
 
         </androidx.cardview.widget.CardView>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/profiledatalayoutCV">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+
+
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/NewsCV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profiledatalayoutCV"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:backgroundTint="#f8f9fa"
+            android:backgroundTint="@color/morefragmentCV"
             app:cardCornerRadius="20dp">
 
             <RelativeLayout
@@ -142,7 +176,7 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="start"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/newspaper" />
+                    android:src="@drawable/news" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,7 +192,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/govCV"
+            android:id="@+id/ExpertArticleCV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/NewsCV"
@@ -166,7 +200,46 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:backgroundTint="#f8f9fa"
+            android:backgroundTint="@color/morefragmentCV"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/imExpertArticle"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/expertarticle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/imExpertArticle"
+                    android:padding="20dp"
+                    android:text="Expert Article"
+                    android:textSize="22sp" />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/govCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ExpertArticleCV"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/morefragmentCV"
             app:cardCornerRadius="20dp">
 
             <RelativeLayout
@@ -205,7 +278,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:backgroundTint="#f8f9fa"
+            android:backgroundTint="@color/morefragmentCV"
             app:cardCornerRadius="20dp">
 
             <RelativeLayout
@@ -235,6 +308,10 @@
 
 
         </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </ScrollView>
 
 
     </RelativeLayout>
