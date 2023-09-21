@@ -13,7 +13,7 @@ import com.manila.fasaldoctor.adapter.CommentAdapter
 import com.manila.fasaldoctor.model.Comment
 import com.manila.fasaldoctor.model.UserPost
 import com.google.firebase.auth.FirebaseAuth
-
+import java.util.UUID
 
 class CommentActivity : AppCompatActivity() {
 
@@ -29,15 +29,17 @@ class CommentActivity : AppCompatActivity() {
         val editTextComment = findViewById<EditText>(R.id.editTextComment)
         val buttonPostComment = findViewById<Button>(R.id.buttonPostComment)
 
+        val postId = intent.getStringExtra("postId").toString()
+
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         commentList = arrayListOf()
-        commentAdapter = CommentAdapter(commentList)
+        commentAdapter = CommentAdapter(commentList, postId)
 
         recyclerView.adapter = commentAdapter
 
-        val postId = intent.getStringExtra("postId")
+
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserEmail = currentUser?.email
 
@@ -74,13 +76,16 @@ class CommentActivity : AppCompatActivity() {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 val userPost = dataSnapshot.getValue(UserPost::class.java)
-
+                                var isUpvoted = false
                                 if (userPost != null) {
+                                    val uniqueId = UUID.randomUUID().toString()
+
                                     val updatedComments = userPost.comments.toMutableList()
                                     updatedComments.add(
                                         Comment(
+                                            uniqueId,
                                             currentUserEmail.toString(),
-                                            commentText
+                                            commentText,
                                         )
                                     )
 

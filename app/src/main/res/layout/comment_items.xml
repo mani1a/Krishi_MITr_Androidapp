@@ -1,9 +1,7 @@
-
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="8dp">
 
     <!-- Display the email of the commenter -->
@@ -12,16 +10,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:background="@color/white"
-        android:textStyle="bold" />
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="8dp" />
 
     <!-- Display the comment text -->
     <TextView
         android:id="@+id/textViewCommentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginTop="4dp"
         android:text=""
-        android:textStyle="normal" />
-</LinearLayout>
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_below="@+id/textViewEmail"
+        android:layout_alignStart="@+id/textViewEmail"
+        android:layout_alignLeft="@+id/textViewEmail"
+        android:layout_marginTop="4dp" />
+
+    <!-- Upvote Button -->
+    <Button
+        android:id="@+id/buttonUpvote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upvote"
+        android:layout_below="@+id/textViewCommentText"
+        android:layout_alignStart="@+id/textViewCommentText"
+        android:layout_alignLeft="@+id/textViewCommentText"
+        android:layout_marginTop="4dp" />
+    <TextView
+        android:id="@+id/textViewUpvoteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textStyle="bold"
+        android:textSize="13dp"
+        android:layout_alignBaseline="@+id/buttonUpvote"
+        android:layout_toEndOf="@+id/buttonUpvote"
+        android:layout_toRightOf="@+id/buttonUpvote"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp" />
+</RelativeLayout>

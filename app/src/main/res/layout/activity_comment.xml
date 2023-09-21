@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.CommentActivity">
 
-    <TextView
-        android:id="@+id/textViewComment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello, here is the list of comments"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        />
-
     <EditText
         android:id="@+id/editTextComment"
         android:layout_width="match_parent"
@@ -38,15 +23,16 @@
         android:id="@+id/buttonPostComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post Comment"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        />
+        android:text="Post Comment"
+        app:layout_constraintTop_toBottomOf="@+id/editTextComment"
+        tools:layout_editor_absoluteX="134dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComment"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPostComment"
     android:background="@android:color/holo_blue_light"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
