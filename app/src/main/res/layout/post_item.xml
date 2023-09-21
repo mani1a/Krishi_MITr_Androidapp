@@ -8,15 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Post Text Goes Here"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        android:background="@color/white"/>
+        android:textSize="22sp"
+        android:textStyle="bold"        android:background="@color/white"/>
+
+    android:layout_margin="16dp"
 
     <ImageView
         android:id="@+id/imageViewPostImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="500dp"
         android:layout_below="@+id/textViewPostText"
         android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
@@ -26,8 +26,17 @@
         android:id="@+id/buttonComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comment"
+        android:text="Discussion"
         android:layout_below="@+id/imageViewPostImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"/>
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:layout_below="@+id/buttonComment"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:background="@color/white"/>

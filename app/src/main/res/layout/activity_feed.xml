@@ -3,46 +3,64 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+  <Button
+      android:id="@+id/buttonAddPost"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="16dp"
+      android:text="Add Post +"
+       />
+
   <EditText
       android:id="@+id/editTextQuestion"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:hint=" Write your question here... "
-      android:layout_alignParentTop="true"
+      android:hint="Write your question here..."
+      android:layout_below="@id/buttonAddPost"
       android:layout_marginTop="16dp"
-      android:inputType="textMultiLine" />
+      android:inputType="textMultiLine"
+      android:visibility="gone"/>
 
   <ImageView
       android:id="@+id/imageView"
-      android:layout_width="382dp"
-      android:layout_height="102dp"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
       android:layout_below="@+id/editTextQuestion"
-      android:layout_marginTop="16dp" />
+      android:layout_marginTop="14dp"
+      android:layout_centerHorizontal="true"
+      android:scaleType="centerCrop"
+      android:contentDescription="Post Image"
+      android:visibility="gone"/>
+
 
   <Button
       android:id="@+id/buttonLoadPicture"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_below="@+id/imageView"
+      android:text="Load Picture"
+      android:layout_below="@id/imageView"
       android:layout_centerHorizontal="true"
       android:layout_marginTop="16dp"
-      android:text="Load Picture" />
+      android:visibility="gone"/>
 
   <Button
       android:id="@+id/buttonPost"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Post"
-      android:layout_below="@+id/buttonLoadPicture"
+      android:layout_below="@id/buttonLoadPicture"
       android:layout_centerHorizontal="true"
       android:layout_marginTop="16dp"
-      android:layout_marginBottom="16dp" />
+      android:layout_marginBottom="16dp"
+      android:visibility="gone" />
+
   <ProgressBar
       android:id="@+id/progressBar"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
-      android:visibility="gone" /> <!-- Initially hidden -->
+      android:visibility="gone" />
 
   <!-- RecyclerView -->
   <androidx.recyclerview.widget.RecyclerView
@@ -51,7 +69,8 @@
       android:layout_height="match_parent"
       android:layout_below="@id/buttonPost"
       android:layout_marginTop="16dp"
-      android:background="@color/app_bg"/>
+
+      android:background="@color/green" />
 
 <!--  <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--      android:id="@+id/bottomNavigationView"-->
@@ -62,5 +81,6 @@
 <!--      app:labelVisibilityMode="selected"-->
 <!--      android:background="@drawable/bg_bottom_nav"-->
 <!--      />-->
+
 
 </RelativeLayout>
