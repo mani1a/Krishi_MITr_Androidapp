@@ -57,12 +57,9 @@ class MoreFragment : Fragment() {
     lateinit var userName:String
     lateinit var email:String
     lateinit var role:String
-    lateinit var userId2 :String
-    lateinit var fcmToken:String
     lateinit var mobile : String
     lateinit var description : String
     lateinit var imageUrl : String
-    lateinit var recent : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,28 +100,31 @@ class MoreFragment : Fragment() {
 //            Toast.makeText(context,"Profile picture missing",Toast.LENGTH_SHORT).show()
         }
 
+
         if (userId != null) {
-
-            progressBar = ProgressDialog(context)
-            progressBar.setTitle("Loading....")
-            progressBar.show()
-
+            binding?.showprofileProgressBar?.visibility = View.VISIBLE
             firebaseDatabase.child("Users").child(userId).get().addOnSuccessListener {
 
                 userName = it.child("name").value.toString()
                 email = it.child("email").value.toString()
                 role = it.child("role").value.toString()
-                fcmToken = it.child("fcmtoken").value.toString()
                 description = it.child("description").value.toString()
                 mobile = it.child("mobile").value.toString()
                 imageUrl = it.child("imageUrl").value.toString()
-                recent = it.child("recent").value.toString()
+                val crop1 = it.child("crop1").value.toString()
+                val crop2 = it.child("crop2").value.toString()
+                val crop3 = it.child("crop3").value.toString()
+
 
                 _binding?.profileUserName?.text = userName
                 _binding?.profileEmail?.text =  email
                 _binding?.profileRole?.text = role
+                binding?.profileCrops?.text = "Crops : $crop1 ,$crop2 ,$crop3"
 
-                if (progressBar.isShowing)progressBar.dismiss()
+                binding?.showprofileProgressBar?.visibility = View.GONE
+                binding?.profileLayout?.visibility = View.VISIBLE
+
+
 
             }
 
@@ -144,17 +144,13 @@ class MoreFragment : Fragment() {
             }
 
         }
-//
-//        binding?.uploadprofileimg?.setOnClickListener {
-////            imageContract.launch("image/*")
-//
-//            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//            imagePicker.launch(intent)
-//
-//        }
+
+
 
         binding?.profileImg?.setOnClickListener {
-            DialogImageOpen.showDialogBox(requireContext(),imageUri.toString())
+
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            imagePicker.launch(intent)
 
         }
 
@@ -162,7 +158,6 @@ class MoreFragment : Fragment() {
             firebaseAuth.signOut()
             Toast.makeText(context,"Logged Out", Toast.LENGTH_SHORT).show()
             startActivity(Intent(context, LoginActivity::class.java))
-
 
         }
 
@@ -177,35 +172,20 @@ class MoreFragment : Fragment() {
 
     private fun uploadPImg(){
 
-
         Layers.showProgressBar(requireContext(),"Uploading.")
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
-//        imageUri = User.imageURl as Uri
-
-//        val imageUrl : Uri = User(imageUrl = imageUri) as Uri
 
         if (userId != null) {
             firebaseStorage.getReference("Users_Profile_Images").child(userId).
             putFile(imageUri).addOnSuccessListener {
                     task ->
                 task.metadata?.reference?.downloadUrl?.addOnSuccessListener {
-//                    var uploadImg : User
-//                    val uploadPic =  mapOf("imageUrl" to it.toString())
+
                     val uploadPic =  it.toString()
 
-                    val updateuserdata = User(userName,email,role,userId,fcmToken,"",mobile,uploadPic,recent)
-
-
-                    // if doesnot work change its value to save picture format
-
-//                    uploadImg = User()
-//                    User().imageUrl = uploadPic
-//                    uploadImg.imageUrl = uploadPic
-//                    uploadImg.imageUrl = uploadPic
-
-
-                    firebaseDatabase.child("Users").child(userId).setValue(updateuserdata)
+                    firebaseDatabase.child("Users").child(userId).child("imageUrl")
+                        .setValue(uploadPic)
                         .addOnSuccessListener {
                             Layers.hideProgressBar()
                             Toast.makeText(context,"Profile Image Updated",Toast.LENGTH_SHORT).show()

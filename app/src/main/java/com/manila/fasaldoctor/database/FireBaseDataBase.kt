@@ -32,4 +32,10 @@ object FireBaseDataBase {
         })
 
     }
+
+    fun getStatus(txt : String){
+        fireBaseDatabaseReference.child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+            .child("status").setValue(txt)
+
+    }
 }

@@ -42,7 +42,7 @@ class UsersAdapter (private val context: Context, private val userList: ArrayLis
         val user = userList[position]
         holder.userName.text = user.name
         holder.email.text = "Crop : - ${user.crop1} , ${user.crop2} , ${user.crop3} "
-        holder.role.text = user.role
+//        holder.role.text = user.status
         if (user.role == "farmer"){
         Glide.with(context).load(user.imageUrl).placeholder(R.drawable.farmer).into(holder.pic)
         }else{
@@ -63,25 +63,6 @@ class UsersAdapter (private val context: Context, private val userList: ArrayLis
 
 
         }
-//        holder.pic.setImageBitmap(user.imageUrl)
-
-
-
-        //Code to show Profile Images
-//
-//        val userId = firebaseAuth.currentUser?.uid
-//        val storageReference : StorageReference = firebaseStorage.reference
-//        val imageRef = storageReference.child("Users_Profile_Images/$userId")
-//        val localFile = File.createTempFile("ProfileImg","jpeg")
-//        imageRef.getFile(localFile).addOnSuccessListener {
-//            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-////            binding?.profileImg?.setImageBitmap(bitmap)
-//
-//            holder.pic.setImageBitmap(bitmap)
-//        }.addOnFailureListener {
-//            Toast.makeText(context,"Some Error Occureed",Toast.LENGTH_SHORT).show()
-//        }
-
 
 
     }

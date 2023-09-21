@@ -1,10 +1,8 @@
 package com.manila.fasaldoctor.adapter
 
+
 import android.content.Context
 import android.media.MediaPlayer
-import android.net.Uri
-import android.opengl.Visibility
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,16 +11,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.model.Messages
 import com.manila.fasaldoctor.utils.DialogImageOpen
-import com.squareup.picasso.Picasso
+
 
 class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -33,6 +28,7 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
     var audioPath : String? = null
     lateinit var currentMsg : Messages
     var state : Boolean = false
+
 
 
 
@@ -87,10 +83,13 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
                 Glide.with(context).load(currentMsg.image).placeholder(R.drawable.farmer).into(holder.imgsend)
                 holder.imgsend.setOnClickListener {
                     currentMsg.image?.let { it1 -> DialogImageOpen.showDialogBox(context, it1) }
+
                 }
 
 
+
             }
+
 
 
             if (currentMsg.msg.equals("audio")){
@@ -147,7 +146,10 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
                 holder.txtLayout.visibility = View.GONE
                 Glide.with(context).load(currentMsg.image).into(holder.imgreceive)
                 holder.imgreceive.setOnClickListener {
-                    DialogImageOpen.showDialogBox(context,currentMsg.image!!)
+                    val iv = currentMsg.image
+                    if (iv != null) {
+                        DialogImageOpen.showDialogBox(context,iv)
+                    }
                 }
             }
 
@@ -263,6 +265,8 @@ class MessagesAdapter(val context: Context, val messagesList: ArrayList<Messages
         val txt : TextView = itemView.findViewById(R.id.audiomsg)
 
     }
+
+
 
 
 

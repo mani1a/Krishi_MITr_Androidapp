@@ -1,6 +1,7 @@
 package com.manila.fasaldoctor.fragments
 
 import android.os.Bundle
+import android.text.method.TextKeyListener.clear
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -75,6 +76,24 @@ class ChatFragment : Fragment() {
             crop2 = "Tomato"
         }
 //        Toast.makeText(context,crop2,Toast.LENGTH_SHORT).show()
+
+        binding?.dilterlayout?.setOnClickListener {
+            binding?.choosetochatLayout?.visibility = View.VISIBLE
+            binding?.IVFilterdown?.visibility = View.GONE
+            binding?.IVFilterUP?.visibility = View.VISIBLE
+            binding?.txt?.setText("Click Icon To Collaspe")
+
+
+        }
+        binding?.IVFilterUP?.setOnClickListener {
+            binding?.choosetochatLayout?.visibility = View.GONE
+            binding?.IVFilterdown?.visibility = View.VISIBLE
+            binding?.IVFilterUP?.visibility = View.GONE
+            binding?.txt?.text = "Click To Filter"
+            binding?.userRecycler?.visibility = View.VISIBLE
+
+        }
+
 
 
 

@@ -67,6 +67,7 @@
                 android:text="Role"
                 android:textStyle="bold"
                 android:textColor="@color/actioncolor"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/id_show"

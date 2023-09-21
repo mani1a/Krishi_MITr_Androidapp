@@ -33,7 +33,7 @@ class RecentUsersAdapter (private var  context: Context, private var recentUserL
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_recent_users,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_users,parent,false)
 
         return Viewholder(view)
 
@@ -47,8 +47,8 @@ class RecentUsersAdapter (private var  context: Context, private var recentUserL
 
         val user = recentUserList[position]
         holder.userName.text = user.name
-        holder.email.text = user.email
-        holder.role.text = user.role
+        holder.email.text = "Crop : - ${user.crop1} , ${user.crop2} , ${user.crop3} "
+//        holder.role.text = user.role
         if (user.role == "farmer"){
             Glide.with(context).load(user.imageUrl).placeholder(R.drawable.farmer).into(holder.pic)
         }else{

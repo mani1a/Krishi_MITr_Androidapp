@@ -119,6 +119,7 @@ class HomeFragment : Fragment() {
 
         binding?.btnChatwithExpert?.setOnClickListener {
             startActivity(Intent(context,ChatMainActivity::class.java))
+
         }
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,6 +20,12 @@
             android:layout_centerInParent="true"
             android:visibility="gone"/>
 
+        <ImageView
+            android:id="@+id/expanded_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_inbox"
             android:layout_width="match_parent"
@@ -33,11 +40,6 @@
             />
 
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/check"
-        android:layout_width="200dp"
-        android:layout_height="200dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/sendtextmsg"

@@ -45,6 +45,13 @@
         android:background="@drawable/background_receive_msg"
         android:visibility="gone"/>
 
+    <ImageView
+        android:id="@+id/expanded_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
+
+
     <LinearLayout
         android:id="@+id/receiveaudiolayout"
         android:layout_width="wrap_content"
