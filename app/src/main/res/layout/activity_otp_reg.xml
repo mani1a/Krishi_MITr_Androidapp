@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.OtpRegActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgcolor">
+
+        <TextView
+            android:id="@+id/txt_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Yourself"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
+
+        <TextView
+            android:id="@+id/rolechoosetext"
+            android:layout_below="@+id/txt_reg"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You Are a : Farmer "
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_below="@+id/rolechoosetext"
+            android:id="@+id/img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_farmer"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:src="@drawable/farmer" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/dataLayout"
+            android:layout_below="@+id/img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/user_name"
+                android:layout_marginTop="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="0dp"
+                app:placeholderText="Enter Your Name"
+                android:hint="Name"
+                app:hintEnabled="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:startIconDrawable="@drawable/vector_person">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_below="@+id/user_name"
+                android:id="@+id/TextMobile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="0dp"
+                app:placeholderText="Enter Your Mobile"
+                android:hint="Mobile"
+                app:hintEnabled="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:startIconDrawable="@drawable/vector_phone"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="phone"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/otpLayout"
+            android:layout_below="@+id/img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/TextMobileotp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="0dp"
+                app:placeholderText="Enter Your OTP"
+                android:hint="OTP"
+                app:hintEnabled="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextMobileotp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/img_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLayout"
+            android:layout_marginTop="170dp"
+            android:layout_centerInParent="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGetOtp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Get Otp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_below="@+id/btnGetOtp"
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Back"
+            android:layout_centerHorizontal="true"
+            />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Already Registerd. - Login"
+            android:layout_marginBottom="50dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:textStyle="italic"/>
+
+        <Button
+            android:layout_below="@+id/otpLayout"
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Register"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

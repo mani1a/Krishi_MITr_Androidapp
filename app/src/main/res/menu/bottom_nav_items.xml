@@ -8,12 +8,12 @@
         <item
             android:id="@+id/home"
             android:title="Home"
-            android:icon="@drawable/vector_ek1" />
+            android:icon="@drawable/leaf" />
 
         <item
             android:id="@+id/feed"
             android:title="Feed"
-            android:icon="@drawable/vector_ek7"/>
+            android:icon="@drawable/lighting"/>
 
 
 <!--        <item-->

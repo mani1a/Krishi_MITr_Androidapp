@@ -10,4 +10,7 @@ data class RecentUser(
     var mobile : String? = null,
     var imageUrl: String? = null,
     var recent : String? = null,
+    var crop1 : String?= "",
+    var crop2 : String?= "",
+    var crop3 : String?= "",
 )

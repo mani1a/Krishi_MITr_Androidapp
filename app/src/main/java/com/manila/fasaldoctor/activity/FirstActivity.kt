@@ -12,6 +12,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.manila.fasaldoctor.R
@@ -30,26 +31,30 @@ class FirstActivity : AppCompatActivity() {
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-        grantPermission()
 
         binding.btnGetStarted.setOnClickListener {
                     Toast.makeText(this, "Get Started", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, SecondActivity::class.java))
+//                    startActivity(Intent(this, SecondActivity::class.java))
                     finish()
         }
 
         binding.btnGetStarted.visibility = View.GONE
 
-        val delay: Long = 1000
+        val delay: Long = 2000
 
         Handler().postDelayed(
             {
                 binding.btnGetStarted.visibility = View.VISIBLE
                 binding.progressbar.visibility = View.GONE
-//                startActivity(Intent(this, SecondActivity::class.java))
+                startActivity(Intent(this, SecondActivity::class.java))
             }, delay
         )
 
+            binding.lottieanim.postOnAnimationDelayed(
+                {
+//                grantPermission()
+                    startActivity(Intent(this, SecondActivity::class.java))
+                },delay)
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
@@ -105,7 +110,7 @@ class FirstActivity : AppCompatActivity() {
                 if (it != PackageManager.PERMISSION_GRANTED) grantPermission()
             }
         }
-//
+
     override fun onStop() {
         super.onStop()
         finish()

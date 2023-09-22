@@ -8,7 +8,6 @@
     tools:context=".activity.FirstActivity"
     android:background="@color/bgcolor">
 
-
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
@@ -21,6 +20,15 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieanim"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/crop" />
+
     <TextView
         android:id="@+id/txt1"
         android:layout_width="wrap_content"
@@ -30,8 +38,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="150dp"
-        android:textSize="24sp"
-        />
+        android:textSize="24sp" />
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -51,7 +58,6 @@
         android:background="@drawable/next"
         android:visibility="gone"/>
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,8 +66,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:textSize="16sp"/>
-
-
-
 
 </RelativeLayout>

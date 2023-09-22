@@ -19,6 +19,7 @@ import com.manila.fasaldoctor.fragments.ProfileFragment
 import android.content.Intent
 import android.view.MenuItem
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.manila.fasaldoctor.fragments.Feed2Fragment
@@ -31,7 +32,10 @@ import com.manila.fasaldoctor.utils.Layers
      private lateinit var binding: ActivityHomeBinding
      private lateinit var sharedPreferences: SharedPreferences
      private lateinit var firebaseStorageRefrence : FirebaseStorage
+     private lateinit var databaseReference: DatabaseReference
+
      lateinit var progressDialog: ProgressDialog
+
 //     lateinit var openCamera: Button
 //     lateinit var frameLayout: FrameLayout
      lateinit var imgView: ImageView
@@ -42,6 +46,8 @@ import com.manila.fasaldoctor.utils.Layers
      lateinit var role : String
      lateinit var email: String
 
+     private var status : String? = null
+
      @RequiresApi(Build.VERSION_CODES.TIRAMISU)
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -50,6 +56,7 @@ import com.manila.fasaldoctor.utils.Layers
 
          supportActionBar?.hide()
          replaceFragments(HomeFragment())
+
 
 
 //         sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
@@ -108,11 +115,11 @@ import com.manila.fasaldoctor.utils.Layers
 
 
                  R.id.feed -> {
-//                     val intent = Intent(this, FeedActivity::class.java)
-//                     startActivity(intent)
+                     val intent = Intent(this, FeedActivity::class.java)
+                     startActivity(intent)
 //                     true // Return true to indicate that the item click is handled
 
-                     replaceFragments(Feed2Fragment())
+//                     replaceFragments(Feed2Fragment())
 //                     binding.btnChat.visibility = View.GONE
                  }
                  // Handle other menu items if needed
@@ -130,6 +137,14 @@ import com.manila.fasaldoctor.utils.Layers
              true
          }
 
+         databaseReference = FirebaseDatabase.getInstance().reference
+
+         binding.fabChatAI.setOnClickListener {
+             Toast.makeText(this,"Chat wit AI",Toast.LENGTH_SHORT).show()
+         }
+
+
+
 
 
      }
@@ -138,9 +153,21 @@ import com.manila.fasaldoctor.utils.Layers
          val fragmentManager = supportFragmentManager
          val fragmentTransaction = fragmentManager.beginTransaction()
          fragmentTransaction.replace(R.id.frameLayout,fragment)
-//         fragmentTransaction.addToBackStack("back")
+         fragmentTransaction.addToBackStack("back")
          fragmentTransaction.commit()
      }
+
+     override fun onStop() {
+         finish()
+         super.onStop()
+     }
+
+
+
+
+
+
+
 
 
 

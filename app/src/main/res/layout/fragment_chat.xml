@@ -21,18 +21,62 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/choosetochatLayoutCV"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+            <RelativeLayout
+                android:id="@+id/dilterlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Click To Filter"
+                    android:textSize="18sp"
+                    android:padding="15dp"/>
+
+                <ImageView
+                    android:id="@+id/IV_filterdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/vector_down"
+                    android:padding="15dp"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/IV_filterUP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/vector_up"
+                    android:padding="15dp"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"/>
+
+
+
+            </RelativeLayout>
 
 
 
         <RelativeLayout
             android:id="@+id/choosetochatLayout"
+            android:layout_below="@+id/dilterlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/txtchoosechat"
@@ -135,12 +179,14 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/selectcroplayout"
                 android:layout_centerHorizontal="true"
-                android:text="Filter"
+                android:text="FILTER"
                 android:textSize="16sp"/>
 
 
 
         </RelativeLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 

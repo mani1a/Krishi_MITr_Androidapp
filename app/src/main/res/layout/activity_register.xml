@@ -61,11 +61,12 @@
 
     <RadioGroup
         android:id="@+id/radio_role_group"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_layout"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
 
         >
 
@@ -74,26 +75,102 @@
             android:id="@+id/farmer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Farmer"
+            android:text="@string/farmer"
             android:textSize="17sp"
             android:padding="10dp"
-            android:layout_marginStart="90dp"
-            android:layout_marginEnd="30dp"
-
-
-
             />
+
         <RadioButton
             android:id="@+id/expert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Expert"
+            android:text="@string/expert"
             android:textSize="17sp"
             android:padding="10dp"
              />
 
-
     </RadioGroup>
+    
+    <RelativeLayout
+        android:id="@+id/mobileReglayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_role_group"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txt_reg_mob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register With"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:layout_below="@+id/txt_reg_mob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_centerHorizontal="true"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="2dp"
+            android:id="@+id/btn_reg_mobile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="50"
+            android:src="@drawable/mobile"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile"
+                    android:textSize="18sp"
+                    android:layout_below="@id/btn_reg_mobile"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_centerHorizontal="true"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="2dp"
+            android:id="@+id/btn_reg_email"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="50"
+            android:src="@drawable/gmail"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="18sp"
+                    android:layout_below="@id/btn_reg_email"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/dataLayout"
@@ -209,9 +286,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </RelativeLayout>
-
-
-
 
     <RelativeLayout
         android:id="@+id/selectcroplayout"

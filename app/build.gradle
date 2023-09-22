@@ -21,6 +21,7 @@ android {
 
     buildFeatures{
         viewBinding true
+        mlModelBinding true
     }
 
     buildTypes {
@@ -54,6 +55,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.camera:camera-core:1.2.3'
+
+    // tflite dependencies
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.3.0'
 //    implementation 'com.google.android.ads:mediation-test-suite:3.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -76,7 +83,11 @@ dependencies {
     //lottie animation
     implementation 'com.airbnb.android:lottie:6.1.0'
 
+    //gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+
+    //Image labelling
+//    implementation 'com.google.mlkit:image-labeling:17.0.7'
 
 
 

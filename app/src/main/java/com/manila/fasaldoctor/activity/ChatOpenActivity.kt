@@ -105,6 +105,9 @@ class ChatOpenActivity : AppCompatActivity() {
     var receiverimageUrl: String? = null
     var receiverrecent : String? = null
     var receiverfcmToken : String? = null
+    var receivercrop1 : String? = null
+    var receivercrop2 : String? = null
+    var receivercrop3 : String? = null
     lateinit var recentList : ArrayList<RecentUser>
 
 
@@ -144,6 +147,8 @@ class ChatOpenActivity : AppCompatActivity() {
         msgRecyclerAdapter = MessagesAdapter(this,messagesList)
         msgRecyclerView.layoutManager = LinearLayoutManager(this)
         msgRecyclerView.adapter = msgRecyclerAdapter
+
+
 
 
         val imagelaunchContract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -247,10 +252,14 @@ class ChatOpenActivity : AppCompatActivity() {
             receiverUID = it.child("uid").value.toString()
             receivermobile = it.child("mobile").value.toString()
             receiverimageUrl = it.child("imageUrl").value.toString()
-            receiverrecent = it.child("recent").value.toString()
-            receiverfcmToken
+            receivercrop1 = it.child("crop1").value.toString()
+            receivercrop2 = it.child("crop2").value.toString()
+            receivercrop3 = it.child("crop3").value.toString()
+
 
         }
+
+
 
     }
 
@@ -263,7 +272,8 @@ class ChatOpenActivity : AppCompatActivity() {
 
         val messageObject = Messages("true",time!!,message,senderuid,receiveruid)
 
-        val recentUserList = RecentUser(receivername,receiveremail,receiverrole,receiverUID,receivermobile,receiverimageUrl,receiverrecent)
+        val recentUserList = RecentUser(receivername,receiveremail,receiverrole,receiverUID,receivermobile,receiverimageUrl,receiverrecent
+        ,receivercrop1,receivercrop2,receivercrop3)
 
         if (message.isNotEmpty()){
 

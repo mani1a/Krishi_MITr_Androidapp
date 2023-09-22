@@ -4,6 +4,8 @@
 
     <uses-feature android:name="android.hardware.camera.any" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission
@@ -24,6 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.OtpRegActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.SecondActivity"
             android:exported="false" />
@@ -85,6 +90,10 @@
                 <action android:name="com.google.android.c2dm.intent.Receiver" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ica" />
     </application>
 
 </manifest>

@@ -26,6 +26,7 @@ import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.adapter.ChatViewPagerAdapter
 import com.manila.fasaldoctor.adapter.UsersAdapter
+import com.manila.fasaldoctor.database.FireBaseDataBase
 import com.manila.fasaldoctor.databinding.ActivityChatMainBinding
 import com.manila.fasaldoctor.fragments.ChatFragment
 import com.manila.fasaldoctor.fragments.HomeFragment
@@ -67,65 +68,15 @@ class ChatMainActivity : AppCompatActivity() {
         binding.viewPager.adapter = adapter
         binding.tab.setupWithViewPager(binding.viewPager)
 
-//        firebaseAuth = FirebaseAuth.getInstance()
-        fbDatabase = FirebaseDatabase.getInstance().getReference()
+        fbDatabase = FirebaseDatabase.getInstance().reference
         fbDatabase.child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid).child("role")
             .get().addOnSuccessListener {
                 role = it.value.toString()
 
                 if(role == "farmer") supportActionBar?.title = "Chat with Expert"
                 else supportActionBar?.title = "Chat with Farmer"
+
             }
-
-
-//
-//
-//        //recycler view codes
-//        userList = ArrayList()
-//        userrecyclerAdapter = UsersAdapter(this,userList)
-//        userrecyclerView = findViewById(R.id.user_recycler)
-//        userrecyclerView.layoutManager = LinearLayoutManager(this)
-//        userrecyclerView.adapter = userrecyclerAdapter
-//
-//
-//        // users list ---- codes
-//        fbDatabase.child("Users").addValueEventListener(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//
-//                userList.clear()
-//
-//                val role = snapshot.child(firebaseAuth.currentUser!!.uid).child("role").value.toString()
-//
-//                if (role == "farmer") supportActionBar?.title = "Chat With Experts"
-//                else supportActionBar?.title = "Chat with Farmers"
-//
-//                for (postSnapshot in snapshot.children){
-//
-//                    val currentUser = postSnapshot.getValue(User::class.java)
-//                    val farmer = "farmer";
-//                    val expert = "expert";
-//
-//                    if ((firebaseAuth.currentUser?.uid != currentUser?.uid) && (currentUser?.role != role)){
-//
-//                        userList.add(currentUser!!)
-//
-//                        binding.userRecycler.visibility = View.VISIBLE
-//                        binding.progbarr.visibility = View.GONE
-//
-//                    }
-//
-//                }
-//                userrecyclerAdapter.notifyDataSetChanged()
-//
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//                Toast.makeText(applicationContext,"Some error Occurred , Please Restart the App",Toast.LENGTH_LONG).show()
-//
-//            }
-//
-//        })
 
     }
 
@@ -133,12 +84,5 @@ class ChatMainActivity : AppCompatActivity() {
         startActivity(Intent(this,HomeActivity::class.java))
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onStop() {
-        finish()
-        super.onStop()
-    }
-
-
 
 }
