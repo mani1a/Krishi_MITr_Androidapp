@@ -1,8 +1,11 @@
 package com.manila.fasaldoctor.model
 
 data class Comment(
+    val com_id : String = "",
     var email: String = "",
-    var commentText: String = ""
+    var commentText: String = "",
+    var upvotes: Int = 0,
+    var IsUpvoted: Boolean = true
 )
 
 

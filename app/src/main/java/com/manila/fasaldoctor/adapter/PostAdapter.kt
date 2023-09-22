@@ -24,6 +24,7 @@ class PostAdapter(private val userList: ArrayList<UserPost>, private val current
         val textView: TextView = itemView.findViewById(R.id.textViewPostText)
         val commentButton: Button = itemView.findViewById(R.id.buttonComment)
         val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
+        val postOwner: TextView = itemView.findViewById(R.id.postOwner)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -43,6 +44,7 @@ class PostAdapter(private val userList: ArrayList<UserPost>, private val current
 
         // Set the post text
         holder.textView.text = post.text
+        holder.postOwner.text = "By : @${post.email.substringBefore("@")}"
 
         // Set a click listener for the comment button
         holder.commentButton.setOnClickListener {
