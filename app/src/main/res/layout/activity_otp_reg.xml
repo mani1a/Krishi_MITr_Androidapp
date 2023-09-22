@@ -48,16 +48,12 @@
 
         </LinearLayout>
 
-
-
-
         <RelativeLayout
             android:id="@+id/dataLayout"
             android:layout_below="@+id/img_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            >
+            android:layout_margin="15dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/user_name"
@@ -78,8 +74,6 @@
                     android:layout_height="match_parent"/>
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_below="@+id/user_name"
@@ -103,12 +97,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -117,11 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:visibility="gone"
-            >
-
-
-
+            android:visibility="gone">
 
             <com.google.android.material.textfield.TextInputLayout
 
@@ -144,12 +128,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -160,10 +138,7 @@
             android:layout_marginTop="170dp"
             android:layout_centerInParent="true">
 
-
-
-        <Button
-
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnGetOtp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -172,7 +147,7 @@
             android:layout_centerHorizontal="true"
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_below="@+id/btnGetOtp"
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
@@ -183,9 +158,6 @@
             />
 
         </RelativeLayout>
-
-
-
 
         <TextView
             android:id="@+id/btnLogin"
@@ -209,12 +181,6 @@
             android:visibility="gone"
             />
 
-
-
-
     </RelativeLayout>
-
-
-
 
 </RelativeLayout>

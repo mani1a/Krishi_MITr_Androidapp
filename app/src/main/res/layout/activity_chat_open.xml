@@ -58,7 +58,6 @@
         android:weightSum="100"
         android:orientation="horizontal">
 
-
         <EditText
             android:id="@+id/msg_box"
             android:layout_width="wrap_content"
@@ -69,7 +68,6 @@
             android:backgroundTint="#F4F4F4"
             android:hint="Type your Message"
             android:padding="12dp"/>
-
 
         <ImageButton
             android:id="@+id/btn_record_audio"

@@ -139,6 +139,10 @@ import com.manila.fasaldoctor.utils.Layers
 
          databaseReference = FirebaseDatabase.getInstance().reference
 
+         binding.fabChatAI.setOnClickListener {
+             Toast.makeText(this,"Chat wit AI",Toast.LENGTH_SHORT).show()
+         }
+
 
 
 
@@ -149,8 +153,13 @@ import com.manila.fasaldoctor.utils.Layers
          val fragmentManager = supportFragmentManager
          val fragmentTransaction = fragmentManager.beginTransaction()
          fragmentTransaction.replace(R.id.frameLayout,fragment)
-//         fragmentTransaction.addToBackStack("back")
+         fragmentTransaction.addToBackStack("back")
          fragmentTransaction.commit()
+     }
+
+     override fun onStop() {
+         finish()
+         super.onStop()
      }
 
 

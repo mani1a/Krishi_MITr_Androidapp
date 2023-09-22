@@ -1,29 +1,34 @@
 <resources>
-    <string name="app_name">Krishi MITr </string>
-    <string name="open_camera">open Camera</string>
-    <string name="take_photo">Take Photo</string>
+    <string name="app_name" translatable="false">Krishi MITr </string>
+    <string name="open_camera" translatable="false">open Camera</string>
+    <string name="take_photo" translatable="false">Take Photo</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="prefrences_file_name">Login</string>
-    <string name="bottom_nav_bar">Bottom Navigation Bar</string>
-    <string name="user_name">username</string>
-    <string name="get_started">Get Started</string>
-    <string name="search">Search</string>
-    <string name="chat_with_expert">Chat with Expert</string>
-    <string name="heal_your_crops">Heal Your Crops</string>
-    <string name="weather">Weather</string>
-    <string name="location">Location</string>
-    <string name="weathertoday">WeatherToday</string>
-    <string name="devmsg">Made with \'❤️\'</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_login" translatable="false">LoginActivity</string>
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Password</string>
+    <string name="action_sign_in" translatable="false">Sign in or register</string>
+    <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="welcome" translatable="false">"Welcome Back  "</string>
+    <string name="invalid_username" translatable="false">Not a valid username</string>
+    <string name="invalid_password" translatable="false">Password must be >5 characters</string>
+    <string name="login_failed" translatable="false">"Login failed"</string>
+    <string name="prefrences_file_name" translatable="false">Login</string>
+    <string name="bottom_nav_bar" translatable="false">Bottom Navigation Bar</string>
+    <string name="user_name" translatable="false">username</string>
+    <string name="get_started" translatable="false">Get Started</string>
+    <string name="search" translatable="false">Search</string>
+    <string name="chat_with_expert" translatable="false">Chat with Expert</string>
+    <string name="heal_your_crops" translatable="false">Heal Your Crops</string>
+    <string name="weather" translatable="false">Weather</string>
+    <string name="location" translatable="false">Location</string>
+    <string name="weathertoday" translatable="false">WeatherToday</string>
+    <string name="devmsg" translatable="false">Made with \'❤️\'</string>
+    <string name="farmer" translatable="false">Farmer</string>
+    <string name="expert" translatable="false">Expert</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="registertxt" translatable="false">Not yet Registerd! - Register Here</string>
+    <string name="login" translatable="false">Login</string>
 
 
     <!--    location selection-->

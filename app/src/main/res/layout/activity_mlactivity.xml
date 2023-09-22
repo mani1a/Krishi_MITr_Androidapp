@@ -5,22 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MLActivity">
+    tools:context=".activity.MLActivity"
+    android:scrollbars="vertical"
+    android:background="@color/bgcolor"
+    >
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
         android:id="@+id/imgselectview"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:cardBackgroundColor="@color/app_bg"
+        app:cardBackgroundColor="#F0FFF0"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
@@ -29,20 +33,24 @@
 
             <ImageView
                 android:id="@+id/imgView"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="180dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
-                android:src="@drawable/output_uploadfiles"/>
+                android:padding="10dp"
+                android:background="@drawable/background_ml_imgview"
+                android:src="@drawable/output_uploadfiles"
+                />
 
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:id="@+id/linear"
                 android:layout_below="@+id/imgView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/select_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,37 +58,50 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:text="Select Images"
-
-                android:backgroundTint="@color/actioncolor"
+                android:textColor="@color/black"
+                app:icon="@drawable/image"
+                app:iconTintMode="multiply"
+                app:iconSize="24dp"
+                app:iconPadding="10dp"
+                app:iconGravity="textStart"
+                android:backgroundTint="@color/materialcolorbtn"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/open_camera"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="30dp"
-                android:text="Take Pictures"
-
-
-                android:backgroundTint="@color/actioncolor"
+                android:text="Click Photos"
+                android:textColor="@color/black"
+                app:icon="@drawable/camera"
+                app:iconTintMode="multiply"
+                app:iconSize="24dp"
+                app:iconPadding="10dp"
+                app:iconGravity="textStart"
+                android:backgroundTint="@color/materialcolorbtn"
                 />
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_seeresult"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linear"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="30dp"
-                android:text="See Results"
-                android:backgroundTint="@color/actioncolor"
+                android:layout_marginStart="70dp"
+                android:text="Heal Your Crop"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/materialcolorbtn"
                 android:layout_centerHorizontal="true"
+                app:icon="@drawable/healing"
+                app:iconTintMode="multiply"
+                app:iconSize="30dp"
+                app:iconPadding="10dp"
+                app:iconGravity="textStart"
                 />
 
 
@@ -89,34 +110,110 @@
 
     </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+            <LinearLayout
                 android:id="@+id/imgprocessView"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/imgselectview"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 app:cardBackgroundColor="@color/app_bg"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="20dp"
+                android:orientation="vertical">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_prediction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Result"
-                    android:textSize="30dp"
+                    android:textSize="25sp"
                     android:gravity="center_horizontal"/>
 
+                <TextView
+                    android:id="@+id/tv_result"
+                    android:layout_below="@+id/tv_prediction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Disease : "
+                    android:textSize="20sp"
+                    android:layout_margin="20dp"/>
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tv_result_confidence"
+                        android:layout_below="@+id/tv_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Confidence : "
+                        android:textSize="20sp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_result_info"
+                        android:layout_below="@+id/tv_result_confidence"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Confidence : "
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        />
 
 
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/MLmoreinfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/materialcolorbtn"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="More Information"
+                        android:textColor="@color/black"
+                        android:visibility="gone"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/MLchatwithExpert"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/materialcolorbtn"
+                        android:text="Chat With Expert"
+                        android:textColor="@color/black"
+                        app:icon="@drawable/chat"
+                        app:iconTintMode="multiply"
+                        app:iconSize="32dp"
+                        app:iconPadding="10dp"
+                        app:iconGravity="textStart"
+                        android:visibility="gone"/>
 
 
+                </LinearLayout>
+            </LinearLayout>
 
-        </RelativeLayout>
-    </ScrollView>
+            </ScrollView>
+
+        </LinearLayout>
+
+<!--    </ScrollView>-->
 </RelativeLayout>

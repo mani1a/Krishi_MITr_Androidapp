@@ -51,6 +51,8 @@ class ChatFragment : Fragment() {
     var crop2 : String? = null
     var crop3 : String? = null
 
+    lateinit var role : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -67,7 +69,7 @@ class ChatFragment : Fragment() {
         _binding = FragmentChatBinding.inflate(layoutInflater)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        fbDatabase = FirebaseDatabase.getInstance().getReference()
+        fbDatabase = FirebaseDatabase.getInstance().reference
 
         binding?.checkPotato?.setOnCheckedChangeListener { buttonView, isChecked ->
             crop1 = "Potato"
@@ -76,6 +78,17 @@ class ChatFragment : Fragment() {
             crop2 = "Tomato"
         }
 //        Toast.makeText(context,crop2,Toast.LENGTH_SHORT).show()
+
+        fbDatabase.child("Users").child(firebaseAuth.currentUser!!.uid).child("role").get()
+            .addOnSuccessListener {
+                role = it.value.toString()
+                if (role == "farmer"){
+                    binding?.dilterlayout?.visibility = View.VISIBLE
+                }else{
+                    binding?.dilterlayout?.visibility = View.GONE
+                }
+
+        }
 
         binding?.dilterlayout?.setOnClickListener {
             binding?.choosetochatLayout?.visibility = View.VISIBLE

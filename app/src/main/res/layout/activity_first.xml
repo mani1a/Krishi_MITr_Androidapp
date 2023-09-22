@@ -8,7 +8,6 @@
     tools:context=".activity.FirstActivity"
     android:background="@color/bgcolor">
 
-
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
@@ -39,8 +38,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="150dp"
-        android:textSize="24sp"
-        />
+        android:textSize="24sp" />
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -60,7 +58,6 @@
         android:background="@drawable/next"
         android:visibility="gone"/>
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,8 +66,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:textSize="16sp"/>
-
-
-
 
 </RelativeLayout>
