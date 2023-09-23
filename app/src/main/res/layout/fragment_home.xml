@@ -34,7 +34,7 @@
                 android:layout_marginBottom="30dp"
                 android:background="@color/white"
                 android:hint="@string/search"
-                app:queryHint="Enter Name of Plant/Disease/Symptoms to Search"
+                app:queryHint="Enter Disease/Symptoms to Search"
                 app:iconifiedByDefault="false"
                 />
 
