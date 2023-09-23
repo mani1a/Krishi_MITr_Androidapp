@@ -11,8 +11,10 @@ data class Comment(
 
 data class UserPost(
     val email: String = "",
+    val userImgUrl :String? = null,
     val role: String = "",
     val uid: String? = null,
+    val description: String = "",
     val text: String = "",
     val imageUrl: String? = null,
     val timestamp: Long = 0,
@@ -22,11 +24,13 @@ data class UserPost(
     // Secondary constructor with named parameters
     constructor() : this(
         email = "",
+        userImgUrl = null,
         role = "",
         uid = null,
+        description="",
         text = "",
         imageUrl = null,
         timestamp = 0,
-        comments = emptyList()
+        comments = emptyList(),
     )
 }

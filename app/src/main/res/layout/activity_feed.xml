@@ -22,6 +22,18 @@
       android:inputType="textMultiLine"
       android:visibility="gone"/>
 
+  <EditText
+      android:id="@+id/description"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:hint="Description"
+      android:inputType="textMultiLine"
+      android:layout_below="@id/imageView"
+      android:background="@color/white"
+      android:visibility="gone"
+      />
+
   <ImageView
       android:id="@+id/imageView"
       android:layout_width="match_parent"
@@ -39,7 +51,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Load Picture"
-      android:layout_below="@id/imageView"
+      android:layout_below="@id/description"
       android:layout_centerHorizontal="true"
       android:layout_marginTop="16dp"
       android:visibility="gone"/>
