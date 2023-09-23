@@ -75,12 +75,14 @@ class FeedActivity : AppCompatActivity() {
                 buttonLoadPicture.visibility = View.VISIBLE
                 postButton.visibility = View.VISIBLE
                 imageView.visibility = View.VISIBLE
+                findViewById<EditText>(R.id.description).visibility = View.VISIBLE
                 buttonAddPost.text = " Slide up (post later) "
             } else {
                 editTextQuestion.visibility = View.GONE
                 buttonLoadPicture.visibility = View.GONE
                 postButton.visibility = View.GONE
                 imageView.visibility = View.GONE
+                findViewById<EditText>(R.id.description).visibility = View.GONE
                 buttonAddPost.text = " Add Post + "
             }
         }
@@ -113,7 +115,9 @@ class FeedActivity : AppCompatActivity() {
                                 postId = post.postId,
                                 imageUrl = post.imageUrl ,
                                 text = post.text,
-                                email = post.email
+                                email = post.email,
+                                userImgUrl = post.userImgUrl,
+                                description = post.description
                             )
                             usersArrayList.add(userPost)
                         }
@@ -163,6 +167,7 @@ class FeedActivity : AppCompatActivity() {
     }
 
     private fun storeData(imageUrl: String) {
+        var userImg: String = ""
         val buttonAddPost = findViewById<Button>(R.id.buttonAddPost)
         val editTextQuestion = findViewById<EditText>(R.id.editTextQuestion)
         val buttonLoadPicture = findViewById<Button>(R.id.buttonLoadPicture)
@@ -171,7 +176,29 @@ class FeedActivity : AppCompatActivity() {
         button = findViewById(R.id.buttonLoadPicture)
         // Change the parameter type here
         // Fetch user data from the Realtime Database
+        // Fetch user data from the Realtime Database
         val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Fetch the user's image URL
+                    userImg = dataSnapshot.child("imageUrl").value.toString()
+
+                    // Now, you can use the userImageUrl as needed
+                    println(userImg)
+                } else {
+                    // Handle the case where user data does not exist
+                    showToast("User data not found.")
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle any database error
+                showToast("Error: ${databaseError.message}")
+            }
+        })
+
 
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -183,6 +210,8 @@ class FeedActivity : AppCompatActivity() {
                         email = email,
                         role = role,
                         uid = uid,
+                        userImgUrl=userImg,
+                        description = findViewById<EditText>(R.id.description).text.toString(),
                         text = findViewById<EditText>(R.id.editTextQuestion).text.toString(),
                         imageUrl = imageUrl, // Use the imageUrl parameter here
                         timestamp = System.currentTimeMillis(),

@@ -15,6 +15,7 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.model.UserPost
 import com.manila.fasaldoctor.activity.CommentActivity
 import android.content.Intent
+import org.w3c.dom.Text
 
 class PostAdapter(private val userList: ArrayList<UserPost>, private val currentUserEmail: String) :
     RecyclerView.Adapter<PostAdapter.MyViewHolder>() {
@@ -25,6 +26,8 @@ class PostAdapter(private val userList: ArrayList<UserPost>, private val current
         val commentButton: Button = itemView.findViewById(R.id.buttonComment)
         val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
         val postOwner: TextView = itemView.findViewById(R.id.postOwner)
+        val imageViewPostOwner: ImageView = itemView.findViewById(R.id.imageViewPostOwner)
+        val description  : TextView = itemView.findViewById(R.id.description)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -36,6 +39,11 @@ class PostAdapter(private val userList: ArrayList<UserPost>, private val current
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val post = userList[position]
 
+        Glide.with(holder.itemView.context)
+            .load(post.userImgUrl)
+            .placeholder(R.drawable.progress)
+            .into(holder.imageViewPostOwner)
+
         // Load the post image using Glide
         Glide.with(holder.itemView.context)
             .load(post.imageUrl)
@@ -44,7 +52,8 @@ class PostAdapter(private val userList: ArrayList<UserPost>, private val current
 
         // Set the post text
         holder.textView.text = post.text
-        holder.postOwner.text = "By : @${post.email.substringBefore("@")}"
+        holder.postOwner.text = "@${post.email.substringBefore("@")}"
+        holder.description.text = post.description.toString()
 
         // Set a click listener for the comment button
         holder.commentButton.setOnClickListener {
