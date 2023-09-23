@@ -31,11 +31,13 @@ class SecondActivity : AppCompatActivity() {
 
         if (isLoggedIn){
             startActivity(Intent(this,LoginActivity::class.java))
+            finish()
         }
         grantPermission()
 
         binding.btnNext.setOnClickListener {
                 startActivity(Intent(this,RegisterActivity::class.java))
+            finish()
         }
 
     }

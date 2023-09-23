@@ -148,20 +148,19 @@ class ChatFragment : Fragment() {
 
 
                         binding!!.btnFilter.setOnClickListener {
-                            userList.clear()
+//                            userList.clear()
                             Toast.makeText(context, "Filtered", Toast.LENGTH_SHORT).show()
-                            if (
-//                                (firebaseAuth.currentUser?.uid != currentUser?.uid)
-//                                && (currentUser?.role != role)
-//                                &&
-                                    (currentUser?.crop1 == crop1 || currentUser?.crop2 == crop2)  ) {
 
-                                    if (currentUser != null) {
-                                        userList.add(currentUser)
+                            if (firebaseAuth.currentUser?.uid != currentUser?.uid){
+                                if (currentUser?.role != role){
+                                    if (currentUser?.crop1 == crop1){
+                                        userList.add(currentUser!!)
+                                    }else if (currentUser?.crop2 == crop2){
+                                        userList.add(currentUser!!)
+                                    }else{
+                                        Toast.makeText(context,"No Data Found",Toast.LENGTH_SHORT).show()
                                     }
-                                    binding?.userRecycler?.visibility = View.VISIBLE
-                                    binding?.progbarr?.visibility = View.GONE
-
+                                }
                             }
 
 

@@ -47,6 +47,7 @@ class FirstActivity : AppCompatActivity() {
                 binding.btnGetStarted.visibility = View.VISIBLE
                 binding.progressbar.visibility = View.GONE
                 startActivity(Intent(this, SecondActivity::class.java))
+                finish()
             }, delay
         )
 
@@ -54,6 +55,7 @@ class FirstActivity : AppCompatActivity() {
                 {
 //                grantPermission()
                     startActivity(Intent(this, SecondActivity::class.java))
+                    finish()
                 },delay)
 
         sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
@@ -61,6 +63,7 @@ class FirstActivity : AppCompatActivity() {
 
         if (isLoggedIn){
             startActivity(Intent(this,LoginActivity::class.java))
+            finish()
         }
 
     }

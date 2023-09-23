@@ -7,6 +7,8 @@ import android.net.wifi.WifiManager.SubsystemRestartTrackingCallback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -84,6 +86,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 binding.btnRegMobile.setOnClickListener {
                     startActivity(Intent(this,OtpRegActivity::class.java))
+                    finish()
                 }
 
             }
@@ -103,6 +106,11 @@ class RegisterActivity : AppCompatActivity() {
 
             sharedPreferences = getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
             sharedPreferences.getString("checkedRole", null)
+
+            val location = resources.getStringArray(R.array.Location)
+            val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.Location,R.layout.layout_chatmsgdropdown)
+            val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.autoCompleteLocation)
+            autoCompleteTextView.setAdapter(arrayAdapter)
 
             binding.btnNext.setOnClickListener {
                 binding.dataLayout.visibility = View.GONE

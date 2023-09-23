@@ -117,6 +117,7 @@ import com.manila.fasaldoctor.utils.Layers
                  R.id.feed -> {
                      val intent = Intent(this, FeedActivity::class.java)
                      startActivity(intent)
+                     finish()
 //                     true // Return true to indicate that the item click is handled
 
 //                     replaceFragments(Feed2Fragment())
