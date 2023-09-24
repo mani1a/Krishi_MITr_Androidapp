@@ -85,4 +85,9 @@ class ChatMainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onStop() {
+        finish()
+        super.onStop()
+    }
+
 }

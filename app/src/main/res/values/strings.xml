@@ -1,34 +1,77 @@
 <resources>
     <string name="app_name" translatable="false">Krishi MITr </string>
-    <string name="open_camera" translatable="false">open Camera</string>
-    <string name="take_photo" translatable="false">Take Photo</string>
+    <string name="open_camera">open Camera</string>
+    <string name="take_photo">Take Photo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_login" translatable="false">LoginActivity</string>
-    <string name="prompt_email" translatable="false">Email</string>
-    <string name="prompt_password" translatable="false">Password</string>
-    <string name="action_sign_in" translatable="false">Sign in or register</string>
-    <string name="action_sign_in_short" translatable="false">Sign in</string>
-    <string name="welcome" translatable="false">"Welcome Back  "</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome Back  "</string>
     <string name="invalid_username" translatable="false">Not a valid username</string>
     <string name="invalid_password" translatable="false">Password must be >5 characters</string>
     <string name="login_failed" translatable="false">"Login failed"</string>
     <string name="prefrences_file_name" translatable="false">Login</string>
     <string name="bottom_nav_bar" translatable="false">Bottom Navigation Bar</string>
-    <string name="user_name" translatable="false">username</string>
-    <string name="get_started" translatable="false">Get Started</string>
-    <string name="search" translatable="false">Search</string>
-    <string name="chat_with_expert" translatable="false">Chat with Expert</string>
-    <string name="heal_your_crops" translatable="false">Heal Your Crops</string>
-    <string name="weather" translatable="false">Weather</string>
-    <string name="location" translatable="false">Location</string>
-    <string name="weathertoday" translatable="false">WeatherToday</string>
+    <string name="user_name">username</string>
+    <string name="get_started">Get Started</string>
+    <string name="search">Search</string>
+    <string name="chat_with_expert">Chat with Expert</string>
+    <string name="heal_your_crops">Heal Your Crops</string>
+    <string name="weather">Weather</string>
+    <string name="location">Location</string>
+    <string name="weathertoday">WeatherToday</string>
     <string name="devmsg" translatable="false">Made with \'❤️\'</string>
-    <string name="farmer" translatable="false">Farmer</string>
-    <string name="expert" translatable="false">Expert</string>
-    <string name="email" translatable="false">Email</string>
-    <string name="registertxt" translatable="false">Not yet Registerd! - Register Here</string>
-    <string name="login" translatable="false">Login</string>
+    <string name="farmer">Farmer</string>
+    <string name="expert">Expert</string>
+    <string name="email">Email</string>
+    <string name="registertxt">Not yet Registerd! - Register Here</string>
+    <string name="login">Login</string>
+    <string name="type_your_message">Type your Message</string>
+    <string name="click_icon_to_record">Click Icon To Record</string>
+    <string name="password">Password</string>
+    <string name="select_images">Select Images</string>
+    <string name="click_photos">Click Photos</string>
+    <string name="heal_your_crop">Heal Your Crop</string>
+    <string name="result">Result</string>
+    <string name="disease">Disease :</string>
+    <string name="confidence">Confidence :</string>
+    <string name="more_information">More Information</string>
+    <string name="you_are_a_farmer">You Are a : Farmer</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="otp" translatable="false">OTP</string>
+    <string name="get_otp">Get Otp</string>
+    <string name="back">Back</string>
+    <string name="already_registerd_login">Already Registerd. - Login</string>
+    <string name="register">Register</string>
+    <string name="are_you_a">Are you a :</string>
+    <string name="register_with">Register With</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="tomato">Tomato</string>
+    <string name="potato">Potato</string>
+    <string name="others_please_specify">Others Please Specify</string>
+    <string name="select_state">Select State</string>
+    <string name="next">Next</string>
+    <string name="click_to_filter">Click To Filter</string>
+    <string name="select_a_crop_to_search_expert">Select a Crop To Search Expert</string>
+    <string name="filter">FILTER</string>
+    <string name="select_language">Select Language</string>
+    <string name="english">English</string>
+    <string name="hindi">Hindi</string>
+    <string name="home">Home</string>
+    <string name="feed">Feed</string>
+    <string name="more">More</string>
+    <string name="soil_testing">Soil Testing</string>
+    <string name="khow_about_your_soil">Khow about your soil</string>
+    <string name="log_out">Log Out</string>
+    <string name="get_certified">Get Certified</string>
+    <string name="news">News</string>
+    <string name="expert_article">Expert Article</string>
+    <string name="government_schemes">Government Schemes</string>
+    <string name="kissan_helpline">Kissan Helpline</string>
 
 
     <!--    location selection-->
@@ -45,6 +88,10 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+    <string name="searchBartxt">Enter Name of Plant/Disease/Symptoms to Search</string>
+    <string name="kisaan_news">Kisaan News</string>
+    <string name="kisaannewstxt">Kisan Rin Portal to Be Launched on Tuesday</string>
+    <string name="kisaannewstxt2">A door-to-door KCC campaign</string>
 
 
 </resources>

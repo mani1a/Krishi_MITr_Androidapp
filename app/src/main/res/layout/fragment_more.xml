@@ -59,7 +59,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="25dp"
                     android:backgroundTint="@color/materialcolorbtn"
-                    android:text="Log Out"
+                    android:text="@string/log_out"
                     android:textColor="@color/black" />
 
                 <com.google.android.material.button.MaterialButton
@@ -70,7 +70,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/materialcolorbtn"
-                    android:text="Get Certified"
+                    android:text="@string/get_certified"
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     app:icon="@drawable/quality"
@@ -150,9 +150,6 @@
                 >
 
 
-
-
-
         <androidx.cardview.widget.CardView
             android:id="@+id/NewsCV"
             android:layout_width="match_parent"
@@ -183,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/imNews"
                     android:padding="20dp"
-                    android:text="News"
+                    android:text="@string/news"
                     android:textSize="22sp" />
 
             </RelativeLayout>
@@ -222,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/imExpertArticle"
                     android:padding="20dp"
-                    android:text="Expert Article"
+                    android:text="@string/expert_article"
                     android:textSize="22sp" />
 
             </RelativeLayout>
@@ -261,7 +258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/imgov"
                     android:padding="20dp"
-                    android:text="Government Schemes"
+                    android:text="@string/government_schemes"
                     android:textSize="22sp" />
 
             </RelativeLayout>
@@ -300,7 +297,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/imhelpline"
                     android:padding="20dp"
-                    android:text="Kissan Helpline"
+                    android:text="@string/kissan_helpline"
                     android:textSize="22sp" />
 
 
@@ -308,6 +305,49 @@
 
 
         </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/selectLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/helpline"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/morefragmentCV"
+                    app:cardCornerRadius="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imglanguage"
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/customer_support" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/imglanguage"
+                            android:padding="20dp"
+                            android:text="@string/select_language"
+                            android:textSize="22sp" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
 
             </RelativeLayout>
 

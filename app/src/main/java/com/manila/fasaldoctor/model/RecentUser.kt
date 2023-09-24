@@ -13,4 +13,5 @@ data class RecentUser(
     var crop1 : String?= "",
     var crop2 : String?= "",
     var crop3 : String?= "",
+    var messages : String? = "",
 )

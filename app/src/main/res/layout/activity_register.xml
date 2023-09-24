@@ -25,7 +25,7 @@
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Are you a : "
+        android:text="@string/are_you_a"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:textSize="18sp" />
@@ -67,7 +67,6 @@
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-
         >
 
 
@@ -102,7 +101,7 @@
             android:id="@+id/txt_reg_mob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register With"
+            android:text="@string/register_with"
             android:textSize="20sp"
             android:textStyle="italic"
             android:fontFamily="sans-serif"
@@ -128,13 +127,12 @@
             android:id="@+id/btn_reg_mobile"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_weight="50"
             android:src="@drawable/mobile"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mobile"
+                    android:text="@string/mobile"
                     android:textSize="18sp"
                     android:layout_below="@id/btn_reg_mobile"
                     android:layout_centerHorizontal="true"/>
@@ -159,7 +157,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email"
+                    android:text="@string/email"
                     android:textSize="18sp"
                     android:layout_below="@id/btn_reg_email"
                     android:layout_centerHorizontal="true"/>
@@ -186,7 +184,7 @@
             android:layout_height="60dp"
             android:padding="0dp"
             app:placeholderText="Enter Your Name"
-            android:hint="Name"
+            android:hint="@string/name"
             app:hintEnabled="true"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
@@ -206,7 +204,7 @@
             android:layout_height="60dp"
             android:padding="0dp"
             app:placeholderText="Enter Your Email"
-            android:hint="Email"
+            android:hint="@string/email"
             app:hintEnabled="true"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
@@ -227,7 +225,7 @@
             android:layout_height="60dp"
             android:padding="0dp"
             app:placeholderText="Enter Your Mobile"
-            android:hint="Mobile"
+            android:hint="@string/mobile"
             app:hintEnabled="true"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
@@ -250,7 +248,7 @@
             android:layout_height="60dp"
             android:padding="0dp"
             app:placeholderText="Enter Your Password"
-            android:hint="Password"
+            android:hint="@string/password"
             app:hintEnabled="true"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
@@ -271,7 +269,7 @@
             android:layout_height="60dp"
             android:padding="0dp"
             app:placeholderText="Repeat Your Password"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_password"
             app:hintEnabled="true"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
@@ -318,7 +316,7 @@
                     android:layout_below="@id/img_tomato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tomato"
+                    android:text="@string/tomato"
                     android:layout_centerHorizontal="true"
                     />
 
@@ -343,7 +341,7 @@
             android:layout_below="@id/img_potato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Potato"
+            android:text="@string/potato"
             android:layout_centerHorizontal="true"
             />
 
@@ -357,7 +355,7 @@
             android:layout_below="@+id/grpx_crop"
             android:layout_margin="30dp"
             app:placeholderText="Other"
-            android:hint="Others Please Specify"
+            android:hint="@string/others_please_specify"
             android:orientation="vertical"
             android:id="@+id/edittextothercroplauout">
 
@@ -376,7 +374,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             app:placeholderText="Location"
-            android:hint="Select State"
+            android:hint="@string/select_state"
             >
 
 
@@ -406,7 +404,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Next"
+        android:text="@string/next"
         android:layout_centerHorizontal="true"
         android:visibility="gone"/>
 
@@ -425,7 +423,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Back"
+            android:text="@string/back"
             android:layout_weight="50"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="10dp"
@@ -438,7 +436,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Register"
+            android:text="@string/register"
             android:layout_weight="50"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="10dp"
@@ -451,7 +449,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Already Registerd. - Login"
+        android:text="@string/already_registerd_login"
         android:layout_marginBottom="50dp"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"

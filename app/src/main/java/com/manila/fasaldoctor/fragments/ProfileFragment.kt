@@ -266,22 +266,22 @@ class ProfileFragment : Fragment() {
         dialog?.setContentView(R.layout.layout_upload_cardview)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        val image : ImageView? = dialog?.findViewById(R.id.showSelectedImg)
-        val uploadbtn : Button? = dialog?.findViewById(R.id.btn_upload)
-        val cancelbtn: Button? = dialog?.findViewById(R.id.btn_cancel)
+//        val image : ImageView? = dialog?.findViewById(R.id.showSelectedImg)
+//        val uploadbtn : Button? = dialog?.findViewById(R.id.btn_upload)
+//        val cancelbtn: Button? = dialog?.findViewById(R.id.btn_cancel)
 
-        if (image != null) {
-            Glide.with(this).load(imageUri).into(image)
-        }
-
-        cancelbtn?.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        uploadbtn?.setOnClickListener {
-            uploadPImg()
-        }
-        dialog?.show()
+//        if (image != null) {
+//            Glide.with(this).load(imageUri).into(image)
+//        }
+//
+//        cancelbtn?.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//
+//        uploadbtn?.setOnClickListener {
+//            uploadPImg()
+//        }
+//        dialog?.show()
 
 
     }

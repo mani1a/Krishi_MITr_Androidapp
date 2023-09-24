@@ -281,7 +281,7 @@ class ChatOpenActivity : AppCompatActivity() {
         val messageObject = Messages("true",time!!,message,senderuid,receiveruid)
 
         val recentUserList = RecentUser(receivername,receiveremail,receiverrole,receiverUID,receivermobile,receiverimageUrl,receiverrecent
-        ,receivercrop1,receivercrop2,receivercrop3)
+        ,receivercrop1,receivercrop2,receivercrop3,"true")
 
         if (message.isNotEmpty()){
 
@@ -394,6 +394,7 @@ class ChatOpenActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         startActivity(Intent(this,ChatMainActivity::class.java))
+        finish()
         return super.onOptionsItemSelected(item)
     }
 
@@ -503,6 +504,11 @@ class ChatOpenActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 
 

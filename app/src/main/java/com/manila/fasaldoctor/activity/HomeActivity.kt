@@ -57,8 +57,6 @@ import com.manila.fasaldoctor.utils.Layers
          supportActionBar?.hide()
          replaceFragments(HomeFragment())
 
-
-
 //         sharedPreferences= getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
 //         role = sharedPreferences.getString("checkedRole",null).toString()
 //
@@ -73,20 +71,20 @@ import com.manila.fasaldoctor.utils.Layers
 //         Toast.makeText(this,intent2,Toast.LENGTH_SHORT).show()
 //         binding.txtView.text = email
 
-         val userName = intent.getStringExtra("userName")
-         val email = intent.getStringExtra("email")
-         val role = intent.getStringExtra("role")
-         val userId = intent.getStringExtra("userId")
-         val fcmToken = intent.getStringExtra("fcmToken")
-
-         val profileFragment = ProfileFragment()
-         val bundle = Bundle()
-         bundle.putString("userName",userName)
-         bundle.putString("role",role)
-         bundle.putString("email",email)
-         bundle.putString("userId",userId)
-         bundle.putString("fcmToken",fcmToken)
-         profileFragment.arguments = bundle
+//         val userName = intent.getStringExtra("userName")
+//         val email = intent.getStringExtra("email")
+//         val role = intent.getStringExtra("role")
+//         val userId = intent.getStringExtra("userId")
+//         val fcmToken = intent.getStringExtra("fcmToken")
+//
+//         val profileFragment = ProfileFragment()
+//         val bundle = Bundle()
+//         bundle.putString("userName",userName)
+//         bundle.putString("role",role)
+//         bundle.putString("email",email)
+//         bundle.putString("userId",userId)
+//         bundle.putString("fcmToken",fcmToken)
+//         profileFragment.arguments = bundle
 
 
 //         intentTohome.putExtra("",email)
@@ -154,7 +152,7 @@ import com.manila.fasaldoctor.utils.Layers
          val fragmentManager = supportFragmentManager
          val fragmentTransaction = fragmentManager.beginTransaction()
          fragmentTransaction.replace(R.id.frameLayout,fragment)
-         fragmentTransaction.addToBackStack("back")
+//         fragmentTransaction.addToBackStack("back")
          fragmentTransaction.commit()
      }
 
