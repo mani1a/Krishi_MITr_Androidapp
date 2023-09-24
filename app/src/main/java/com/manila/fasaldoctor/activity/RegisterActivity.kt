@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.net.wifi.WifiManager.SubsystemRestartTrackingCallback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -105,13 +106,11 @@ class RegisterActivity : AppCompatActivity() {
             }
 
 
-            sharedPreferences = getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
+            sharedPreferences = getSharedPreferences("checkedRole", MODE_PRIVATE)
             sharedPreferences.getString("checkedRole", null)
 
-            val location = resources.getStringArray(R.array.Location)
-            val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.Location,R.layout.layout_chatmsgdropdown)
-            val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.autoCompleteLocation)
-            autoCompleteTextView.setAdapter(arrayAdapter)
+
+
 
             binding.btnNext.setOnClickListener {
                 binding.dataLayout.visibility = View.GONE
@@ -119,7 +118,6 @@ class RegisterActivity : AppCompatActivity() {
                 binding.radioRoleGroup.visibility = View.GONE
                 binding.btnNext.visibility = View.GONE
                 binding.buttonLayout.visibility = View.VISIBLE
-
             }
 
             binding.btnBack.setOnClickListener {
@@ -142,6 +140,10 @@ class RegisterActivity : AppCompatActivity() {
                 crop2 = "Tomato"
 
             }
+            val location = resources.getStringArray(R.array.india_states)
+            val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.india_states,R.layout.layout_chatmsgdropdown)
+            val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.autoCompleteLocation)
+            autoCompleteTextView.setAdapter(arrayAdapter)
 
 
 
@@ -153,11 +155,11 @@ class RegisterActivity : AppCompatActivity() {
                 val userExpert = Usersexpert(userName, email, expert)
                 crop3 = binding.edittextothercrop.text.toString()
 
-                sharedPreferences = getSharedPreferences("userName",Context.MODE_PRIVATE)
+                sharedPreferences = getSharedPreferences("userName", MODE_PRIVATE)
                 sharedPreferences.getString("userName",null)
                 sharedPreferences.edit().putString("userName",userName).apply()
 
-                sharedPreferences = getSharedPreferences("email",Context.MODE_PRIVATE)
+                sharedPreferences = getSharedPreferences("email", MODE_PRIVATE)
                 sharedPreferences.getString("email",null)
                 sharedPreferences.edit().putString("email",email).apply()
 

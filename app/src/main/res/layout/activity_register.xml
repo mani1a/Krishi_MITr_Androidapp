@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity"
     android:background="@color/bgcolor">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
 
     <TextView
         android:id="@+id/txt_reg"
@@ -89,7 +98,7 @@
              />
 
     </RadioGroup>
-    
+
     <RelativeLayout
         android:id="@+id/mobileReglayout"
         android:layout_width="match_parent"
@@ -101,25 +110,38 @@
             android:id="@+id/txt_reg_mob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_with"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            android:fontFamily="sans-serif"
+
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+       
+            android:text="@string/register_with"
+
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
         <LinearLayout
-            android:layout_below="@+id/txt_reg_mob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100"
-            android:layout_margin="10dp">
+            android:layout_below="@+id/txt_reg_mob"
+            android:layout_margin="10dp"
+            android:weightSum="100">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="50">
 
+          <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/btn_reg_mobile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="50"
+                    android:src="@drawable/mobile"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="2dp" />
+<!-- =======
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_centerHorizontal="true"
             app:civ_border_color="@color/black"
@@ -127,15 +149,19 @@
             android:id="@+id/btn_reg_mobile"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/mobile"/>
+            android:src="@drawable/mobile"/> -->
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/mobile"
                     android:textSize="18sp"
+
                     android:layout_below="@id/btn_reg_mobile"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    />
 
             </RelativeLayout>
 
@@ -144,142 +170,167 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="50">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_centerHorizontal="true"
-            app:civ_border_color="@color/black"
-            app:civ_border_width="2dp"
-            android:id="@+id/btn_reg_email"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_weight="50"
-            android:src="@drawable/gmail"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/btn_reg_email"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="50"
+                    android:src="@drawable/gmail"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="2dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/email"
                     android:textSize="18sp"
+
                     android:layout_below="@id/btn_reg_email"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                 />
 
             </RelativeLayout>
         </LinearLayout>
-
-
 
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/dataLayout"
-        android:layout_below="@+id/radio_role_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_role_group"
         android:visibility="gone">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_name"
-            android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:padding="0dp"
-            app:placeholderText="Enter Your Name"
+
+
+            
             android:hint="@string/name"
-            app:hintEnabled="true"
+      
+
             android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="30dp"
+            android:hint="Name"
+            android:padding="0dp"
+            app:hintEnabled="true"
+            app:placeholderText="Enter Your Name"
             app:startIconDrawable="@drawable/vector_person">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@+id/user_name"
             android:id="@+id/TextTextEmailAddress2"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:padding="0dp"
-            app:placeholderText="Enter Your Email"
+
+            android:layout_below="@+id/user_name"
+
             android:hint="@string/email"
-            app:hintEnabled="true"
+
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:hint="Email"
+            android:padding="0dp"
+            app:hintEnabled="true"
+            app:placeholderText="Enter Your Email"
             app:startIconDrawable="@drawable/vector_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTextEmailAddress2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@+id/TextTextEmailAddress2"
             android:id="@+id/TextMobile"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:padding="0dp"
-            app:placeholderText="Enter Your Mobile"
+
+            android:layout_below="@+id/TextTextEmailAddress2"
+            
+          
             android:hint="@string/mobile"
-            app:hintEnabled="true"
+          
+
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+        
+            android:padding="0dp"
+            app:hintEnabled="true"
+            app:placeholderText="Enter Your Mobile"
             app:startIconDrawable="@drawable/vector_phone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextMobile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="phone"/>
+                android:inputType="phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/TextTextPassword2"
-            android:layout_below="@+id/TextMobile"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:padding="0dp"
-            app:placeholderText="Enter Your Password"
+
+            android:layout_below="@+id/TextMobile"
+
+         
             android:hint="@string/password"
-            app:hintEnabled="true"
+
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+           
+            android:padding="0dp"
+            app:hintEnabled="true"
+            app:placeholderText="Enter Your Password"
             app:startIconDrawable="@drawable/vector_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTextPassword2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/TextTextConfirmPassword2"
-            android:layout_below="@+id/TextTextPassword2"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:padding="0dp"
-            app:placeholderText="Repeat Your Password"
+
+            android:layout_below="@+id/TextTextPassword2"
+
+          
             android:hint="@string/confirm_password"
-            app:hintEnabled="true"
+         
+
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="30dp
+            android:padding="0dp"
+            app:hintEnabled="true"
+            app:placeholderText="Repeat Your Password"
             app:startIconDrawable="@drawable/vector_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTextConfirmPassword2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -291,7 +342,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_role_group"
         android:layout_marginTop="20dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/grpx_crop"
@@ -308,89 +359,90 @@
                     android:id="@+id/img_tomato"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/tomato"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/tomato" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/check_tomato"
-                    android:layout_below="@id/img_tomato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+                    android:layout_below="@id/img_tomato"
+
                     android:text="@string/tomato"
+
                     android:layout_centerHorizontal="true"
                     />
 
             </RelativeLayout>
 
-     <RelativeLayout
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_weight="50">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50">
 
 
-        <ImageView
-            android:id="@+id/img_potato"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/potato"
-            android:layout_centerHorizontal="true"
-            />
+                <ImageView
+                    android:id="@+id/img_potato"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/potato" />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/check_potato"
-            android:layout_below="@id/img_potato"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/potato"
-            android:layout_centerHorizontal="true"
-            />
 
-     </RelativeLayout>
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/check_potato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_potato"
+                    android:layout_centerHorizontal="true"
+                    android:text="Potato" />
+
+
+            </RelativeLayout>
 
         </LinearLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edittextothercroplauout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/grpx_crop"
             android:layout_margin="30dp"
-            app:placeholderText="Other"
-            android:hint="@string/others_please_specify"
+            android:hint="Others Please Specify"
             android:orientation="vertical"
-            android:id="@+id/edittextothercroplauout">
+            app:placeholderText="Other">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittextothercrop"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
+        </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@+id/edittextothercroplauout"
+            android:id="@+id/locationnaa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_height="57dp"
+            android:layout_below="@+id/edittextothercroplauout"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="30dp"
-            app:placeholderText="Location"
-            android:hint="@string/select_state"
-            >
+
+            android:hint="Select State"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:placeholderText="Location">
 
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteLocation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="15dp"
                 android:inputType="none"
-                />
-
-
+                android:padding="15dp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
 
@@ -456,6 +508,8 @@
         android:textStyle="italic"/>
 
 
+</LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
