@@ -16,13 +16,15 @@ import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityHomeBinding
 import com.manila.fasaldoctor.fragments.HomeFragment
 import com.manila.fasaldoctor.fragments.ProfileFragment
+import com.manila.fasaldoctor.fragments.FeedFragment
 import android.content.Intent
 import android.view.MenuItem
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.manila.fasaldoctor.fragments.Feed2Fragment
+//import com.manila.fasaldoctor.fragments.Feed2Fragment
+//import com.manila.fasaldoctor.fragments.FeedFragment
 import com.manila.fasaldoctor.fragments.MoreFragment
 import com.manila.fasaldoctor.utils.Layers
 
@@ -115,12 +117,13 @@ import com.manila.fasaldoctor.utils.Layers
 
 
                  R.id.feed -> {
-                     val intent = Intent(this, FeedActivity::class.java)
-                     startActivity(intent)
-//                     true // Return true to indicate that the item click is handled
-
-//                     replaceFragments(Feed2Fragment())
-//                     binding.btnChat.visibility = View.GONE
+                     replaceFragments(FeedFragment())
+//                     val intent = Intent(this, FeedActivity::class.java)
+//                     startActivity(intent)
+////                     true // Return true to indicate that the item click is handled
+//
+////                     replaceFragments(Feed2Fragment())
+////                     binding.btnChat.visibility = View.GONE
                  }
                  // Handle other menu items if needed
 
