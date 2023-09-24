@@ -34,7 +34,11 @@
                 android:layout_marginBottom="30dp"
                 android:background="@color/white"
                 android:hint="@string/search"
-                app:queryHint="Enter Disease/Symptoms to Search"
+
+                
+
+                app:queryHint="@string/searchBartxt"
+
                 app:iconifiedByDefault="false"
                 />
 
@@ -291,8 +295,7 @@
                 android:editable="false"
                 android:ems="10"
                 android:fontFamily="sans-serif-black"
-                android:inputType="text"
-                android:text="Soil Testing"
+                android:text="@string/soil_testing"
                 android:textColor="#874D4D"
                 android:textColorHighlight="#8BC34A"
                 android:textColorHint="#4CAF50"
@@ -311,8 +314,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="19dp"
                     android:fontFamily="sans-serif-black"
-                    android:inputType="text"
-                    android:text="Khow about your soil"
+                    android:text="@string/khow_about_your_soil"
                     android:textSize="14sp"/>
 
 
@@ -354,17 +356,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="19dp"
                 android:backgroundTint="#009688"
-                android:clickable="false"
-                android:editable="false"
                 android:ems="10"
                 android:fontFamily="sans-serif-black"
-                android:inputType="text"
-                android:text="Kisaan News"
+                android:text="@string/kisaan_news"
                 android:textColor="#FF7373"
                 android:textColorHighlight="#8BC34A"
                 android:textColorHint="#4CAF50"
                 android:textColorLink="#4CAF50"
-
                 android:textSize="24sp"
                 android:visibility="visible" />
 
@@ -379,8 +377,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="19dp"
                 android:fontFamily="sans-serif-black"
-                android:inputType="text"
-                android:text="Kisan Rin Portal to Be Launched on Tuesday"
+                android:text="@string/kisaannewstxt"
                 android:textSize="14sp"/>
 
             <TextView
@@ -394,8 +391,7 @@
                 android:layout_marginTop="70dp"
                 android:layout_marginEnd="19dp"
                 android:fontFamily="sans-serif"
-                android:inputType="text"
-                android:text="A door-to-door KCC campaign "
+                android:text="@string/kisaannewstxt2"
                 android:textSize="14sp" />
             </androidx.cardview.widget.CardView></RelativeLayout>
 

@@ -4,20 +4,19 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivitySecondBinding
+import java.util.Locale
 
 class SecondActivity : AppCompatActivity() {
 
     lateinit var binding : ActivitySecondBinding
     lateinit var sharedPreferences : SharedPreferences
-
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,18 +25,60 @@ class SecondActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name), Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
+
+        sharedPreferences = getSharedPreferences("Hindi",Context.MODE_PRIVATE)
+        val hindi = sharedPreferences.getBoolean("Hindi",false)
 
         if (isLoggedIn){
             startActivity(Intent(this,LoginActivity::class.java))
             finish()
         }
+
         grantPermission()
 
+        var language :  String = ""
+        val radioLanguage = binding.languagerolegroup
+
+        radioLanguage.setOnCheckedChangeListener { group, checkedId ->
+
+            if (checkedId == R.id.lang_eng){
+                language = "English"
+            }
+            if (checkedId == R.id.lang_hindi){
+                language = "Hindi"
+            }
+
+        }
+
+//        val languageCode = "hi" // Replace with code to retrieve user's selected language (e.g., from SharedPreferences)
+//        val resources = getResources()
+//        val locale = Locale(languageCode)
+//        val configuration = Configuration(resources.configuration)
+//        configuration.setLocale(locale)
+//        resources.updateConfiguration(configuration, resources.displayMetrics)
+
+
         binding.btnNext.setOnClickListener {
+
+
+            if (language == "English"){
+
+                changeLanguage("en")
                 startActivity(Intent(this,RegisterActivity::class.java))
-            finish()
+                finish()
+
+            }
+            else if (language == "Hindi"){
+
+                changeLanguage("hi")
+                sharedPreferences.edit().putBoolean("Hindi",true).apply()
+                startActivity(Intent(this,RegisterActivity::class.java))
+                finish()
+
+            }
+
         }
 
     }
@@ -86,6 +127,15 @@ class SecondActivity : AppCompatActivity() {
         grantResults.forEach {
             if (it != PackageManager.PERMISSION_GRANTED) grantPermission()
         }
+    }
+
+    private fun changeLanguage(code : String){
+        val resources = resources
+        val locale = Locale(code)
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+
     }
 
 

@@ -57,7 +57,7 @@
                 android:layout_weight="50"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:text="Select Images"
+                android:text="@string/select_images"
                 android:textColor="@color/black"
                 app:icon="@drawable/image"
                 app:iconTintMode="multiply"
@@ -74,7 +74,7 @@
                 android:layout_weight="50"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="30dp"
-                android:text="Click Photos"
+                android:text="@string/click_photos"
                 android:textColor="@color/black"
                 app:icon="@drawable/camera"
                 app:iconTintMode="multiply"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linear"
                 android:layout_marginStart="70dp"
-                android:text="Heal Your Crop"
+                android:text="@string/heal_your_crop"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/materialcolorbtn"
                 android:layout_centerHorizontal="true"
@@ -139,7 +139,7 @@
                     android:id="@+id/tv_prediction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Result"
+                    android:text="@string/result"
                     android:textSize="25sp"
                     android:gravity="center_horizontal"/>
 
@@ -148,7 +148,7 @@
                     android:layout_below="@+id/tv_prediction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Disease : "
+                    android:text="@string/disease"
                     android:textSize="20sp"
                     android:layout_margin="20dp"/>
 
@@ -157,7 +157,7 @@
                         android:layout_below="@+id/tv_result"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Confidence : "
+                        android:text="@string/confidence"
                         android:textSize="20sp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
@@ -203,7 +203,7 @@
                         android:backgroundTint="@color/materialcolorbtn"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:text="More Information"
+                        android:text="@string/more_information"
                         android:textColor="@color/black"
                         android:visibility="gone"/>
 
@@ -236,7 +236,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/materialcolorbtn"
-        android:text="Chat With Expert"
+        android:text="@string/chat_with_expert"
         android:textColor="@color/black"
         app:icon="@drawable/chat"
         app:iconTintMode="multiply"

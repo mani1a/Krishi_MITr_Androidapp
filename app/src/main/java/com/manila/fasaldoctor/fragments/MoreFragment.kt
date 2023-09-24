@@ -1,10 +1,15 @@
 package com.manila.fasaldoctor.fragments
 
 import android.app.Activity
+import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,6 +17,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
@@ -27,6 +34,7 @@ import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.utils.DialogImageOpen
 import com.manila.fasaldoctor.utils.Layers
 import java.io.File
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,9 +90,6 @@ class MoreFragment : Fragment() {
 //        firebaseDatabase = FirebaseDatabase.getInstance().getReference("Users")
         firebaseDatabase = FirebaseDatabase.getInstance().reference
         firebaseStorage = FirebaseStorage.getInstance()
-
-
-
 
 //Code to show Profile Images
         val userId = firebaseAuth.currentUser?.uid
@@ -169,11 +174,13 @@ class MoreFragment : Fragment() {
 
         }
 
+        binding?.selectLanguage?.setOnClickListener {
+
+            showLangDialogBox()
 
 
 
-
-
+        }
 
         return binding?.root
     }
@@ -209,6 +216,62 @@ class MoreFragment : Fragment() {
 
 
     }
+
+
+
+
+    private fun showLangDialogBox(){
+
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.layout_upload_cardview)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val hindibtn = dialog.findViewById<Button>(R.id.btn_hindi)
+        val englishbtn = dialog.findViewById<Button>(R.id.btn_english)
+
+        hindibtn.setOnClickListener {
+
+            changeLanguage("hi")
+            dialog.dismiss()
+
+        }
+        englishbtn.setOnClickListener {
+
+            changeLanguage("en")
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
+
+    private fun changeLanguage(code : String){
+
+        val resources = resources
+        val locale = Locale(code)
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     companion object {
         /**

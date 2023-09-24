@@ -36,6 +36,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="100dp"
             android:overScrollMode="always"
+
             android:padding="5dp"
             />
 
@@ -89,7 +90,7 @@
             android:background="@drawable/bg_reg_layout"
             android:layout_gravity="center"
             android:backgroundTint="#F4F4F4"
-            android:hint="Type your Message"
+            android:hint="@string/type_your_message"
             android:padding="12dp"
             />
 
@@ -177,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Click Icon To Record"
+                    android:text="@string/click_icon_to_record"
                     android:textSize="19sp"
                     android:layout_marginStart="55dp"
                     android:layout_centerVertical="true"/>
@@ -188,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/vector_play"
-                    android:layout_toLeftOf="@+id/btn_send_audio"
+                    android:layout_toStartOf="@+id/btn_send_audio"
                     android:layout_centerVertical="true"
                     android:visibility="gone"/>
 
@@ -200,7 +201,7 @@
                     android:src="@drawable/vector_pause"
                     android:visibility="gone"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/btn_send_audio"/>
+                    android:layout_toStartOf="@+id/btn_send_audio"/>
 
 
                 <ImageButton
@@ -212,7 +213,7 @@
                     android:src="@drawable/vector_send"
                     android:visibility="gone"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/btn_cancel"/>
+                    android:layout_toStartOf="@+id/btn_cancel"/>
 
                 <ImageButton
                     android:id="@+id/btn_cancel"

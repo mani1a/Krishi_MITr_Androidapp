@@ -7,12 +7,12 @@
 
         <item
             android:id="@+id/home"
-            android:title="Home"
+            android:title="@string/home"
             android:icon="@drawable/leaf" />
 
         <item
             android:id="@+id/feed"
-            android:title="Feed"
+            android:title="@string/feed"
             android:icon="@drawable/lighting"/>
 
 
@@ -22,7 +22,7 @@
 <!--            android:icon="@drawable/vector"/>-->
         <item
             android:id="@+id/More"
-            android:title="More"
+            android:title="@string/more"
             android:icon="@drawable/more"/>
 
 

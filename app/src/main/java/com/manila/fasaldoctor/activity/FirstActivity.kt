@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,8 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityFirstBinding
+import java.util.Locale
+import kotlin.math.log
 
 class FirstActivity : AppCompatActivity() {
 
@@ -24,6 +27,7 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var firebaseAuth: FirebaseAuth
     lateinit var progressDialog: ProgressDialog
+
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +37,9 @@ class FirstActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.btnGetStarted.setOnClickListener {
-                    Toast.makeText(this, "Get Started", Toast.LENGTH_SHORT).show()
-//                    startActivity(Intent(this, SecondActivity::class.java))
-                    finish()
+            Toast.makeText(this, "Get Started", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, SecondActivity::class.java))
+            finish()
         }
 
         binding.btnGetStarted.visibility = View.GONE
@@ -46,8 +50,8 @@ class FirstActivity : AppCompatActivity() {
             {
                 binding.btnGetStarted.visibility = View.VISIBLE
                 binding.progressbar.visibility = View.GONE
-                startActivity(Intent(this, SecondActivity::class.java))
-                finish()
+//                startActivity(Intent(this, SecondActivity::class.java))
+//                finish()
             }, delay
         )
 
@@ -58,7 +62,7 @@ class FirstActivity : AppCompatActivity() {
                     finish()
                 },delay)
 
-        sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("Login",Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
 
         if (isLoggedIn){
@@ -66,8 +70,28 @@ class FirstActivity : AppCompatActivity() {
             finish()
         }
 
+        sharedPreferences = getSharedPreferences("Hindi",Context.MODE_PRIVATE)
+        val hindi = sharedPreferences.getBoolean("Hindi",false)
+
+        if (hindi){
+            changeLanguage("hi")
+        }else{
+            changeLanguage("en")
+        }
+
+
     }
-        // PERMISSION MANAGER/HANDLER
+
+    private fun changeLanguage(code: String) {
+
+        val resources = resources
+        val locale = Locale(code)
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration,resources.displayMetrics)
+    }
+
+    // PERMISSION MANAGER/HANDLER
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)
         fun grantPermission(){
 

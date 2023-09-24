@@ -86,6 +86,9 @@ dependencies {
     //gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
 
+    // translation firebase
+//    implementation 'com.google.mlkit:translate:17.0.1'
+
     //Image labelling
 //    implementation 'com.google.mlkit:image-labeling:17.0.7'
 

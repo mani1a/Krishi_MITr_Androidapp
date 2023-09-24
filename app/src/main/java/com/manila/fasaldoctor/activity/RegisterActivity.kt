@@ -3,6 +3,7 @@ package com.manila.fasaldoctor.activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.net.wifi.WifiManager.SubsystemRestartTrackingCallback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.model.Usersexpert
 import com.manila.fasaldoctor.model.Usersfarmer
 import com.manila.fasaldoctor.utils.Layers
+import java.util.Locale
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -62,7 +64,6 @@ class RegisterActivity : AppCompatActivity() {
         firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
         intentTohome = Intent(this,HomeActivity::class.java)
         role = null.toString()
-
 
         radioRoleGroup.setOnCheckedChangeListener { group, checkedId ->
             val farmer = "farmer"
@@ -190,7 +191,7 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener { it ->
                         if (it.isSuccessful) {
                             storeData()
-                            startActivity(intentTohome)
+
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
                         }
@@ -218,20 +219,17 @@ class RegisterActivity : AppCompatActivity() {
             }
             // Get new FCM registration token
             fcmToken = task.result
-            users = User(userName,email,role,userId,fcmToken,"",mobile,"","",crop1,crop2,crop3)
+            users = User(userName,email,role,userId,fcmToken,"",mobile,""
+                ,"",crop1,crop2,crop3)
             firebaseDatabaseReference.child(userId).setValue(users).addOnSuccessListener {
                 Layers.hideProgressBar()
             }.addOnCompleteListener {
-                if (it.isSuccessful) Toast.makeText(this,"Registered as $role",Toast.LENGTH_SHORT).show()
+                if (it.isSuccessful){
+                    startActivity(intentTohome)
+                    Toast.makeText(this,"Registered as $role",Toast.LENGTH_SHORT).show()
+                }
                 else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
             }
-
-            // pass register data to profile fragment check krke dekhte hai
-            intentTohome.putExtra("userName",userName)
-            intentTohome.putExtra("email",email)
-            intentTohome.putExtra("role",role)
-            intentTohome.putExtra("userId",userId)
-            intentTohome.putExtra("fcmToken",fcmToken)
 
         })
 

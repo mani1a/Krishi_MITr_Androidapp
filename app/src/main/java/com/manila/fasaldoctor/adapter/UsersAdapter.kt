@@ -74,6 +74,7 @@ class UsersAdapter (private val context: Context, private val userList: ArrayLis
         val role : TextView = view.findViewById(R.id.id_txt_role)
         val pic : CircleImageView = view.findViewById(R.id.id_img)
         val openChat : RelativeLayout = view.findViewById(R.id.btn_open_chat)
+        val show : TextView = view.findViewById(R.id.id_show)
 
     }
 
