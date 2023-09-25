@@ -30,8 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-
             <RelativeLayout
                 android:id="@+id/dilterlayout"
                 android:layout_width="match_parent"
@@ -41,7 +39,8 @@
                     android:id="@+id/txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Click To Filter"
+                    android:text="@string/click_to_filter"
+                    android:layout_centerVertical="true"
                     android:textSize="18sp"
                     android:padding="15dp"/>
 
@@ -82,7 +81,7 @@
                 android:id="@+id/txtchoosechat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select a Crop To Search Expert"
+                android:text="@string/select_a_crop_to_search_expert"
                 android:textSize="18sp"
                 android:gravity="center"/>
 
@@ -117,7 +116,7 @@
                             android:layout_below="@id/img_tomato"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tomato"
+                            android:text="@string/tomato"
                             android:layout_centerHorizontal="true"
                             />
 
@@ -142,7 +141,7 @@
                             android:layout_below="@id/img_potato"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Potato"
+                            android:text="@string/potato"
                             android:layout_centerHorizontal="true"
                             />
 
@@ -157,15 +156,12 @@
                     android:layout_marginStart="40dp"
                     android:layout_marginEnd="40dp"
                     app:placeholderText="Other"
-                    android:hint="Others Please Specify"
-                    >
+                    android:hint="@string/others_please_specify">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edittextothercrop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
-
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,12 +175,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/selectcroplayout"
                 android:layout_centerHorizontal="true"
-                android:text="FILTER"
+                android:text="@string/filter"
                 android:textSize="16sp"/>
 
-
-
-        </RelativeLayout>
+              </RelativeLayout>
 
             </RelativeLayout>
 
@@ -202,8 +196,6 @@
             android:padding="2dp"
             tools:listitem="@layout/recyclerview_users"
             android:visibility="gone"/>
-
-
 
     </RelativeLayout>
 

@@ -3,10 +3,14 @@ package com.manila.fasaldoctor.activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.net.wifi.WifiManager.SubsystemRestartTrackingCallback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +24,7 @@ import com.manila.fasaldoctor.model.User
 import com.manila.fasaldoctor.model.Usersexpert
 import com.manila.fasaldoctor.model.Usersfarmer
 import com.manila.fasaldoctor.utils.Layers
+import java.util.Locale
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -60,7 +65,6 @@ class RegisterActivity : AppCompatActivity() {
         intentTohome = Intent(this,HomeActivity::class.java)
         role = null.toString()
 
-
         radioRoleGroup.setOnCheckedChangeListener { group, checkedId ->
             val farmer = "farmer"
             val expert = "expert"
@@ -84,6 +88,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 binding.btnRegMobile.setOnClickListener {
                     startActivity(Intent(this,OtpRegActivity::class.java))
+                    finish()
                 }
 
             }
@@ -101,8 +106,11 @@ class RegisterActivity : AppCompatActivity() {
             }
 
 
-            sharedPreferences = getSharedPreferences("checkedRole",Context.MODE_PRIVATE)
+            sharedPreferences = getSharedPreferences("checkedRole", MODE_PRIVATE)
             sharedPreferences.getString("checkedRole", null)
+
+
+
 
             binding.btnNext.setOnClickListener {
                 binding.dataLayout.visibility = View.GONE
@@ -110,7 +118,6 @@ class RegisterActivity : AppCompatActivity() {
                 binding.radioRoleGroup.visibility = View.GONE
                 binding.btnNext.visibility = View.GONE
                 binding.buttonLayout.visibility = View.VISIBLE
-
             }
 
             binding.btnBack.setOnClickListener {
@@ -133,6 +140,10 @@ class RegisterActivity : AppCompatActivity() {
                 crop2 = "Tomato"
 
             }
+            val location = resources.getStringArray(R.array.india_states)
+            val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.india_states,R.layout.layout_chatmsgdropdown)
+            val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.autoCompleteLocation)
+            autoCompleteTextView.setAdapter(arrayAdapter)
 
 
 
@@ -144,11 +155,11 @@ class RegisterActivity : AppCompatActivity() {
                 val userExpert = Usersexpert(userName, email, expert)
                 crop3 = binding.edittextothercrop.text.toString()
 
-                sharedPreferences = getSharedPreferences("userName",Context.MODE_PRIVATE)
+                sharedPreferences = getSharedPreferences("userName", MODE_PRIVATE)
                 sharedPreferences.getString("userName",null)
                 sharedPreferences.edit().putString("userName",userName).apply()
 
-                sharedPreferences = getSharedPreferences("email",Context.MODE_PRIVATE)
+                sharedPreferences = getSharedPreferences("email", MODE_PRIVATE)
                 sharedPreferences.getString("email",null)
                 sharedPreferences.edit().putString("email",email).apply()
 
@@ -180,7 +191,7 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener { it ->
                         if (it.isSuccessful) {
                             storeData()
-                            startActivity(intentTohome)
+
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
                         }
@@ -208,20 +219,17 @@ class RegisterActivity : AppCompatActivity() {
             }
             // Get new FCM registration token
             fcmToken = task.result
-            users = User(userName,email,role,userId,fcmToken,"",mobile,"","",crop1,crop2,crop3)
+            users = User(userName,email,role,userId,fcmToken,"",mobile,""
+                ,"",crop1,crop2,crop3)
             firebaseDatabaseReference.child(userId).setValue(users).addOnSuccessListener {
                 Layers.hideProgressBar()
             }.addOnCompleteListener {
-                if (it.isSuccessful) Toast.makeText(this,"Registered as $role",Toast.LENGTH_SHORT).show()
+                if (it.isSuccessful){
+                    startActivity(intentTohome)
+                    Toast.makeText(this,"Registered as $role",Toast.LENGTH_SHORT).show()
+                }
                 else Toast.makeText(this,"failed ",Toast.LENGTH_SHORT).show()
             }
-
-            // pass register data to profile fragment check krke dekhte hai
-            intentTohome.putExtra("userName",userName)
-            intentTohome.putExtra("email",email)
-            intentTohome.putExtra("role",role)
-            intentTohome.putExtra("userId",userId)
-            intentTohome.putExtra("fcmToken",fcmToken)
 
         })
 

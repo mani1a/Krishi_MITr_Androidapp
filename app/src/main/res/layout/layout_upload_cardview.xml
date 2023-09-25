@@ -1,71 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/app_bg"
     app:cardCornerRadius="30dp"
     android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="60dp">
+    android:layout_gravity="center">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="40dp"
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="Upload Image"
-            android:textSize="20sp" />
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/select_language"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:gravity="center"/>
 
-        <ImageView
-            android:id="@+id/showSelectedImg"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_below="@+id/text"
-            android:layout_centerInParent="true" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_english"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/showSelectedImg"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
+            android:layout_gravity="center"
+            android:text="@string/english"/>
 
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="Cancel"
-                android:layout_marginStart="100dp"/>
-
-            <Button
-                android:id="@+id/btn_upload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@+id/btn_cancel"
-                android:text="Upload" />
-
-            <TextView
-                android:id="@+id/tv_prediction"
-                android:text="prediction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:layout_below="@id/btn_cancel"
-                />
-
-        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_hindi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/hindi"/>
 
 
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>

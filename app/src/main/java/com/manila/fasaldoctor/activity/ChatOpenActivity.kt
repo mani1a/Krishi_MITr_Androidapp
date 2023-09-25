@@ -17,6 +17,8 @@ import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
 import android.view.Window
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -128,6 +130,12 @@ class ChatOpenActivity : AppCompatActivity() {
 
         supportActionBar?.title = name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+//        val prewrittenChats = resources.getStringArray(R.array.Location)
+//        val arrayAdapter = ArrayAdapter(this,R.layout.layout_chatmsgdropdown,prewrittenChats)
+//        val autoCompleteMsg = findViewById<AutoCompleteTextView>(R.id.autoCompleteMsg)
+//        autoCompleteMsg.setAdapter(arrayAdapter)
+
 
         databaseReference = FirebaseDatabase.getInstance().reference
         storageReference = FirebaseStorage.getInstance().reference
@@ -273,7 +281,7 @@ class ChatOpenActivity : AppCompatActivity() {
         val messageObject = Messages("true",time!!,message,senderuid,receiveruid)
 
         val recentUserList = RecentUser(receivername,receiveremail,receiverrole,receiverUID,receivermobile,receiverimageUrl,receiverrecent
-        ,receivercrop1,receivercrop2,receivercrop3)
+        ,receivercrop1,receivercrop2,receivercrop3,"true")
 
         if (message.isNotEmpty()){
 
@@ -386,6 +394,7 @@ class ChatOpenActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         startActivity(Intent(this,ChatMainActivity::class.java))
+        finish()
         return super.onOptionsItemSelected(item)
     }
 
@@ -495,6 +504,11 @@ class ChatOpenActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 
 

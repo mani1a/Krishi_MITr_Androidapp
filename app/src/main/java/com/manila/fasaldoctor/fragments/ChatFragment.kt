@@ -1,5 +1,6 @@
 package com.manila.fasaldoctor.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.method.TextKeyListener.clear
 import androidx.fragment.app.Fragment
@@ -17,8 +18,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.manila.fasaldoctor.R
+import com.manila.fasaldoctor.adapter.FilteredUserAdapter
 import com.manila.fasaldoctor.adapter.UsersAdapter
 import com.manila.fasaldoctor.databinding.FragmentChatBinding
+import com.manila.fasaldoctor.model.RecentUser
 import com.manila.fasaldoctor.model.User
 
 // TODO: Rename parameter arguments, choose names that match
@@ -77,7 +80,6 @@ class ChatFragment : Fragment() {
         binding?.checkTomato?.setOnCheckedChangeListener { buttonView, isChecked ->
             crop2 = "Tomato"
         }
-//        Toast.makeText(context,crop2,Toast.LENGTH_SHORT).show()
 
         fbDatabase.child("Users").child(firebaseAuth.currentUser!!.uid).child("role").get()
             .addOnSuccessListener {
@@ -94,8 +96,7 @@ class ChatFragment : Fragment() {
             binding?.choosetochatLayout?.visibility = View.VISIBLE
             binding?.IVFilterdown?.visibility = View.GONE
             binding?.IVFilterUP?.visibility = View.VISIBLE
-            binding?.txt?.setText("Click Icon To Collaspe")
-
+            binding?.txt?.text = "Click Icon To Collapse"
 
         }
         binding?.IVFilterUP?.setOnClickListener {
@@ -103,13 +104,9 @@ class ChatFragment : Fragment() {
             binding?.IVFilterdown?.visibility = View.VISIBLE
             binding?.IVFilterUP?.visibility = View.GONE
             binding?.txt?.text = "Click To Filter"
-            binding?.userRecycler?.visibility = View.VISIBLE
+//            binding?.userRecycler?.visibility = View.VISIBLE
 
         }
-
-
-
-
 
         //recycler view codes
         userList = ArrayList()
@@ -119,23 +116,18 @@ class ChatFragment : Fragment() {
         userrecyclerView.layoutManager = LinearLayoutManager(context)
         userrecyclerView.adapter = userrecyclerAdapter
 
-
         // users list ---- codes
         fbDatabase.child("Users").addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 userList.clear()
 
                 val role = snapshot.child(firebaseAuth.currentUser!!.uid).child("role").value.toString()
 
-//                if (role == "farmer") supportActionBar?.title = "Chat With Experts"
-//                else supportActionBar?.title = "Chat with Farmers"
-
                 for (postSnapshot in snapshot.children){
 
                     val currentUser = postSnapshot.getValue(User::class.java)
-                    val farmer = "farmer";
-                    val expert = "expert";
 
                     if ((firebaseAuth.currentUser?.uid != currentUser?.uid) && (currentUser?.role != role)){
 
@@ -145,28 +137,6 @@ class ChatFragment : Fragment() {
                         binding?.progbarr?.visibility = View.GONE
 
                     }
-
-
-                        binding!!.btnFilter.setOnClickListener {
-                            userList.clear()
-                            Toast.makeText(context, "Filtered", Toast.LENGTH_SHORT).show()
-                            if (
-//                                (firebaseAuth.currentUser?.uid != currentUser?.uid)
-//                                && (currentUser?.role != role)
-//                                &&
-                                    (currentUser?.crop1 == crop1 || currentUser?.crop2 == crop2)  ) {
-
-                                    if (currentUser != null) {
-                                        userList.add(currentUser)
-                                    }
-                                    binding?.userRecycler?.visibility = View.VISIBLE
-                                    binding?.progbarr?.visibility = View.GONE
-
-                            }
-
-
-                        }
-
 
 
 
@@ -202,6 +172,50 @@ class ChatFragment : Fragment() {
         return binding?.root
     }
 
+    fun message(){
+        fbDatabase.child("RecentUsers").child(firebaseAuth.currentUser!!.uid)
+            .addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    for (list in snapshot.children){
+                        val message = list.getValue(RecentUser::class.java)
+
+                        if (message?.messages == "true"){
+                            
+
+                        }
+
+
+                    }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -221,4 +235,6 @@ class ChatFragment : Fragment() {
                 }
             }
     }
+
+
 }

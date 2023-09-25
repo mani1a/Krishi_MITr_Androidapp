@@ -130,9 +130,7 @@ class MLActivity : AppCompatActivity() {
 
         }
         else{
-
             super.onActivityResult(requestCode, resultCode, data)
-
         }
     }
 
@@ -185,11 +183,24 @@ class MLActivity : AppCompatActivity() {
 
             if (outputFeature0[maxId] < fl){
                 maxId = index
-                confidence = fl
+                confidence = fl*100
             }
         }
 
         binding.tvResult.text = "Disease : ${labels[maxId]}"
+
+        if (confidence > 90){
+            binding.tvResultConfidenceBar.setImageResource(R.drawable.greenbar)
+        }
+        else if (confidence > 80){
+            binding.tvResultConfidenceBar.setImageResource(R.drawable.yellowbar)
+
+        }
+        else if (confidence < 80){
+            binding.tvResultConfidenceBar.setImageResource(R.drawable.redbar)
+
+
+        }
         binding.tvResultConfidence.text = confidence.toString()
 
         firebaseDatabase.child("Diseases").child("Potato").child(labels[2]).get()
@@ -197,7 +208,7 @@ class MLActivity : AppCompatActivity() {
                 val cure = it.child("cure").value.toString()
                 val symptoms = it.child("symptoms").value.toString()
 
-                binding.tvResultInfo.text = "Symptoms : $symptoms \n Cure : $cure\n "
+                binding.tvResultInfo.text = "\nSymptoms : $symptoms \n\n\n Cure : $cure\n "
         }
 
         // Releases model resources if no longer used.

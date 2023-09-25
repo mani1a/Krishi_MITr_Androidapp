@@ -87,7 +87,7 @@ class ProfileActivity : AppCompatActivity() {
         upprofilrImg.setOnClickListener {
             contract.launch("image/*")
             contract.apply {
-            showCustomDialogBox()
+//            showCustomDialogBox()
             }
 
 
@@ -217,28 +217,30 @@ class ProfileActivity : AppCompatActivity() {
             }
     }
 
-    fun showCustomDialogBox(){
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.layout_upload_cardview)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val image : ImageView = dialog.findViewById(R.id.showSelectedImg)
-        val uploadbtn : Button = dialog.findViewById(R.id.btn_upload)
-        val cancelbtn: Button = dialog.findViewById(R.id.btn_cancel)
-
-//        image.setImageURI(photo)
-
-        uploadbtn.setOnClickListener {
-            uploadprofImg()
-        }
-
-        cancelbtn.setOnClickListener {
-            dialog.dismiss()
-        }
-        dialog.show()
-
-    }
+//    fun showCustomDialogBox(){
+//
+//
+//        val dialog = Dialog(this)
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        dialog.setCancelable(false)
+////        dialog.setContentView(R.layout.layout_upload_cardview)
+//        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//        val image : ImageView = dialog.findViewById(R.id.showSelectedImg)
+//        val uploadbtn : Button = dialog.findViewById(R.id.btn_upload)
+//        val cancelbtn: Button = dialog.findViewById(R.id.btn_cancel)
+//
+////        image.setImageURI(photo)
+//
+//        uploadbtn.setOnClickListener {
+//            uploadprofImg()
+//        }
+//
+//        cancelbtn.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//        dialog.show()
+//
+//    }
 
 
 }

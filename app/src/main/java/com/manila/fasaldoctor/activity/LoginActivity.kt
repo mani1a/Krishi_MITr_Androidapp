@@ -29,8 +29,8 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        sharedPreferences = getSharedPreferences(getString(R.string.prefrences_file_name),Context.MODE_PRIVATE)
-        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false)
+        sharedPreferences = getSharedPreferences("Login",Context.MODE_PRIVATE)
+        sharedPreferences.getBoolean("isLoggedIn",false)
 
         binding.buttonRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
@@ -49,9 +49,11 @@ class LoginActivity : AppCompatActivity() {
                         Layers.hideProgressBar()
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
                     else{
+                        Layers.hideProgressBar()
                         Toast.makeText(this,it.exception.toString(), Toast.LENGTH_LONG).show()
                     }
                 }
@@ -63,13 +65,16 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
-
 
         val user = firebaseAuth.currentUser
         if (user != null ){
             startActivity(Intent(this,HomeActivity::class.java))
         }
+
+        sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
+
+
+
     }
 
     override fun onStop() {

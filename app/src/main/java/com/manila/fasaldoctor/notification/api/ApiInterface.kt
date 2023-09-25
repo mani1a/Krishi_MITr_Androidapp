@@ -8,6 +8,8 @@ import retrofit2.http.POST
 
 interface ApiInterface {
 
+    // Notification API
+
     @Headers("Content-Type: " +
             "application/json",
         "Authorization: " +
