@@ -33,6 +33,7 @@
     <string name="kisaan_news">"किसान समाचार "</string>
     <string name="kisaannewstxt">किसान ऋण पोर्टल मंगलवार को लॉन्च किया जाएगा</string>
     <string name="kisaannewstxt2">घर-घर जाकर केसीसी अभियान</string>
+    <string name="collaborate_with_expert">"एक्सपर्ट के साथ साझा करे "</string>
     <string name="prefrence_file_name_hindi">Loghind</string>
     <string name="app_name">Krishi MITr </string>
     <string name="open_camera">"कैमरा खोले "</string>
@@ -77,6 +78,8 @@
     <string name="government_schemes">सरकारी योजनाएं</string>
     <string name="kissan_helpline">"किसान हेल्पलाइन "</string>
     <string name="searchBartxt">खोजने के लिए पौधे/बीमारी/लक्षण का नाम दर्ज करें</string>
+    <string name="register_yourself">अपना पंजीकरण करें</string>
+    <string name="chatwithfarmer">किसान से बातचीत</string>
 
 
 </resources>

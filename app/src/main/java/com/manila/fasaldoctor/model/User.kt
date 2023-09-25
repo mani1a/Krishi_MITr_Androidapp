@@ -15,6 +15,7 @@ data class User(
     var crop2 : String?= "",
     var crop3 : String?= "",
     var certification : String? = null,
+    var location : String? = null,
 
 
     )

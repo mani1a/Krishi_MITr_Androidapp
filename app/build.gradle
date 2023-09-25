@@ -86,6 +86,43 @@ dependencies {
     //gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
 
+
+
+    //24- sept - 2023
+
+
+
+    //bom model to download custom ML model
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    //ml downloader to download Custom ML kit
+    implementation("com.google.firebase:firebase-ml-modeldownloader-ktx")
+
+    // tensor flow lite
+    implementation("org.tensorflow:tensorflow-lite:2.4.0")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // translation firebase
 //    implementation 'com.google.mlkit:translate:17.0.1'
 

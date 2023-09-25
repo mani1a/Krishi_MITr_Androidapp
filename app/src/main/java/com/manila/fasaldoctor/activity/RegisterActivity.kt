@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
@@ -44,6 +45,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var crop1 : String
     lateinit var crop2 : String
     lateinit var crop3 : String
+    lateinit var location : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,10 +142,18 @@ class RegisterActivity : AppCompatActivity() {
                 crop2 = "Tomato"
 
             }
-            val location = resources.getStringArray(R.array.india_states)
+            var locationdropdown = resources.getStringArray(R.array.india_states)
             val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.india_states,R.layout.layout_chatmsgdropdown)
             val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.autoCompleteLocation)
             autoCompleteTextView.setAdapter(arrayAdapter)
+
+            autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener{ parent, view, position, id ->
+                location = parent.getItemAtPosition(position).toString()
+            }
+
+
+
+
 
 
 
@@ -169,6 +179,8 @@ class RegisterActivity : AppCompatActivity() {
 
 
             }
+
+
 
         }
 
@@ -220,7 +232,7 @@ class RegisterActivity : AppCompatActivity() {
             // Get new FCM registration token
             fcmToken = task.result
             users = User(userName,email,role,userId,fcmToken,"",mobile,""
-                ,"",crop1,crop2,crop3)
+                ,"",crop1,crop2,crop3,"",location)
             firebaseDatabaseReference.child(userId).setValue(users).addOnSuccessListener {
                 Layers.hideProgressBar()
             }.addOnCompleteListener {

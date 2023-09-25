@@ -329,7 +329,7 @@
                             android:layout_centerVertical="true"
                             android:layout_gravity="start"
                             android:layout_marginStart="10dp"
-                            android:src="@drawable/customer_support" />
+                            android:src="@drawable/languages_annu" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -339,14 +339,9 @@
                             android:text="@string/select_language"
                             android:textSize="22sp" />
 
-
                     </RelativeLayout>
 
-
                 </androidx.cardview.widget.CardView>
-
-
-
 
 
             </RelativeLayout>

@@ -21,8 +21,12 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
+import com.google.firebase.ml.modeldownloader.DownloadType
+import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 //import com.google.mlkit.vision.common.InputImage
 //import com.google.mlkit.vision.label.ImageLabeling
 //import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
@@ -96,12 +100,24 @@ class MLActivity : AppCompatActivity() {
             if (imageMap != null){
                 tflitePotatoDisease()
                 binding.MLmoreinfo.visibility = View.VISIBLE
-                binding.MLchatwithExpert.visibility = View.VISIBLE
+//                binding.MLchatwithExpert.visibility = View.VISIBLE
 
             }else{
                 Toast.makeText(this,"Please Select Image",Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+        firebaseDatabase.child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+            .get().addOnSuccessListener {
+                val role = it.child("role").value.toString()
+
+                if (role == "expert"){
+                    binding.MLchatwithExpert.visibility = View.GONE
+                }
+                else{
+                    binding.MLchatwithExpert.visibility = View.VISIBLE
+                }
         }
 
         binding.MLchatwithExpert.setOnClickListener {
@@ -215,6 +231,31 @@ class MLActivity : AppCompatActivity() {
         model.close()
 
     }
+
+    private fun downloadCloudMl(ML : String){
+
+        val conditions = CustomModelDownloadConditions.Builder()
+            .requireWifi().build()
+
+        FirebaseModelDownloader.getInstance()
+            .getModel(ML,DownloadType.LOCAL_MODEL,conditions)
+            .addOnCompleteListener {
+
+            }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 }
 

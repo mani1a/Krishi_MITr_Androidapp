@@ -19,7 +19,7 @@
     <string name="get_started">Get Started</string>
     <string name="search">Search</string>
     <string name="chat_with_expert">Chat with Expert</string>
-    <string name="heal_your_crops">Heal Your Crops</string>
+    <string name="heal_your_crops">Get Cure</string>
     <string name="weather">Weather</string>
     <string name="location">Location</string>
     <string name="weathertoday">WeatherToday</string>
@@ -114,9 +114,14 @@
         <item>Uttar Pradesh</item>
         <item>West Bengal</item>
     </string-array>
+
+
     <string name="searchBartxt">Enter Name of Plant/Disease/Symptoms to Search</string>
     <string name="kisaan_news">Kisaan News</string>
     <string name="kisaannewstxt">Kisan Rin Portal to Be Launched on Tuesday</string>
     <string name="kisaannewstxt2">A door-to-door KCC campaign</string>
+    <string name="register_yourself">Register Yourself</string>
+    <string name="chatwithfarmer">Chat with Farmer</string>
+    <string name="collaborate_with_expert">Collaborate With Expert</string>
 
 </resources>

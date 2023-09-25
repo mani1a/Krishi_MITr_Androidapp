@@ -91,14 +91,15 @@ class HomeFragment : Fragment() {
                 role = it.child("role").value.toString()
 
                 if (role == "expert"){
-                    binding?.cameraActivityLayout?.visibility = View.GONE
+                    binding?.cameraActivityLayout?.visibility = View.VISIBLE
                     binding?.chatLayout?.visibility = View.VISIBLE
                     binding?.progbar?.visibility = View.GONE
-                    binding?.txtChat?.text = "Chat with Farmers"
-                    binding?.btnChatwithExpert?.text = "Chat with Farmers"
+                    binding?.txtChat?.text = getString(R.string.chatwithfarmer)
+                    binding?.btnChatwithExpert?.text = getString(R.string.chatwithfarmer)
                     binding?.weathercardlayout?.visibility = View.VISIBLE
-                    binding?.kisaanNewslayout?.visibility = View.VISIBLE
-                    binding?.soilTestingLayout?.visibility = View.VISIBLE
+                    binding?.kisaanNewslayout?.visibility = View.GONE
+                    binding?.soilTestingLayout?.visibility = View.GONE
+                    binding?.collabrateLayout?.visibility = View.VISIBLE
                 }else{
                     binding?.cameraActivityLayout?.visibility = View.VISIBLE
                     binding?.chatLayout?.visibility = View.VISIBLE

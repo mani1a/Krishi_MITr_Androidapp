@@ -21,16 +21,15 @@
         android:id="@+id/txt_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register Yourself"
+        android:text="@string/register_yourself"
         android:textSize="28sp"
         android:textStyle="bold"
+        android:layout_gravity="center"
         android:fontFamily="sans-serif"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
 
     <TextView
         android:id="@+id/rolechoosetext"
-        android:layout_below="@+id/txt_reg"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +39,6 @@
         android:textSize="18sp" />
 
     <LinearLayout
-        android:layout_below="@+id/rolechoosetext"
         android:id="@+id/img_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -75,6 +73,7 @@
         android:layout_below="@+id/img_layout"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
+        android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         >
 
@@ -207,16 +206,10 @@
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-
-
-            
             android:hint="@string/name"
-      
-
             android:layout_marginStart="30dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="30dp"
-            android:hint="Name"
             android:padding="0dp"
             app:hintEnabled="true"
             app:placeholderText="Enter Your Name"
@@ -233,14 +226,10 @@
             android:id="@+id/TextTextEmailAddress2"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-
             android:layout_below="@+id/user_name"
-
             android:hint="@string/email"
-
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:hint="Email"
             android:padding="0dp"
             app:hintEnabled="true"
             app:placeholderText="Enter Your Email"
@@ -258,16 +247,10 @@
             android:id="@+id/TextMobile"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-
             android:layout_below="@+id/TextTextEmailAddress2"
-            
-          
             android:hint="@string/mobile"
-          
-
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-        
             android:padding="0dp"
             app:hintEnabled="true"
             app:placeholderText="Enter Your Mobile"
@@ -286,15 +269,10 @@
             android:id="@+id/TextTextPassword2"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-
             android:layout_below="@+id/TextMobile"
-
-         
             android:hint="@string/password"
-
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-           
             android:padding="0dp"
             app:hintEnabled="true"
             app:placeholderText="Enter Your Password"
@@ -312,15 +290,10 @@
             android:id="@+id/TextTextConfirmPassword2"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-
             android:layout_below="@+id/TextTextPassword2"
-
-          
             android:hint="@string/confirm_password"
-         
-
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp
+            android:layout_marginEnd="30dp"
             android:padding="0dp"
             app:hintEnabled="true"
             app:placeholderText="Repeat Your Password"
@@ -342,7 +315,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/radio_role_group"
         android:layout_marginTop="20dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/grpx_crop"
@@ -396,7 +369,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/img_potato"
                     android:layout_centerHorizontal="true"
-                    android:text="Potato" />
+                    android:text="@string/potato" />
 
 
             </RelativeLayout>
@@ -410,7 +383,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/grpx_crop"
             android:layout_margin="30dp"
-            android:hint="Others Please Specify"
+            android:hint="@string/others_please_specify"
             android:orientation="vertical"
             app:placeholderText="Other">
 
@@ -429,7 +402,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="30dp"
 
-            android:hint="Select State"
+            android:hint="@string/select_state"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             app:placeholderText="Location">
 
@@ -458,6 +431,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/next"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:visibility="gone"/>
 
     <LinearLayout
@@ -496,19 +470,24 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/already_registerd_login"
-        android:layout_marginBottom="50dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="18sp"
-        android:textStyle="italic"/>
+        <TextView
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/already_registerd_login"
+            android:layout_marginTop="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textStyle="italic"/>
+
+
 
 
 </LinearLayout>
+
+
     </ScrollView>
 
 

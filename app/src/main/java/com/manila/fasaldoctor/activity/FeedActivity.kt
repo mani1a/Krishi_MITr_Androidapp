@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import com.manila.fasaldoctor.databinding.ActivityFeedBinding
 import android.content.Intent
 import android.app.ProgressDialog
+import android.view.MenuItem
 import android.view.View
 
 class FeedActivity : AppCompatActivity() {
@@ -48,12 +49,15 @@ class FeedActivity : AppCompatActivity() {
         imageView = findViewById(R.id.imageView)
         button = findViewById(R.id.buttonLoadPicture)
 
+
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserEmail = currentUser?.email
 
         firebaseStorage = FirebaseStorage.getInstance()
         val storageReference: StorageReference = firebaseStorage.reference
-        title = "KotlinApp"
+        supportActionBar?.title = "Feed"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -260,5 +264,10 @@ class FeedActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this@FeedActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        startActivity(Intent(this, HomeActivity::class.java))
+        return super.onOptionsItemSelected(item)
     }
 }
