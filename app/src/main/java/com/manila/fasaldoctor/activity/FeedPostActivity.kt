@@ -21,7 +21,7 @@ import com.google.firebase.storage.StorageReference
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.databinding.ActivityFeedPostBinding
 import com.manila.fasaldoctor.databinding.FragmentFeedBinding
-import com.manila.fasaldoctor.fragments.Feed2Fragment
+//import com.manila.fasaldoctor.fragments.Feed2Fragment
 import com.manila.fasaldoctor.model.PostData
 import com.manila.fasaldoctor.utils.Layers
 
@@ -101,7 +101,7 @@ class FeedPostActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         binding.btnSendPost.visibility = View.GONE
                         binding.feedPostProgressBar.visibility = View.VISIBLE
-                        startActivity(Intent(this,Feed2Fragment()::class.java))
+//                        startActivity(Intent(this,Feed2Fragment()::class.java))
                         Layers.hideProgressBar()
 
                     Toast.makeText(this,"Post Send", Toast.LENGTH_SHORT).show()

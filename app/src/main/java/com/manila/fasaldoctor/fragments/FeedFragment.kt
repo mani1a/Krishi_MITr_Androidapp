@@ -1,69 +1,98 @@
-package com.manila.fasaldoctor.activity
+package com.manila.fasaldoctor.fragments
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
+//import
+import com.bumptech.glide.Glide
+import android.app.ProgressDialog
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+//import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.adapter.PostAdapter
+import com.manila.fasaldoctor.databinding.FragmentFeedBinding
 import com.manila.fasaldoctor.model.UserPost
-import com.google.android.material.navigation.NavigationBarView
-import androidx.fragment.app.Fragment
-import com.manila.fasaldoctor.databinding.ActivityFeedBinding
-import android.content.Intent
-import android.app.ProgressDialog
-import android.view.View
+import java.io.InputStream
+import java.io.OutputStream
 
-class FeedActivity : AppCompatActivity() {
+class FeedFragment : Fragment() {
     private lateinit var imageView: ImageView
     private lateinit var button: Button
     private val pickImage = 100
     private var imageUri: Uri? = null
-    lateinit var firebaseStorage: FirebaseStorage
-    lateinit var progressBar : ProgressDialog
+    private lateinit var firebaseStorage: FirebaseStorage
+    private lateinit var progressBar: ProgressDialog
     private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: FragmentFeedBinding
     private lateinit var usersArrayList: ArrayList<UserPost>
     private lateinit var postAdapter: PostAdapter
+    private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
+
     private lateinit var uid: String // Declare uid at the top
+//     val s =
+    override fun onStart() {
+        super.onStart()
+
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentFeedBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        val buttonAddPost = binding.buttonAddPost
+        val editTextQuestion = binding.editTextQuestion
+        val postButton = binding.buttonPost
+        imageView = binding.imageViewPost
+        val button = binding.buttonLoadPicture
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed)
+        val getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
+            print("here51")
+            if(it!=null)
+            {
+                imageUri = it
+                imageView.setImageURI(it)
+            }
+            else {
+//                Toast.makeText(this,"image is not catch",Toast.LENGTH_SHORT).show()
+            }
+        }
 
-        val buttonAddPost = findViewById<Button>(R.id.buttonAddPost)
-        val editTextQuestion = findViewById<EditText>(R.id.editTextQuestion)
-        val buttonLoadPicture = findViewById<Button>(R.id.buttonLoadPicture)
-        val postButton = findViewById<Button>(R.id.buttonPost)
-        imageView = findViewById(R.id.imageView)
-        button = findViewById(R.id.buttonLoadPicture)
+
+
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserEmail = currentUser?.email
 
         firebaseStorage = FirebaseStorage.getInstance()
         val storageReference: StorageReference = firebaseStorage.reference
-        title = "KotlinApp"
 
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         usersArrayList = arrayListOf()
         postAdapter = PostAdapter(usersArrayList, currentUserEmail.toString())
 
         recyclerView.adapter = postAdapter
-
-
 
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -72,31 +101,34 @@ class FeedActivity : AppCompatActivity() {
             // Toggle visibility of other elements
             if (editTextQuestion.visibility == View.GONE) {
                 editTextQuestion.visibility = View.VISIBLE
-                buttonLoadPicture.visibility = View.VISIBLE
+                button.visibility = View.VISIBLE
                 postButton.visibility = View.VISIBLE
                 imageView.visibility = View.VISIBLE
-                findViewById<EditText>(R.id.description).visibility = View.VISIBLE
+                binding.description.visibility = View.VISIBLE
                 buttonAddPost.text = " Slide up (post later) "
             } else {
                 editTextQuestion.visibility = View.GONE
-                buttonLoadPicture.visibility = View.GONE
+                button.visibility = View.GONE
                 postButton.visibility = View.GONE
                 imageView.visibility = View.GONE
-                findViewById<EditText>(R.id.description).visibility = View.GONE
+                binding.description.visibility = View.GONE
                 buttonAddPost.text = " Add Post + "
             }
         }
 
-
         if (user != null) {
+
+
+
             uid = user.uid // Assign the UID here
 
             button.setOnClickListener {
-                val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-
-                startActivityForResult(gallery, pickImage)
+//                val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+//
+                println("here2")
+//                startActivityForResult(gallery, pickImage)
+                getContent.launch("image/*")
             }
-
 
 
             postButton.setOnClickListener {
@@ -115,7 +147,7 @@ class FeedActivity : AppCompatActivity() {
                         if (post != null && post.imageUrl != null && post.text != null && post.postId != null) {
                             val userPost = UserPost(
                                 postId = post.postId,
-                                imageUrl = post.imageUrl ,
+                                imageUrl = post.imageUrl,
                                 text = post.text,
                                 email = post.email,
                                 userImgUrl = post.userImgUrl,
@@ -128,24 +160,31 @@ class FeedActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@FeedActivity, error.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
                 }
             })
         }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == pickImage) {
-            imageUri = data?.data
-            println(imageUri)
-            imageView.setImageURI(imageUri)
-        }
+        return view
     }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == RESULT_OK && requestCode == pickImage) {
+//            imageUri = data?.data
+//            println(imageUri)
+//            imageView.setImageURI(imageUri)
+//        }
+//    }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == AppCompatActivity.RESULT_OK && requestCode == pickImage) {
+//
+//    }
 
     private fun uploadImageToStorage(imageUri: Uri?) {
         if (imageUri != null) {
-            progressBar = ProgressDialog(this@FeedActivity)
+            progressBar = ProgressDialog(requireContext())
             progressBar.setTitle("Post uploading....")
             progressBar.show()
             val storageReference = firebaseStorage.reference
@@ -171,14 +210,7 @@ class FeedActivity : AppCompatActivity() {
 
     private fun storeData(imageUrl: String) {
         var userImg: String = ""
-        val buttonAddPost = findViewById<Button>(R.id.buttonAddPost)
-        val editTextQuestion = findViewById<EditText>(R.id.editTextQuestion)
-        val buttonLoadPicture = findViewById<Button>(R.id.buttonLoadPicture)
-        val postButton = findViewById<Button>(R.id.buttonPost)
-        imageView = findViewById(R.id.imageView)
-        button = findViewById(R.id.buttonLoadPicture)
-        // Change the parameter type here
-        // Fetch user data from the Realtime Database
+
         // Fetch user data from the Realtime Database
         val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
@@ -202,7 +234,6 @@ class FeedActivity : AppCompatActivity() {
             }
         })
 
-
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -213,9 +244,9 @@ class FeedActivity : AppCompatActivity() {
                         email = email,
                         role = role,
                         uid = uid,
-                        userImgUrl=userImg,
-                        description = findViewById<EditText>(R.id.description).text.toString(),
-                        text = findViewById<EditText>(R.id.editTextQuestion).text.toString(),
+                        userImgUrl = userImg,
+                        description = binding.description.text.toString(),
+                        text = binding.editTextQuestion.text.toString(),
                         imageUrl = imageUrl, // Use the imageUrl parameter here
                         timestamp = System.currentTimeMillis(),
                         comments = listOf(),
@@ -232,19 +263,17 @@ class FeedActivity : AppCompatActivity() {
                     // Update the post data with the postId as a child
                     postReference.setValue(data).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-
-                            if (progressBar.isShowing)progressBar.dismiss()
+                            if (progressBar.isShowing) progressBar.dismiss()
                             showToast("Post successfully uploaded!")
-                            editTextQuestion.visibility = View.GONE
-                            buttonLoadPicture.visibility = View.GONE
-                            postButton.visibility = View.GONE
+                            binding.editTextQuestion.visibility = View.GONE
+                            binding.buttonLoadPicture.visibility = View.GONE
+                            binding.buttonPost.visibility = View.GONE
                             imageView.visibility = View.GONE
-                            buttonAddPost.text = " Add Post + "
+                            binding.buttonAddPost.text = " Add Post + "
                         } else {
                             showToast("Failed to upload post. Please try again.")
                         }
                     }
-
                 } else {
                     println("User data does not exist in the database")
                 }
@@ -256,9 +285,7 @@ class FeedActivity : AppCompatActivity() {
         })
     }
 
-
-
     private fun showToast(message: String) {
-        Toast.makeText(this@FeedActivity, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
