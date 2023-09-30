@@ -4,8 +4,7 @@
 
     <uses-feature android:name="android.hardware.camera.any" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission
@@ -26,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FasalDoctor"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.CollaborateChatActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.OtpRegActivity"
             android:exported="false" />

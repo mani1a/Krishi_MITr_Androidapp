@@ -54,7 +54,7 @@
     <string name="user_name">"नाम "</string>
     <string name="get_started">"चलिए शुरू करते है "</string>
     <string name="search">"खोजे "</string>
-    <string name="chat_with_expert">"एक्सपर्ट के साथ साझा करे "</string>
+    <string name="chat_with_expert">"एक्सपर्ट से पूछे "</string>
     <string name="heal_your_crops">"अपनी फसल ठीक करे  "</string>
     <string name="weather">"मौसम की जानकारी "</string>
     <string name="location">"स्थान "</string>
@@ -66,7 +66,7 @@
     <string name="registertxt">अभी तक पंजीकृत नहीं! - यहां रजिस्टर करें</string>
     <string name="login">"लॉग इन "</string>
     <string name="home">"होम "</string>
-    <string name="feed">फीड</string>
+    <string name="feed">"समुदाय "</string>
     <string name="more">"अधिक "</string>
     <string name="already_registerd_login">पहले से ही पंजीकृत है. - लॉग इन करें</string>
     <string name="soil_testing">मिट्टी परीक्षण</string>
@@ -80,6 +80,7 @@
     <string name="searchBartxt">खोजने के लिए पौधे/बीमारी/लक्षण का नाम दर्ज करें</string>
     <string name="register_yourself">अपना पंजीकरण करें</string>
     <string name="chatwithfarmer">किसान से बातचीत</string>
+    <string name="seeresult">"जानकारी देखे "</string>
 
 
 </resources>

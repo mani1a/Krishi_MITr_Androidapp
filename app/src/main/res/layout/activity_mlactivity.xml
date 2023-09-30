@@ -23,7 +23,7 @@
                 android:id="@+id/imgselectview"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 app:cardBackgroundColor="#F0FFF0"
                 app:cardCornerRadius="20dp">
 
@@ -43,60 +43,70 @@
                 />
 
             <LinearLayout
-                android:layout_marginTop="5dp"
                 android:id="@+id/linear"
-                android:layout_below="@+id/imgView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/select_image"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/select_images"
-                android:textColor="@color/black"
-                app:icon="@drawable/image"
-                app:iconTintMode="multiply"
-                app:iconSize="24dp"
-                app:iconPadding="10dp"
-                app:iconGravity="textStart"
-                android:backgroundTint="@color/materialcolorbtn"
-                />
+                android:layout_below="@+id/imgView"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/open_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/click_photos"
-                android:textColor="@color/black"
-                app:icon="@drawable/camera"
-                app:iconTintMode="multiply"
-                app:iconSize="24dp"
-                app:iconPadding="10dp"
-                app:iconGravity="textStart"
-                android:backgroundTint="@color/materialcolorbtn"
-                />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/select_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="50"
+                    android:backgroundTint="@color/materialcolorbtn"
+                    android:text="@string/select_images"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    app:icon="@drawable/image"
+                    app:iconGravity="textStart"
+                    app:iconPadding="10dp"
+                    app:iconSize="22dp"
+                    app:iconTintMode="multiply" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/open_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="50"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/materialcolorbtn"
+                    android:text="@string/click_photos"
+                    android:textColor="@color/black"
+                    app:icon="@drawable/camera"
+                    app:iconGravity="textStart"
+                    app:iconPadding="10dp"
+                    app:iconSize="22dp"
+                    app:iconTintMode="multiply" />
+
 
             </LinearLayout>
 
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_seeresult"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linear"
-                android:layout_marginStart="70dp"
-                android:text="@string/heal_your_crop"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/seeresult"
                 android:textColor="@color/black"
-                android:backgroundTint="@color/materialcolorbtn"
-                android:layout_centerHorizontal="true"
+                android:textSize="18sp"
+                android:backgroundTint="#6DD662"
                 app:icon="@drawable/healing"
                 app:iconTintMode="multiply"
                 app:iconSize="30dp"
@@ -115,8 +125,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-
             <LinearLayout
                 android:id="@+id/imgprocessView"
                 android:layout_width="match_parent"
@@ -127,13 +135,11 @@
                 android:layout_marginBottom="10dp"
                 app:cardBackgroundColor="@color/app_bg"
                 app:cardCornerRadius="20dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_prediction"
@@ -155,7 +161,7 @@
                     <TextView
                         android:id="@+id/tv_result_confidence"
                         android:layout_below="@+id/tv_result"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/confidence"
                         android:textSize="20sp"
@@ -163,16 +169,40 @@
                         android:layout_marginEnd="20dp"
                         />
 
-                    <ImageView
-                        android:id="@+id/tv_result_confidence_bar"
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp"
-                        android:layout_below="@+id/tv_result_confidence"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="40dp"
-                        />
+                    <LinearLayout
+                        android:layout_below="@id/tv_result_confidence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        >
 
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/tv_result_confidence_bar_green"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/tv_result_confidence"
+                            android:background="@drawable/greenbar"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/tv_result_confidence_bar_yellow"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_below="@+id/tv_result_confidence"
+                            android:background="@drawable/yellowbar"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/tv_result_confidence_bar_red"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_below="@+id/tv_result_confidence"
+                            android:background="@drawable/redbar"
+                            android:src="@drawable/red"/>
+
+
+                    </LinearLayout>
                     <TextView
                         android:id="@+id/tv_result_info"
                         android:layout_below="@+id/tv_result_confidence"

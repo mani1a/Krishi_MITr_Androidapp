@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CollaborateChatActivity">
+
+    <RelativeLayout
+        android:id="@+id/layout_frame_chatSec"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green">
+
+        <ProgressBar
+            android:id="@+id/progbarr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/choosetochatLayoutCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/dilterlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/click_to_filter"
+                        android:layout_centerVertical="true"
+                        android:textSize="18sp"
+                        android:padding="15dp"/>
+
+                    <ImageView
+                        android:id="@+id/IV_filterdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/vector_down"
+                        android:padding="15dp"
+                        android:layout_centerVertical="true"/>
+
+                    <ImageView
+                        android:id="@+id/IV_filterUP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/vector_up"
+                        android:padding="15dp"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"/>
+
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/choosetochatLayout"
+                    android:layout_below="@+id/dilterlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/txtchoosechat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_a_crop_to_search_expert"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                    <RelativeLayout
+                        android:id="@+id/selectcroplayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtchoosechat"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/grpx_crop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="100">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="50">
+
+
+                                <ImageView
+                                    android:id="@+id/img_tomato"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/tomato"
+                                    android:layout_centerHorizontal="true"/>
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/check_tomato"
+                                    android:layout_below="@id/img_tomato"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tomato"
+                                    android:layout_centerHorizontal="true"
+                                    />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="50">
+
+
+                                <ImageView
+                                    android:id="@+id/img_potato"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/potato"
+                                    android:layout_centerHorizontal="true"
+                                    />
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/check_potato"
+                                    android:layout_below="@id/img_potato"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/potato"
+                                    android:layout_centerHorizontal="true"
+                                    />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/grpx_crop"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginEnd="40dp"
+                            app:placeholderText="Other"
+                            android:hint="@string/others_please_specify">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edittextothercrop"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </RelativeLayout>
+
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/btn_filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/selectcroplayout"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/filter"
+                        android:textSize="16sp"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/choosetochatLayoutCV"
+            android:id="@+id/user_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="0dp"
+            android:padding="2dp"
+            tools:listitem="@layout/recyclerview_users"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

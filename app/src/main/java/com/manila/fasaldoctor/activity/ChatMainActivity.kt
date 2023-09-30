@@ -60,7 +60,6 @@ class ChatMainActivity : AppCompatActivity() {
         supportActionBar?.title = "CHAT"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         val fragmentArrayList = ArrayList<Fragment>()
         fragmentArrayList.add(ChatFragment())
         fragmentArrayList.add(RecentChatsFragment())

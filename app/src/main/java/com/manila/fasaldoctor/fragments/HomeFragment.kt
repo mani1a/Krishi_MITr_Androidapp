@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.manila.fasaldoctor.R
 import com.manila.fasaldoctor.activity.ChatMainActivity
+import com.manila.fasaldoctor.activity.CollaborateChatActivity
 import com.manila.fasaldoctor.activity.MLActivity
 import com.manila.fasaldoctor.databinding.FragmentHomeBinding
 
@@ -61,27 +62,6 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
 
-//        firebaseStorageRefrence = FirebaseStorage.getInstance()
-//        binding?.openCamera?.setOnClickListener {
-//            val takePicintent =Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//
-//            try {
-//                startActivityForResult(takePicintent, 100)
-//            } catch (e: ActivityNotFoundException) {
-//                Toast.makeText(context, "Error" + e.localizedMessage, Toast.LENGTH_LONG).show()
-//            }
-//        }
-//
-//        val contract = registerForActivityResult(ActivityResultContracts
-//            .GetContent()){
-//            binding?.capturedImage3?.setImageURI(it)
-//        }
-//
-//        binding?.selectImage?.setOnClickListener {
-//            contract.launch("image/*")
-//
-//        }
-
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         firebaseDatabase = FirebaseDatabase.getInstance().reference
@@ -100,6 +80,8 @@ class HomeFragment : Fragment() {
                     binding?.kisaanNewslayout?.visibility = View.GONE
                     binding?.soilTestingLayout?.visibility = View.GONE
                     binding?.collabrateLayout?.visibility = View.VISIBLE
+                    binding?.cameraEk?.setImageResource(R.drawable.farmer)
+
                 }else{
                     binding?.cameraActivityLayout?.visibility = View.VISIBLE
                     binding?.chatLayout?.visibility = View.VISIBLE
@@ -113,6 +95,10 @@ class HomeFragment : Fragment() {
 
 
             }
+        }
+
+        binding?.btnCollaboratewithExpert?.setOnClickListener {
+            startActivity(Intent(context,CollaborateChatActivity::class.java))
         }
 
 
@@ -136,21 +122,10 @@ class HomeFragment : Fragment() {
 
         return binding?.root
 
-//        return inflater.inflate(R.layout.fragment_home, container, false)
+
     }
 
-//    @Deprecated("Deprecated in Java")
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        if (requestCode == 100 && resultCode == AppCompatActivity.RESULT_OK){
-//            val imagemap = data?.extras?.get("data") as Bitmap
-//            binding?.capturedImage3?.setImageBitmap(imagemap)
-//
-//        }
-//        else{
-//            super.onActivityResult(requestCode, resultCode, data)
-//
-//        }
-//    }
+
 
     companion object {
         /**

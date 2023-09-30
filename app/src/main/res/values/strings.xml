@@ -62,7 +62,7 @@
     <string name="english">English</string>
     <string name="hindi">Hindi</string>
     <string name="home">Home</string>
-    <string name="feed">Feed</string>
+    <string name="feed">Community</string>
     <string name="more">More</string>
     <string name="soil_testing">Soil Testing</string>
     <string name="khow_about_your_soil">Khow about your soil</string>
@@ -123,5 +123,6 @@
     <string name="register_yourself">Register Yourself</string>
     <string name="chatwithfarmer">Chat with Farmer</string>
     <string name="collaborate_with_expert">Collaborate With Expert</string>
+    <string name="seeresult">See Result</string>
 
 </resources>

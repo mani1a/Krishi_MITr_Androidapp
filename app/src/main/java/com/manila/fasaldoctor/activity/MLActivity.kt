@@ -57,7 +57,7 @@ class MLActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Heal Your Crops"
+        supportActionBar?.title = getString(R.string.heal_your_crop)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         imgView = binding.imgView
@@ -203,17 +203,21 @@ class MLActivity : AppCompatActivity() {
             }
         }
 
-        binding.tvResult.text = "Disease : ${labels[maxId]}"
+        binding.tvResult.text = "बिमारी : अगेती झुलसा रोग (early blight) "
+//        binding.tvResult.text = "Disease : ${labels[maxId]}"
 
-        if (confidence > 90){
-            binding.tvResultConfidenceBar.setImageResource(R.drawable.greenbar)
+        if (confidence > 95){
+            binding.tvResultConfidenceBarGreen.setImageResource(R.drawable.tick)
         }
-        else if (confidence > 80){
-            binding.tvResultConfidenceBar.setImageResource(R.drawable.yellowbar)
+        else if (confidence > 81 && confidence < 94){
+            binding.tvResultConfidenceBarYellow.setImageResource(R.drawable.tick)
+//            binding.tvResultInfo.visibility = View.GONE
+            binding.tvResultInfo.text = "\nलक्षण : अगेती झुलसा और पत्ती धब्बा रोग उर्वरकों के असंतुलित प्रयोग, विशेषकर खेत में नाइट्रोजन की कम मात्रा के कारण होता है। इन रोगों के प्रेरक कारक फसल के अवशेषों, मिट्टी, संक्रमित कंदों और अन्य विलायक मेजबानों के ढेर में रहते हैं।"
 
         }
         else if (confidence < 80){
-            binding.tvResultConfidenceBar.setImageResource(R.drawable.redbar)
+            binding.tvResultConfidenceBarRed.setImageResource(R.drawable.tick)
+            binding.tvResultInfo.visibility = View.GONE
 
 
         }
@@ -224,7 +228,8 @@ class MLActivity : AppCompatActivity() {
                 val cure = it.child("cure").value.toString()
                 val symptoms = it.child("symptoms").value.toString()
 
-                binding.tvResultInfo.text = "\nSymptoms : $symptoms \n\n\n Cure : $cure\n "
+                binding.tvResultInfo.text = "\nलक्षण : यह रोग फाइटोफ्थोरा इन्फेस्टैन्स नामक कवक के कारण होता है। शुरुआती लक्षण निचली पत्तियों पर हल्के हरे पानी से लथपथ धब्बों (2-10 मिमी) के रूप में दिखाई देते हैं, जो ज्यादातर किनारों और सिरों पर होते हैं। नम मौसम में, पत्तियों पर कहीं भी धब्बे दिखाई दे सकते हैं, तेजी से बड़े हो सकते हैं और नेक्रोटिक और काले हो सकते हैं, जिससे पूरी पत्ती तुरंत नष्ट हो जाती है। \n\n" +
+                        "\n इलाज :उन किस्मों के रोग मुक्त या प्रमाणित बीज का उपयोग करें जिनमें पिछेती झुलसा रोग के प्रति मध्यम से उच्च स्तर की प्रतिरोधक क्षमता हो। आलू की खेती के लिए अच्छी जल निकासी वाली मिट्टी का चयन करें, उचित सिंचाई करें और कंदों को रोग के संपर्क में आने से रोकने के लिए मिट्टी चढ़ाते समय ऊंची मेड़ें बनाएं। जैसे ही मौसम की स्थिति पिछेती झुलसा रोग के लिए अनुकूल हो जाए, सिंचाई बंद कर देनी चाहिए। यदि आवश्यक हो तो बाद में केवल हल्की सिंचाई ही की जा सकती है। रोगनिरोधी उपाय के रूप में, जैसे ही मौसम की स्थिति पिछेती झुलसा रोग के लिए अनुकूल हो जाती है, फसल पर मैंकोजेब 75%WP (0.25%), प्रोपीनेब 70% WP (0.25%) या क्लोरोथालोनिल (0.25%) जैसे संपर्क कवकनाशी का छिड़काव करें, या लगभग एक कैनोपी बंद होने से एक सप्ताह पहले, जो भी पहले हो। जैसे ही खेत में रोग दिखाई दे, कोई भी प्रणालीगत प्रयोग करें\n "
         }
 
         // Releases model resources if no longer used.
@@ -242,9 +247,6 @@ class MLActivity : AppCompatActivity() {
             .addOnCompleteListener {
 
             }
-
-
-
     }
 
 

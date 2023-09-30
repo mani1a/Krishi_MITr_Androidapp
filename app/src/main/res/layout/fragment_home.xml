@@ -33,23 +33,22 @@
                 android:layout_marginBottom="30dp"
                 android:background="@color/white"
                 android:hint="@string/search"
-                app:queryHint="@string/searchBartxt"
                 app:iconifiedByDefault="false"
-                />
+                app:queryHint="@string/searchBartxt" />
 
             <RelativeLayout
                 android:id="@+id/chatLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="gone"
-                android:padding="11dp">
+                android:padding="11dp"
+                android:visibility="gone">
 
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardchat"
                     android:layout_width="378dp"
-                    android:layout_height="178dp"
+                    android:layout_height="wrap_content"
                     android:elevation="11dp"
                     android:padding="20dp"
                     app:cardBackgroundColor="@color/white"
@@ -62,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="120dp"
+                        android:layout_marginTop="220dp"
                         android:drawableStart="@drawable/vector_photolibrary"
                         android:drawableTint="#F3D0D0"
                         android:text="@string/chat_with_expert"
@@ -92,11 +91,13 @@
 
                     <ImageView
                         android:id="@+id/camera_ek"
-                        android:layout_width="261dp"
-                        android:layout_height="85dp"
+                        android:layout_width="278dp"
+                        android:layout_height="150dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="40dp"
-                        android:src="@drawable/outputexpert" />
+                        android:layout_marginTop="60dp"
+                        android:background="@drawable/background_ml_imgview"
+                        android:padding="5dp"
+                        android:src="@drawable/expert_team" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -107,13 +108,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="gone"
-                android:padding="11dp">
+                android:padding="11dp"
+                android:visibility="gone">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardheal"
                     android:layout_width="wrap_content"
-                    android:layout_height="188dp"
+                    android:layout_height="250dp"
                     android:elevation="6dp"
                     android:padding="20dp"
                     app:cardBackgroundColor="@color/white"
@@ -122,19 +123,23 @@
 
                     <ImageView
                         android:id="@+id/captured_image3"
-                        android:layout_width="261dp"
-                        android:layout_height="85dp"
+                        android:padding="3dp"
+                        android:layout_width="278dp"
+                        android:layout_height="150dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="40dp"
-                        android:src="@drawable/output_uploadfiles" />
+                        android:layout_marginTop="50dp"
+                        android:background="@drawable/background_ml_imgview"
+                        android:src="@drawable/ai_ml"
+                        android:scaleType="centerInside"/>
 
                     <Button
+
                         android:id="@+id/btnhealcrop"
                         android:layout_width="278dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="120dp"
+                        android:layout_marginTop="200dp"
                         android:drawableStart="@drawable/vector_camera"
                         android:drawableTint="#F3D0D0"
                         android:gravity="center"
@@ -167,7 +172,6 @@
                 </androidx.cardview.widget.CardView>
 
 
-
             </RelativeLayout>
 
             <!--collaborate layout-->
@@ -176,8 +180,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="gone"
-                android:padding="11dp">
+                android:padding="11dp"
+                android:visibility="gone">
 
 
                 <androidx.cardview.widget.CardView
@@ -241,86 +245,87 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="gone"
-                android:padding="11dp">
+                android:padding="11dp"
+                android:visibility="gone">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/weathercard"
-                android:layout_width="match_parent"
-                android:layout_height="115dp"
-                android:layout_gravity="center_horizontal"
-                android:elevation="6dp"
-                android:layout_marginTop="16dp"
-                android:padding="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp">
-
-                <TextView
-                    android:id="@+id/textWeather"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/weathercard"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="19dp"
-                    android:backgroundTint="#009688"
-                    android:clickable="false"
-                    android:editable="false"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/weather"
-                    android:textColor="#5C6BC0"
-                    android:textColorHighlight="#8BC34A"
-                    android:textColorHint="#4CAF50"
-                    android:textColorLink="#4CAF50"
-                    android:textSize="24sp"
-                    android:visibility="visible" />
+                    android:layout_height="115dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:elevation="6dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
 
-                <TextView
-                    android:id="@+id/Location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="19dp"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/location"
-                    android:textSize="14sp"/>
-                <TextView
-                    android:id="@+id/Weatherloc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginEnd="19dp"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/weathertoday"
-                    android:textSize="14sp"/>
+                    <TextView
+                        android:id="@+id/textWeather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="19dp"
+                        android:backgroundTint="#009688"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/weather"
+                        android:textColor="#5C6BC0"
+                        android:textColorHighlight="#8BC34A"
+                        android:textColorHint="#4CAF50"
+                        android:textColorLink="#4CAF50"
+                        android:textSize="24sp"
+                        android:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/Temperatur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="230dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="19dp"
-                    android:fontFamily="sans-serif"
-                    android:text="20 C"
-                    android:textSize="50sp" />
+                    <TextView
+                        android:id="@+id/Location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="19dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/location"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/Weatherloc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginEnd="19dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/weathertoday"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/Temperatur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="230dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="19dp"
+                        android:fontFamily="sans-serif"
+                        android:text="20 C"
+                        android:textSize="50sp" />
 
 
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
             <RelativeLayout
@@ -328,60 +333,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="gone"
-                android:padding="6dp">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/soilcard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:elevation="6dp"
-                android:layout_marginTop="16dp"
-                android:padding="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp">
+                android:padding="6dp"
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/textSoil"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="19dp"
-                android:backgroundTint="#009688"
-                android:clickable="false"
-                android:editable="false"
-                android:ems="10"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/soil_testing"
-                android:textColor="#874D4D"
-                android:textColorHighlight="#8BC34A"
-                android:textColorHint="#4CAF50"
-                android:textColorLink="#4CAF50"
-                android:textSize="24sp"
-                android:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/soiltest"
-                    android:layout_width="wrap_content"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/soilcard"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="19dp"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/khow_about_your_soil"
-                    android:textSize="14sp"/>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:elevation="6dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
+
+                    <TextView
+                        android:id="@+id/textSoil"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="19dp"
+                        android:backgroundTint="#009688"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/soil_testing"
+                        android:textColor="#874D4D"
+                        android:textColorHighlight="#8BC34A"
+                        android:textColorHint="#4CAF50"
+                        android:textColorLink="#4CAF50"
+                        android:textSize="24sp"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/soiltest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="19dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/khow_about_your_soil"
+                        android:textSize="14sp" />
 
 
-
-
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
             <RelativeLayout
@@ -389,69 +393,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:visibility="gone"
+                android:padding="6dp"
 
-                android:padding="6dp">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/newscard"
-                android:layout_width="match_parent"
-                android:layout_height="115dp"
-                android:layout_gravity="center_horizontal"
-                android:elevation="6dp"
-                android:layout_marginTop="16dp"
-                android:padding="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="10dp">
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/textNews"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="19dp"
-                android:backgroundTint="#009688"
-                android:ems="10"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/kisaan_news"
-                android:textColor="#FF7373"
-                android:textColorHighlight="#8BC34A"
-                android:textColorHint="#4CAF50"
-                android:textColorLink="#4CAF50"
-                android:textSize="24sp"
-                android:visibility="visible" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/newscard"
+                    android:layout_width="match_parent"
+                    android:layout_height="115dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:elevation="6dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/newsheadline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="19dp"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/kisaannewstxt"
-                android:textSize="14sp"/>
+                    <TextView
+                        android:id="@+id/textNews"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="19dp"
+                        android:backgroundTint="#009688"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/kisaan_news"
+                        android:textColor="#FF7373"
+                        android:textColorHighlight="#8BC34A"
+                        android:textColorHint="#4CAF50"
+                        android:textColorLink="#4CAF50"
+                        android:textSize="24sp"
+                        android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/NewsDiscrip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginEnd="19dp"
-                android:fontFamily="sans-serif"
-                android:text="@string/kisaannewstxt2"
-                android:textSize="14sp" />
-            </androidx.cardview.widget.CardView></RelativeLayout>
+                    <TextView
+                        android:id="@+id/newsheadline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="19dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/kisaannewstxt"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/NewsDiscrip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginEnd="19dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/kisaannewstxt2"
+                        android:textSize="14sp" />
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

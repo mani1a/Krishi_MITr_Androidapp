@@ -42,10 +42,14 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var userId : String
     lateinit var fcmToken : String
     lateinit var mobile : String
-    lateinit var crop1 : String
-    lateinit var crop2 : String
-    lateinit var crop3 : String
+//    lateinit var crop1 : String
+//    lateinit var crop2 : String
+//    lateinit var crop3 : String
     lateinit var location : String
+
+    var crop1 : String = ""
+    var crop2 : String = ""
+    var crop3 : String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

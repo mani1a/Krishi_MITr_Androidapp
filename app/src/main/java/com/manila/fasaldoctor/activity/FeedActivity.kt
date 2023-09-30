@@ -55,7 +55,7 @@ class FeedActivity : AppCompatActivity() {
 
         firebaseStorage = FirebaseStorage.getInstance()
         val storageReference: StorageReference = firebaseStorage.reference
-        supportActionBar?.title = "Feed"
+        supportActionBar?.title = getString(R.string.feed)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
